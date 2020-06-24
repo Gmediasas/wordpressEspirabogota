@@ -1,0 +1,9 @@
+[28-Dec-2018 14:16:01 UTC] PHP Warning:  sprintf(): Too few arguments in /home/gmedbwkc/public_html/fenalco.gmediacompany.com/wp-admin/includes/class-bulk-upgrader-skin.php on line 150
+[28-Dec-2018 14:16:02 UTC] PHP Warning:  sprintf(): Too few arguments in /home/gmedbwkc/public_html/fenalco.gmediacompany.com/wp-admin/includes/class-bulk-upgrader-skin.php on line 150
+[28-Dec-2018 14:16:03 UTC] PHP Warning:  sprintf(): Too few arguments in /home/gmedbwkc/public_html/fenalco.gmediacompany.com/wp-admin/includes/class-bulk-upgrader-skin.php on line 150
+[28-Dec-2018 14:16:03 UTC] PHP Warning:  sprintf(): Too few arguments in /home/gmedbwkc/public_html/fenalco.gmediacompany.com/wp-admin/includes/class-bulk-upgrader-skin.php on line 150
+[28-Dec-2018 14:16:05 UTC] PHP Warning:  sprintf(): Too few arguments in /home/gmedbwkc/public_html/fenalco.gmediacompany.com/wp-admin/includes/class-bulk-upgrader-skin.php on line 150
+[05-Nov-2019 16:09:33 UTC] [Loco.error] "Translation set not known in Tevent" in src/admin/bundle/BaseController.php:69
+[05-Nov-2019 16:10:17 UTC] [Loco.error] "Translation set not known in Tevent" in src/admin/bundle/BaseController.php:69
+[12-Nov-2019 15:22:04 UTC] [Loco.error] "Translation set not known in Tevent" in src/admin/bundle/BaseController.php:69
+[12-Nov-2019 15:22:24 UTC] [Loco.error] "Translation set not known in Tevent" in src/admin/bundle/BaseController.php:69

@@ -1,0 +1,39 @@
+
+---Downloaded files---
+The import files for: Main Demo were successfully downloaded!
+Initial max execution time = 300
+Files info:
+Site URL = http://fenalco.gmediacompany.com
+Data file = /home/gmedbwkc/public_html/fenalco.gmediacompany.com/wp-content/themes/tevent/demo/content.xml
+Widget file = /home/gmedbwkc/public_html/fenalco.gmediacompany.com/wp-content/themes/tevent/demo/widgets.json
+Customizer file = /home/gmedbwkc/public_html/fenalco.gmediacompany.com/wp-content/themes/tevent/demo/customizer.dat
+Redux files:
+not defined!
+
+------
+New AJAX call!
+
+
+------
+New AJAX call!
+
+
+---Importing widgets---
+Sidebar : 
+
+Buscar - No Title - Imported
+Entradas recientes - No Title - Imported
+Imagen - Image - Imported
+Vídeo - Video - Imported
+
+Sidenav : 
+
+Texto - About Us - Imported
+
+
+
+---Importing customizer settings---
+Customizer settings import finished!
+
+---pt-ocdi/after_import---
+

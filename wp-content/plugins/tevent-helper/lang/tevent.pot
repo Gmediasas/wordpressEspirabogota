@@ -1,0 +1,1018 @@
+# Copyright (C) 2017 Tevent Helper
+# This file is distributed under the same license as the Tevent Helper package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Tevent Helper 1.0.1\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/tevent-helper\n"
+"POT-Creation-Date: 2017-11-15 08:18:03+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2017-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: inc/class.tb-vc-preview-field.php:23
+msgid "%s Preview Image."
+msgstr ""
+
+#: inc/class.tb-vc-preview-field.php:32
+msgid "Preview"
+msgstr ""
+
+#: inc/functions-register.php:6
+msgid "Box Shadow"
+msgstr ""
+
+#: inc/functions-register.php:9
+msgid "None"
+msgstr ""
+
+#: inc/functions-register.php:10
+msgid "40px Box Shadow"
+msgstr ""
+
+#: inc/functions-register.php:11
+msgid "100px Box Shadow"
+msgstr ""
+
+#: inc/functions-register.php:13
+msgid "Add box shadow to background."
+msgstr ""
+
+#: inc/functions-register.php:288
+msgctxt "Post Type General Name"
+msgid "Sessions"
+msgstr ""
+
+#: inc/functions-register.php:289
+msgctxt "Post Type Singular Name"
+msgid "Session"
+msgstr ""
+
+#: inc/functions-register.php:290 shortcodes/session/class-session.php:68
+msgid "Sessions"
+msgstr ""
+
+#: inc/functions-register.php:291 inc/functions-register.php:317
+#: shortcodes/session/class-session.php:31
+#: shortcodes/session/class-session.php:85
+#: shortcodes/session/class-session.php:164
+msgid "Session"
+msgstr ""
+
+#: inc/functions-register.php:292
+msgid "Session Archives"
+msgstr ""
+
+#: inc/functions-register.php:293
+msgid "Session Attributes"
+msgstr ""
+
+#: inc/functions-register.php:294
+msgid "Parent Session:"
+msgstr ""
+
+#: inc/functions-register.php:295
+msgid "All Sessions"
+msgstr ""
+
+#: inc/functions-register.php:296
+msgid "Add New Session"
+msgstr ""
+
+#: inc/functions-register.php:297
+msgid "Add New"
+msgstr ""
+
+#: inc/functions-register.php:298
+msgid "New Session"
+msgstr ""
+
+#: inc/functions-register.php:299
+msgid "Edit Session"
+msgstr ""
+
+#: inc/functions-register.php:300
+msgid "Update Session"
+msgstr ""
+
+#: inc/functions-register.php:301
+msgid "View Session"
+msgstr ""
+
+#: inc/functions-register.php:302
+msgid "View Sessions"
+msgstr ""
+
+#: inc/functions-register.php:303
+msgid "Search Session"
+msgstr ""
+
+#: inc/functions-register.php:304
+msgid "Not found"
+msgstr ""
+
+#: inc/functions-register.php:305
+msgid "Not found in Trash"
+msgstr ""
+
+#: inc/functions-register.php:306
+msgid "Featured Image"
+msgstr ""
+
+#: inc/functions-register.php:307
+msgid "Set featured image"
+msgstr ""
+
+#: inc/functions-register.php:308
+msgid "Remove featured image"
+msgstr ""
+
+#: inc/functions-register.php:309
+msgid "Use as featured image"
+msgstr ""
+
+#: inc/functions-register.php:310
+msgid "Insert into session"
+msgstr ""
+
+#: inc/functions-register.php:311
+msgid "Uploaded to this item"
+msgstr ""
+
+#: inc/functions-register.php:312
+msgid "Sessions list"
+msgstr ""
+
+#: inc/functions-register.php:313
+msgid "Sessions list navigation"
+msgstr ""
+
+#: inc/functions-register.php:314
+msgid "Filter sessions list"
+msgstr ""
+
+#: inc/functions-register.php:318
+msgid "Post Type Description"
+msgstr ""
+
+#: shortcodes/accordion/class-accordion.php:31
+msgid "Accordion"
+msgstr ""
+
+#: shortcodes/accordion/class-accordion.php:33
+#: shortcodes/blurb/class-blurb.php:33
+#: shortcodes/blurb-features/class-blurb-features.php:33
+#: shortcodes/blurb-section/class-blurb-section.php:33
+#: shortcodes/button/class-button.php:33
+#: shortcodes/countdown/class-countdown.php:33
+#: shortcodes/gallery/class-gallery.php:33
+#: shortcodes/heading/class-heading.php:33
+#: shortcodes/hero-heading/class-hero-heading.php:33
+#: shortcodes/member/class-member.php:33
+#: shortcodes/package/class-package.php:33
+#: shortcodes/session/class-session.php:33
+#: shortcodes/subscribe/class-subscribe.php:33
+#: shortcodes/testimonials/class-testimonials.php:33
+#: shortcodes/video/class-video.php:33
+msgid "Tevent"
+msgstr ""
+
+#: shortcodes/accordion/class-accordion.php:38
+#: shortcodes/blurb/class-blurb.php:38
+#: shortcodes/countdown/class-countdown.php:38
+#: shortcodes/gallery/class-gallery.php:38
+#: shortcodes/member/class-member.php:39
+#: shortcodes/package/class-package.php:38
+#: shortcodes/session/class-session.php:38
+msgid "Style"
+msgstr ""
+
+#: shortcodes/accordion/class-accordion.php:41
+msgid "There are 2 visual style. Select one of them."
+msgstr ""
+
+#: shortcodes/accordion/class-accordion.php:43
+msgid "Default Style"
+msgstr ""
+
+#: shortcodes/accordion/class-accordion.php:44
+msgid "Boxed Style"
+msgstr ""
+
+#: shortcodes/accordion/class-accordion.php:49
+msgid "Accordion Items"
+msgstr ""
+
+#: shortcodes/accordion/class-accordion.php:50
+msgid "Add accordion item by clicking on the add button."
+msgstr ""
+
+#: shortcodes/accordion/class-accordion.php:55
+#: shortcodes/blurb/class-blurb.php:75
+#: shortcodes/blurb-section/class-blurb-section.php:38
+#: shortcodes/gallery/class-gallery.php:56
+#: shortcodes/package/class-package.php:48
+#: shortcodes/subscribe/class-subscribe.php:38
+msgid "Title"
+msgstr ""
+
+#: shortcodes/accordion/class-accordion.php:58
+msgid "Add accordion item title."
+msgstr ""
+
+#: shortcodes/accordion/class-accordion.php:62
+msgid "Description"
+msgstr ""
+
+#: shortcodes/accordion/class-accordion.php:64
+msgid "Add accordion item description."
+msgstr ""
+
+#: shortcodes/accordion/class-accordion.php:68
+msgid "Keep Open"
+msgstr ""
+
+#: shortcodes/accordion/class-accordion.php:71
+msgid "Select this option if you want to keep this item open."
+msgstr ""
+
+#: shortcodes/accordion/views/main.php:13
+msgid "Add item description."
+msgstr ""
+
+#: shortcodes/blurb/class-blurb.php:31
+msgid "Blurb"
+msgstr ""
+
+#: shortcodes/blurb/class-blurb.php:42
+#: shortcodes/countdown/class-countdown.php:41
+#: shortcodes/hero-heading/class-hero-heading.php:55
+msgid "There are two available options for you. Select one of them."
+msgstr ""
+
+#: shortcodes/blurb/class-blurb.php:44
+msgid "Horizontal Icon and Content"
+msgstr ""
+
+#: shortcodes/blurb/class-blurb.php:45
+msgid "Vertical Icon and Content"
+msgstr ""
+
+#: shortcodes/blurb/class-blurb.php:46
+msgid "Vertical Image and Content"
+msgstr ""
+
+#: shortcodes/blurb/class-blurb.php:51
+msgid "Icon"
+msgstr ""
+
+#: shortcodes/blurb/class-blurb.php:57
+msgid "Select a blurb icon."
+msgstr ""
+
+#: shortcodes/blurb/class-blurb.php:65
+#: shortcodes/blurb-section/class-blurb-section.php:59
+#: shortcodes/gallery/class-gallery.php:62
+msgid "Image"
+msgstr ""
+
+#: shortcodes/blurb/class-blurb.php:67
+msgid "Add blurb image here."
+msgstr ""
+
+#: shortcodes/blurb/class-blurb.php:78
+msgid "Tevent Blurb Title"
+msgstr ""
+
+#: shortcodes/blurb/class-blurb.php:79
+msgid "Add blurb title here."
+msgstr ""
+
+#: shortcodes/blurb/class-blurb.php:83
+#: shortcodes/blurb-section/class-blurb-section.php:52
+msgid "Content"
+msgstr ""
+
+#: shortcodes/blurb/class-blurb.php:85
+msgid "Add blurb content here."
+msgstr ""
+
+#: shortcodes/blurb/class-blurb.php:86
+msgid "Tevent blurb content"
+msgstr ""
+
+#: shortcodes/blurb/class-blurb.php:90
+msgid "Button Label"
+msgstr ""
+
+#: shortcodes/blurb/class-blurb.php:93 shortcodes/blurb/class-blurb.php:127
+#: shortcodes/button/class-button.php:31 shortcodes/button/class-button.php:41
+#: shortcodes/button/class-button.php:74
+msgid "Button"
+msgstr ""
+
+#: shortcodes/blurb/class-blurb.php:94 shortcodes/button/class-button.php:42
+msgid "Add button label."
+msgstr ""
+
+#: shortcodes/blurb/class-blurb.php:102 shortcodes/package/class-package.php:87
+msgid "Button Link"
+msgstr ""
+
+#: shortcodes/blurb/class-blurb.php:104 shortcodes/button/class-button.php:48
+msgid "Set button link."
+msgstr ""
+
+#: shortcodes/blurb/class-blurb.php:126
+msgid "Awesome Blurb Title"
+msgstr ""
+
+#: shortcodes/blurb-features/class-blurb-features.php:31
+msgid "Blurb Features"
+msgstr ""
+
+#: shortcodes/blurb-features/class-blurb-features.php:38
+msgid "Blurb Title"
+msgstr ""
+
+#: shortcodes/blurb-features/class-blurb-features.php:41
+msgid "Add blurb title."
+msgstr ""
+
+#: shortcodes/blurb-features/class-blurb-features.php:42
+#: shortcodes/blurb-features/class-blurb-features.php:85
+msgid "Tevent Feature Blurb"
+msgstr ""
+
+#: shortcodes/blurb-features/class-blurb-features.php:46
+msgid "Blurb Image"
+msgstr ""
+
+#: shortcodes/blurb-features/class-blurb-features.php:48
+msgid "Add blurb image."
+msgstr ""
+
+#: shortcodes/blurb-features/class-blurb-features.php:52
+#: shortcodes/package/class-package.php:74
+msgid "Features"
+msgstr ""
+
+#: shortcodes/blurb-features/class-blurb-features.php:53
+msgid "Add feature by clicking on the add button."
+msgstr ""
+
+#: shortcodes/blurb-features/class-blurb-features.php:58
+msgid "Feature Name"
+msgstr ""
+
+#: shortcodes/blurb-features/class-blurb-features.php:61
+msgid "Add feature name."
+msgstr ""
+
+#: shortcodes/blurb-features/class-blurb-features.php:62
+msgid "Feature 1"
+msgstr ""
+
+#: shortcodes/blurb-features/class-blurb-features.php:66
+msgid "Feature Value"
+msgstr ""
+
+#: shortcodes/blurb-features/class-blurb-features.php:68
+msgid "Add a concise feature description."
+msgstr ""
+
+#: shortcodes/blurb-features/class-blurb-features.php:69
+msgid "Amazing feature"
+msgstr ""
+
+#: shortcodes/blurb-section/class-blurb-section.php:31
+msgid "Blurb Section"
+msgstr ""
+
+#: shortcodes/blurb-section/class-blurb-section.php:40
+msgid "Add blurb section title here."
+msgstr ""
+
+#: shortcodes/blurb-section/class-blurb-section.php:41
+#: shortcodes/blurb-section/class-blurb-section.php:82
+msgid "Tevent Blurb Section Title"
+msgstr ""
+
+#: shortcodes/blurb-section/class-blurb-section.php:45
+msgid "Subtitle"
+msgstr ""
+
+#: shortcodes/blurb-section/class-blurb-section.php:47
+msgid "Add blurb section subtitle here."
+msgstr ""
+
+#: shortcodes/blurb-section/class-blurb-section.php:48
+#: shortcodes/blurb-section/class-blurb-section.php:83
+msgid "Tevent blurb section subtitle."
+msgstr ""
+
+#: shortcodes/blurb-section/class-blurb-section.php:54
+msgid "Add blurb section content here."
+msgstr ""
+
+#: shortcodes/blurb-section/class-blurb-section.php:55
+msgid "Tevent blurb section content goes here."
+msgstr ""
+
+#: shortcodes/blurb-section/class-blurb-section.php:61
+msgid "Add blurb section image here."
+msgstr ""
+
+#: shortcodes/blurb-section/class-blurb-section.php:65
+msgid "Alternative View"
+msgstr ""
+
+#: shortcodes/blurb-section/class-blurb-section.php:67
+msgid "Check alternative view to switch image and text content position."
+msgstr ""
+
+#: shortcodes/button/class-button.php:38
+msgid "Label"
+msgstr ""
+
+#: shortcodes/button/class-button.php:46
+msgid "Link"
+msgstr ""
+
+#: shortcodes/button/class-button.php:52
+msgid "CSS Class"
+msgstr ""
+
+#: shortcodes/button/class-button.php:54
+msgid "Add button html class."
+msgstr ""
+
+#: shortcodes/button/class-button.php:58
+msgid "CSS ID"
+msgstr ""
+
+#: shortcodes/button/class-button.php:60
+msgid "Add button html id."
+msgstr ""
+
+#: shortcodes/countdown/class-countdown.php:31
+msgid "Countdown"
+msgstr ""
+
+#: shortcodes/countdown/class-countdown.php:43
+msgid "Normal"
+msgstr ""
+
+#: shortcodes/countdown/class-countdown.php:44
+msgid "Boxed"
+msgstr ""
+
+#: shortcodes/countdown/class-countdown.php:49
+msgid "End Time"
+msgstr ""
+
+#. translators: %s is the time format
+#: shortcodes/countdown/class-countdown.php:53
+msgid ""
+"Set countdown end time or the time of the event in any of these formats %s"
+msgstr ""
+
+#: shortcodes/gallery/class-gallery.php:31
+msgid "Gallery"
+msgstr ""
+
+#: shortcodes/gallery/class-gallery.php:41
+msgid ""
+"There are 3 available gallery options. Select one that is suitable with your "
+"purpose."
+msgstr ""
+
+#: shortcodes/gallery/class-gallery.php:43
+msgid "Normal Gallery"
+msgstr ""
+
+#: shortcodes/gallery/class-gallery.php:44
+msgid "Boxed Gallery"
+msgstr ""
+
+#: shortcodes/gallery/class-gallery.php:45
+msgid "Hover Gallery"
+msgstr ""
+
+#: shortcodes/gallery/class-gallery.php:50
+msgid "Gallery Items"
+msgstr ""
+
+#: shortcodes/gallery/class-gallery.php:51
+msgid "Add gallery image by clicking on the add button"
+msgstr ""
+
+#: shortcodes/gallery/class-gallery.php:58
+msgid "Add image title."
+msgstr ""
+
+#: shortcodes/heading/class-heading.php:31
+msgid "Heading"
+msgstr ""
+
+#: shortcodes/heading/class-heading.php:38
+#: shortcodes/hero-heading/class-hero-heading.php:38
+msgid "Main Heading"
+msgstr ""
+
+#: shortcodes/heading/class-heading.php:41
+msgid "Add heading content here."
+msgstr ""
+
+#: shortcodes/heading/class-heading.php:42
+#: shortcodes/heading/class-heading.php:89
+msgid "Tevent Heading"
+msgstr ""
+
+#: shortcodes/heading/class-heading.php:46
+msgid "Main Heading Level"
+msgstr ""
+
+#: shortcodes/heading/class-heading.php:47
+msgid "Set heading level h1 - h6"
+msgstr ""
+
+#: shortcodes/heading/class-heading.php:51
+msgid "H1"
+msgstr ""
+
+#: shortcodes/heading/class-heading.php:52
+msgid "H2"
+msgstr ""
+
+#: shortcodes/heading/class-heading.php:53
+msgid "H3"
+msgstr ""
+
+#: shortcodes/heading/class-heading.php:54
+msgid "H4"
+msgstr ""
+
+#: shortcodes/heading/class-heading.php:55
+msgid "H5"
+msgstr ""
+
+#: shortcodes/heading/class-heading.php:56
+msgid "H6"
+msgstr ""
+
+#: shortcodes/heading/class-heading.php:61
+#: shortcodes/hero-heading/class-hero-heading.php:46
+msgid "Sub Heading"
+msgstr ""
+
+#: shortcodes/heading/class-heading.php:63
+msgid "Add subheading here."
+msgstr ""
+
+#: shortcodes/heading/class-heading.php:64
+msgid "Tevent sub heading"
+msgstr ""
+
+#: shortcodes/heading/class-heading.php:68
+msgid "Alignment"
+msgstr ""
+
+#: shortcodes/heading/class-heading.php:69
+msgid "Set heading content alignment."
+msgstr ""
+
+#: shortcodes/heading/class-heading.php:72
+msgid "Left"
+msgstr ""
+
+#: shortcodes/heading/class-heading.php:73
+msgid "Center"
+msgstr ""
+
+#: shortcodes/heading/class-heading.php:74
+msgid "Right"
+msgstr ""
+
+#: shortcodes/hero-heading/class-hero-heading.php:31
+msgid "Hero Heading"
+msgstr ""
+
+#: shortcodes/hero-heading/class-hero-heading.php:41
+msgid "Add hero main heading here."
+msgstr ""
+
+#: shortcodes/hero-heading/class-hero-heading.php:42
+#: shortcodes/hero-heading/class-hero-heading.php:73
+msgid "Tevent Hero Heading"
+msgstr ""
+
+#: shortcodes/hero-heading/class-hero-heading.php:48
+msgid "Add hero sub heading here."
+msgstr ""
+
+#: shortcodes/hero-heading/class-hero-heading.php:49
+#: shortcodes/hero-heading/class-hero-heading.php:74
+msgid "Tevent sub hero heading"
+msgstr ""
+
+#: shortcodes/hero-heading/class-hero-heading.php:53
+msgid "Headings Color"
+msgstr ""
+
+#: shortcodes/hero-heading/class-hero-heading.php:57
+msgid "Black"
+msgstr ""
+
+#: shortcodes/hero-heading/class-hero-heading.php:58
+msgid "White"
+msgstr ""
+
+#: shortcodes/member/class-member.php:31
+msgid "Member"
+msgstr ""
+
+#: shortcodes/member/class-member.php:42
+msgid "There are two visual style, select one of those."
+msgstr ""
+
+#: shortcodes/member/class-member.php:45
+msgid "Grid View"
+msgstr ""
+
+#: shortcodes/member/class-member.php:46
+msgid "Classic View"
+msgstr ""
+
+#: shortcodes/member/class-member.php:51
+#: shortcodes/testimonials/class-testimonials.php:44
+msgid "Name"
+msgstr ""
+
+#: shortcodes/member/class-member.php:54 shortcodes/member/class-member.php:185
+msgid "Jhon Doe"
+msgstr ""
+
+#: shortcodes/member/class-member.php:58
+#: shortcodes/testimonials/class-testimonials.php:50
+msgid "Job Title"
+msgstr ""
+
+#: shortcodes/member/class-member.php:60
+msgid "Add job title with company name."
+msgstr ""
+
+#: shortcodes/member/class-member.php:65
+#: shortcodes/testimonials/class-testimonials.php:62
+msgid "Photo"
+msgstr ""
+
+#: shortcodes/member/class-member.php:70
+msgid "Bio"
+msgstr ""
+
+#: shortcodes/member/class-member.php:72
+msgid "Add a concise bio here."
+msgstr ""
+
+#: shortcodes/member/class-member.php:78
+msgid "Facebook"
+msgstr ""
+
+#: shortcodes/member/class-member.php:80 shortcodes/member/class-member.php:86
+#: shortcodes/member/class-member.php:92 shortcodes/member/class-member.php:98
+#: shortcodes/member/class-member.php:104
+#: shortcodes/member/class-member.php:110
+#: shortcodes/member/class-member.php:116
+#: shortcodes/member/class-member.php:122
+#: shortcodes/member/class-member.php:128
+#: shortcodes/member/class-member.php:134
+#: shortcodes/member/class-member.php:140
+#: shortcodes/member/class-member.php:146
+#: shortcodes/member/class-member.php:152
+#: shortcodes/member/class-member.php:158
+#: shortcodes/member/class-member.php:164
+#: shortcodes/member/class-member.php:170
+msgid "Social Links"
+msgstr ""
+
+#: shortcodes/member/class-member.php:84
+msgid "Twitter"
+msgstr ""
+
+#: shortcodes/member/class-member.php:90
+msgid "Google+"
+msgstr ""
+
+#: shortcodes/member/class-member.php:96
+msgid "LinkedIn"
+msgstr ""
+
+#: shortcodes/member/class-member.php:102
+msgid "Dribbble"
+msgstr ""
+
+#: shortcodes/member/class-member.php:108
+msgid "Github"
+msgstr ""
+
+#: shortcodes/member/class-member.php:114
+msgid "Flickr"
+msgstr ""
+
+#: shortcodes/member/class-member.php:120
+msgid "Sound Cloud"
+msgstr ""
+
+#: shortcodes/member/class-member.php:126
+msgid "Behance"
+msgstr ""
+
+#: shortcodes/member/class-member.php:132
+msgid "Deviant Art"
+msgstr ""
+
+#: shortcodes/member/class-member.php:138
+msgid "Youtube"
+msgstr ""
+
+#: shortcodes/member/class-member.php:144
+msgid "Pinterest"
+msgstr ""
+
+#: shortcodes/member/class-member.php:150
+msgid "Instagram"
+msgstr ""
+
+#: shortcodes/member/class-member.php:156
+msgid "Stack Overflow"
+msgstr ""
+
+#: shortcodes/member/class-member.php:162
+msgid "Web Site"
+msgstr ""
+
+#: shortcodes/member/class-member.php:168
+msgid "Email"
+msgstr ""
+
+#: shortcodes/package/class-package.php:31
+msgid "Pricing Package"
+msgstr ""
+
+#: shortcodes/package/class-package.php:42
+msgid "Rectangular Box"
+msgstr ""
+
+#: shortcodes/package/class-package.php:43
+msgid "Round Box"
+msgstr ""
+
+#: shortcodes/package/class-package.php:51
+#: shortcodes/package/class-package.php:110
+msgid "Standard"
+msgstr ""
+
+#: shortcodes/package/class-package.php:55
+msgid "Currency"
+msgstr ""
+
+#: shortcodes/package/class-package.php:61
+msgid "Price"
+msgstr ""
+
+#: shortcodes/package/class-package.php:62
+msgid "Add price without currency."
+msgstr ""
+
+#: shortcodes/package/class-package.php:68
+msgid "Duration"
+msgstr ""
+
+#: shortcodes/package/class-package.php:70
+#: shortcodes/package/class-package.php:113
+msgid "Per Month"
+msgstr ""
+
+#: shortcodes/package/class-package.php:75
+msgid "Add each feature in new line."
+msgstr ""
+
+#: shortcodes/package/class-package.php:77
+msgid ""
+"- Entrance \n"
+"- Free Lunch & Snacks\n"
+"- Custom Badge"
+msgstr ""
+
+#: shortcodes/package/class-package.php:81
+#: shortcodes/subscribe/class-subscribe.php:57
+msgid "Button Text"
+msgstr ""
+
+#: shortcodes/package/class-package.php:83
+#: shortcodes/package/class-package.php:114
+msgid "Purchase"
+msgstr ""
+
+#: shortcodes/package/class-package.php:93
+msgid "Featured Package"
+msgstr ""
+
+#: shortcodes/session/class-session.php:40
+msgid "Select a session display style"
+msgstr ""
+
+#: shortcodes/session/class-session.php:42
+msgid "Tab"
+msgstr ""
+
+#: shortcodes/session/class-session.php:43
+msgid "Timeline"
+msgstr ""
+
+#: shortcodes/session/class-session.php:48
+msgid "Sessions List"
+msgstr ""
+
+#: shortcodes/session/class-session.php:49
+msgid "Create session list item by clicking on add button"
+msgstr ""
+
+#: shortcodes/session/class-session.php:54
+msgid "Day Label"
+msgstr ""
+
+#: shortcodes/session/class-session.php:56
+msgid "Set label name"
+msgstr ""
+
+#: shortcodes/session/class-session.php:57
+msgid "Day 1"
+msgstr ""
+
+#: shortcodes/session/class-session.php:61
+msgid "Label Description"
+msgstr ""
+
+#: shortcodes/session/class-session.php:63
+msgid "Set label description"
+msgstr ""
+
+#: shortcodes/session/class-session.php:64
+msgid "15 Dec, 2017"
+msgstr ""
+
+#: shortcodes/session/class-session.php:70
+msgid ""
+"Type session name then select from suggestions. You can select multiple "
+"items and sort them."
+msgstr ""
+
+#: shortcodes/session/class-session.php:82
+msgid "Session Column"
+msgstr ""
+
+#: shortcodes/session/class-session.php:84
+msgid "Add session column heading"
+msgstr ""
+
+#: shortcodes/session/class-session.php:86
+#: shortcodes/session/class-session.php:98
+#: shortcodes/session/class-session.php:110
+#: shortcodes/session/class-session.php:122
+msgid "Column Headings"
+msgstr ""
+
+#: shortcodes/session/class-session.php:94
+msgid "Speakers Column"
+msgstr ""
+
+#: shortcodes/session/class-session.php:96
+msgid "Add speakers column heading"
+msgstr ""
+
+#: shortcodes/session/class-session.php:97
+#: shortcodes/session/class-session.php:165
+msgid "Speakers"
+msgstr ""
+
+#: shortcodes/session/class-session.php:106
+msgid "Time Column"
+msgstr ""
+
+#: shortcodes/session/class-session.php:108
+msgid "Add time column heading"
+msgstr ""
+
+#: shortcodes/session/class-session.php:109
+#: shortcodes/session/class-session.php:166
+msgid "Time"
+msgstr ""
+
+#: shortcodes/session/class-session.php:118
+msgid "Vanue Column"
+msgstr ""
+
+#: shortcodes/session/class-session.php:120
+msgid "Add vanue column heading"
+msgstr ""
+
+#: shortcodes/session/class-session.php:121
+#: shortcodes/session/class-session.php:167
+msgid "Vanue"
+msgstr ""
+
+#: shortcodes/subscribe/class-subscribe.php:31
+#: shortcodes/subscribe/class-subscribe.php:59
+#: shortcodes/subscribe/class-subscribe.php:76
+msgid "Subscribe"
+msgstr ""
+
+#: shortcodes/subscribe/class-subscribe.php:40
+#: shortcodes/subscribe/class-subscribe.php:74
+msgid "Sign Up For Our Newsletter"
+msgstr ""
+
+#: shortcodes/subscribe/class-subscribe.php:44
+msgid "Mailchimp URL"
+msgstr ""
+
+#: shortcodes/subscribe/class-subscribe.php:46
+msgid "Enter mailchimp url."
+msgstr ""
+
+#: shortcodes/subscribe/class-subscribe.php:51
+msgid "Placeholder Text"
+msgstr ""
+
+#: shortcodes/subscribe/class-subscribe.php:53
+#: shortcodes/subscribe/class-subscribe.php:75
+msgid "Enter your email address"
+msgstr ""
+
+#: shortcodes/testimonials/class-testimonials.php:31
+msgid "Testimonials"
+msgstr ""
+
+#: shortcodes/testimonials/class-testimonials.php:38
+msgid "Testimonial List"
+msgstr ""
+
+#: shortcodes/testimonials/class-testimonials.php:39
+msgid "Add testimonial clicking on the add button"
+msgstr ""
+
+#: shortcodes/testimonials/class-testimonials.php:52
+msgid "Add job title with company name"
+msgstr ""
+
+#: shortcodes/testimonials/class-testimonials.php:56
+msgid "Statement"
+msgstr ""
+
+#: shortcodes/testimonials/class-testimonials.php:58
+msgid "Add testimonial statement here."
+msgstr ""
+
+#: shortcodes/video/class-video.php:31
+msgid "Video"
+msgstr ""
+
+#: shortcodes/video/class-video.php:38
+msgid "Poster Image"
+msgstr ""
+
+#: shortcodes/video/class-video.php:40
+msgid "Add video poster image."
+msgstr ""
+
+#: shortcodes/video/class-video.php:44
+msgid "Video URL"
+msgstr ""
+
+#: shortcodes/video/class-video.php:47
+msgid "Add youtube or vimeo video URL."
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "Tevent Helper"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "http://teventwp.lab.themebucket.net/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Helper plugin for Tevent WordPress Theme."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "ThemeBucket"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://themebucket.net"
+msgstr ""

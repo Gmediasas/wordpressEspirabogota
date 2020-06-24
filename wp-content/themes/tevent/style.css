@@ -1,0 +1,111 @@
+/*
+Theme Name: Tevent
+Theme URI: http://teventwp.lab.themebucket.net/
+Author: ThemeBucket
+Author URI: http://themebucket.net/
+Description: WordPress Event Theme
+Version: 1.2.0
+License: GNU General Public License v2 or later
+License URI: LICENSE
+Text Domain: tevent
+*/
+
+@font-face {
+    font-family: 'nexa_boldregular';
+    src: url('../../../fuentes/nexa_bold-webfont.woff2') format('woff2'),
+         url('../../../fuentes/nexa_bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'nexa_lightregular';
+    src: url('../../../fuentes/nexa_light-webfont.woff2') format('woff2'),
+         url('../../../fuentes/nexa_light-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'nexa_blackregular';
+    src: url('../../../fuentes/nexablack-webfont.woff2') format('woff2'),
+         url('../../../fuentes/nexablack-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'nexa_black_italicregular';
+    src: url('../../../fuentes/nexa-black-italic-webfont.woff2') format('woff2'),
+         url('../../../fuentes/nexa-black-italic-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'nexa_boldregular';
+    src: url('../../../fuentes/nexa-bold-webfont.woff2') format('woff2'),
+         url('../../../fuentes/nexa-bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+@font-face {
+    font-family: 'nexa_bold_italicregular';
+    src: url('../../../fuentes/nexa-bold-italic-webfont.woff2') format('woff2'),
+         url('../../../fuentes/nexa-bold-italic-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'nexa_bookregular';
+    src: url('../../../fuentes/nexa-book-webfont.woff2') format('woff2'),
+         url('../../../fuentes/nexa-book-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'nexa_book_italicregular';
+    src: url('../../../fuentes/nexa-book-italic-webfont.woff2') format('woff2'),
+         url('../../../fuentes/nexa-book-italic-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'nexa_lightregular';
+    src: url('../../../fuentes/nexa-light-webfont.woff2') format('woff2'),
+         url('../../../fuentes/nexa-light-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'nexa_light_italicitalic';
+    src: url('../../../fuentes/nexa-light-italic-webfont.woff2') format('woff2'),
+         url('../../../fuentes/nexa-light-italic-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}

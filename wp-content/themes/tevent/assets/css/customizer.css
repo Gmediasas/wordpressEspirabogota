@@ -1,0 +1,24 @@
+.tf-font select,
+.tf-font .tf-font-sel-family,
+.tf-font .wp-picker-container {
+	display: block !important;
+}
+
+.tf-font label {
+	padding: 5px 10px !important;
+	text-align: left !important;
+}
+
+.tf-font select {
+	margin-left: 0 !important;
+}
+
+.tf-font .tf-font-sel-family {
+	width: 100% !important;
+}
+
+.tf-font .wp-picker-container > a {
+	margin: 0 !important;
+}
+
+

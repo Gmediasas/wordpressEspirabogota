@@ -1,0 +1,84 @@
+********************************************************************************
+DUPLICATOR-LITE PACKAGE-LOG: November 8, 2019 4:45 pm
+NOTICE: Do NOT post to public sites or forums 
+********************************************************************************
+VERSION:	1.3.22
+WORDPRESS:	5.2.4
+PHP INFO:	7.1.33 | SAPI: litespeed
+SERVER:		Apache 
+PHP TIME LIMIT: (0) no time limit imposed 
+PHP MAX MEMORY: 4294967296 (256M default) 
+MEMORY STACK: 48MB
+
+********************************************************************************
+DATABASE:
+********************************************************************************
+BUILD MODE:   MYSQLDUMP
+MYSQLTIMEOUT: 5000
+MYSQLDUMP:    Is Supported
+SQL CREATED: 20191108_transformabogota40_a64c75fc5ed0fdcd5675_20191108164501_database.sql
+SQL FILE SIZE: 4.93MB (5168034)
+SQL FILE TIME: 2019-11-08 16:45:10
+SQL RUNTIME: 0.22 sec.
+
+********************************************************************************
+ARCHIVE (ZIP):
+********************************************************************************
+ARCHIVE DIR:  /home/gmedbwkc/public_html/andicom.gmediacompany.com
+ARCHIVE FILE: 20191108_transformabogota40_a64c75fc5ed0fdcd5675_20191108164501_archive.zip
+FILTERS: *OFF*
+DIRS:
+	not set
+FILES:
+	not set
+EXTS:  not set
+----------------------------------------
+COMPRESSING
+SIZE:	0B
+STATS:	Dirs 0 | Files 0
+SQL ADDED: 20191108_transformabogota40_a64c75fc5ed0fdcd5675_20191108164501_database.sql
+ZipArchive Object
+(
+    [status] => 0
+    [statusSys] => 0
+    [numFiles] => 1
+    [filename] => /home/gmedbwkc/public_html/andicom.gmediacompany.com/wp-snapshots/tmp/20191108_transformabogota40_a64c75fc5ed0fdcd5675_20191108164501_archive.zip
+    [comment] => 
+)
+
+FILE ADDED TO ZIP: 0
+COMPRESSION RESULT: '1'
+COMPRESSED SIZE: 305.94KB
+ARCHIVE RUNTIME: 0.15 sec.
+MEMORY STACK: 48MB
+building installer
+add_extra_files1
+add_extra_files2
+add_extra_files3
+add_extra_files4
+Doing archive file check
+add_extra_files5
+add_extra_files6
+add_extra_files8
+Successfully opened zip /home/gmedbwkc/public_html/andicom.gmediacompany.com/wp-snapshots/tmp/20191108_transformabogota40_a64c75fc5ed0fdcd5675_20191108164501_archive.zip
+Adding enhanced installer files to archive using ZipArchive
+Installer files added to archive
+Added to archive
+After ziparchive close when adding installer
+
+********************************************************************************
+INTEGRITY CHECKS:
+********************************************************************************
+SQL FILE: 4.93MB
+INSTALLER FILE: 60.53KB
+ARCHIVE FILE: 1.6MB 
+RECUENTO ARCHIVOS/DIRECTORIOS ESPERADOS: 0
+RECUENTO ARCHIVOS/DIRECTORIOS ACTUALES: 0
+PRUEBA DE CONSISTENCIA DEL ARCHIVO: Superado
+
+********************************************************************************
+RECORD ID:[1]
+TOTAL PROCESS RUNTIME: 0.64 sec.
+PEAK PHP MEMORY USED: 54MB
+DONE PROCESSING => 20191108_transformabogota40 November 8, 2019 4:45 pm
+

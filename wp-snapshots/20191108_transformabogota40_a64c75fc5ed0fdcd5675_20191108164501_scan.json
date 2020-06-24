@@ -1,0 +1,290 @@
+{
+    "RPT": {
+        "ScanTime": "0.04 sec.",
+        "ScanFile": "20191108_transformabogota40_a64c75fc5ed0fdcd5675_20191108164501_scan.json",
+        "Warnings": 0,
+        "Success": 6
+    },
+    "SRV": {
+        "PHP": {
+            "websrv": true,
+            "openbase": true,
+            "maxtime": true,
+            "mysqli": true,
+            "version": true,
+            "ALL": "Good"
+        },
+        "WP": {
+            "version": true,
+            "core": true,
+            "ismu": false,
+            "ALL": "Good"
+        }
+    },
+    "ARC": {
+        "Size": "0B",
+        "DirCount": "0",
+        "FileCount": "0",
+        "FullCount": "0",
+        "WarnFileCount": 0,
+        "WarnDirCount": 0,
+        "UnreadableDirCount": 0,
+        "UnreadableFileCount": 0,
+        "FilterDirsAll": [
+            "\/home\/gmedbwkc\/public_html\/andicom.gmediacompany.com\/wp-content\/ai1wm-backups",
+            "\/home\/gmedbwkc\/public_html\/andicom.gmediacompany.com\/wp-content\/backups-dup-pro",
+            "\/home\/gmedbwkc\/public_html\/andicom.gmediacompany.com\/wp-content\/backupwordpress",
+            "\/home\/gmedbwkc\/public_html\/andicom.gmediacompany.com\/wp-content\/cache",
+            "\/home\/gmedbwkc\/public_html\/andicom.gmediacompany.com\/wp-content\/content\/cache",
+            "\/home\/gmedbwkc\/public_html\/andicom.gmediacompany.com\/wp-content\/contents\/cache",
+            "\/home\/gmedbwkc\/public_html\/andicom.gmediacompany.com\/wp-content\/infinitewp\/backups",
+            "\/home\/gmedbwkc\/public_html\/andicom.gmediacompany.com\/wp-content\/managewp\/backups",
+            "\/home\/gmedbwkc\/public_html\/andicom.gmediacompany.com\/wp-content\/old-cache",
+            "\/home\/gmedbwkc\/public_html\/andicom.gmediacompany.com\/wp-content\/plugins\/all-in-one-wp-migration\/storage",
+            "\/home\/gmedbwkc\/public_html\/andicom.gmediacompany.com\/wp-content\/updraft",
+            "\/home\/gmedbwkc\/public_html\/andicom.gmediacompany.com\/wp-content\/uploads\/aiowps_backups",
+            "\/home\/gmedbwkc\/public_html\/andicom.gmediacompany.com\/wp-content\/uploads\/backupbuddy_backups",
+            "\/home\/gmedbwkc\/public_html\/andicom.gmediacompany.com\/wp-content\/uploads\/backupbuddy_temp",
+            "\/home\/gmedbwkc\/public_html\/andicom.gmediacompany.com\/wp-content\/uploads\/ithemes-security\/backups",
+            "\/home\/gmedbwkc\/public_html\/andicom.gmediacompany.com\/wp-content\/uploads\/mainwp\/backup",
+            "\/home\/gmedbwkc\/public_html\/andicom.gmediacompany.com\/wp-content\/uploads\/pb_backupbuddy",
+            "\/home\/gmedbwkc\/public_html\/andicom.gmediacompany.com\/wp-content\/uploads\/snapshots",
+            "\/home\/gmedbwkc\/public_html\/andicom.gmediacompany.com\/wp-content\/uploads\/sucuri",
+            "\/home\/gmedbwkc\/public_html\/andicom.gmediacompany.com\/wp-content\/uploads\/wp-clone",
+            "\/home\/gmedbwkc\/public_html\/andicom.gmediacompany.com\/wp-content\/uploads\/wp_all_backup",
+            "\/home\/gmedbwkc\/public_html\/andicom.gmediacompany.com\/wp-content\/uploads\/wpbackitup_backups",
+            "\/home\/gmedbwkc\/public_html\/andicom.gmediacompany.com\/wp-content\/wfcache",
+            "\/home\/gmedbwkc\/public_html\/andicom.gmediacompany.com\/wp-content\/wishlist-backup",
+            "\/home\/gmedbwkc\/public_html\/andicom.gmediacompany.com\/wp-snapshots"
+        ],
+        "FilterFilesAll": [
+            "error_log",
+            "error.log",
+            "debug_log",
+            "ws_ftp.log",
+            "dbcache",
+            "pgcache",
+            "objectcache",
+            ".DS_Store",
+            "\/home\/gmedbwkc\/public_html\/andicom.gmediacompany.com\/.htaccess",
+            "\/home\/gmedbwkc\/public_html\/andicom.gmediacompany.com\/web.config",
+            "\/home\/gmedbwkc\/public_html\/andicom.gmediacompany.com\/wp-config.php"
+        ],
+        "FilterExtsAll": [],
+        "FilterInfo": {
+            "Dirs": {
+                "Warning": [],
+                "Unreadable": [],
+                "Core": [
+                    "\/home\/gmedbwkc\/public_html\/andicom.gmediacompany.com\/wp-snapshots",
+                    "\/home\/gmedbwkc\/public_html\/andicom.gmediacompany.com\/wp-content\/backups-dup-pro",
+                    "\/home\/gmedbwkc\/public_html\/andicom.gmediacompany.com\/wp-content\/ai1wm-backups",
+                    "\/home\/gmedbwkc\/public_html\/andicom.gmediacompany.com\/wp-content\/backupwordpress",
+                    "\/home\/gmedbwkc\/public_html\/andicom.gmediacompany.com\/wp-content\/content\/cache",
+                    "\/home\/gmedbwkc\/public_html\/andicom.gmediacompany.com\/wp-content\/contents\/cache",
+                    "\/home\/gmedbwkc\/public_html\/andicom.gmediacompany.com\/wp-content\/infinitewp\/backups",
+                    "\/home\/gmedbwkc\/public_html\/andicom.gmediacompany.com\/wp-content\/managewp\/backups",
+                    "\/home\/gmedbwkc\/public_html\/andicom.gmediacompany.com\/wp-content\/old-cache",
+                    "\/home\/gmedbwkc\/public_html\/andicom.gmediacompany.com\/wp-content\/plugins\/all-in-one-wp-migration\/storage",
+                    "\/home\/gmedbwkc\/public_html\/andicom.gmediacompany.com\/wp-content\/updraft",
+                    "\/home\/gmedbwkc\/public_html\/andicom.gmediacompany.com\/wp-content\/wishlist-backup",
+                    "\/home\/gmedbwkc\/public_html\/andicom.gmediacompany.com\/wp-content\/wfcache",
+                    "\/home\/gmedbwkc\/public_html\/andicom.gmediacompany.com\/wp-content\/cache",
+                    "\/home\/gmedbwkc\/public_html\/andicom.gmediacompany.com\/wp-content\/uploads\/aiowps_backups",
+                    "\/home\/gmedbwkc\/public_html\/andicom.gmediacompany.com\/wp-content\/uploads\/backupbuddy_temp",
+                    "\/home\/gmedbwkc\/public_html\/andicom.gmediacompany.com\/wp-content\/uploads\/backupbuddy_backups",
+                    "\/home\/gmedbwkc\/public_html\/andicom.gmediacompany.com\/wp-content\/uploads\/ithemes-security\/backups",
+                    "\/home\/gmedbwkc\/public_html\/andicom.gmediacompany.com\/wp-content\/uploads\/mainwp\/backup",
+                    "\/home\/gmedbwkc\/public_html\/andicom.gmediacompany.com\/wp-content\/uploads\/pb_backupbuddy",
+                    "\/home\/gmedbwkc\/public_html\/andicom.gmediacompany.com\/wp-content\/uploads\/snapshots",
+                    "\/home\/gmedbwkc\/public_html\/andicom.gmediacompany.com\/wp-content\/uploads\/sucuri",
+                    "\/home\/gmedbwkc\/public_html\/andicom.gmediacompany.com\/wp-content\/uploads\/wp-clone",
+                    "\/home\/gmedbwkc\/public_html\/andicom.gmediacompany.com\/wp-content\/uploads\/wp_all_backup",
+                    "\/home\/gmedbwkc\/public_html\/andicom.gmediacompany.com\/wp-content\/uploads\/wpbackitup_backups"
+                ],
+                "Global": [],
+                "Instance": []
+            },
+            "Files": {
+                "Size": [],
+                "Warning": [],
+                "Unreadable": [],
+                "Core": [],
+                "Global": [
+                    "error_log",
+                    "error.log",
+                    "debug_log",
+                    "ws_ftp.log",
+                    "dbcache",
+                    "pgcache",
+                    "objectcache",
+                    ".DS_Store"
+                ],
+                "Instance": []
+            },
+            "Exts": {
+                "Core": [],
+                "Global": [],
+                "Instance": []
+            },
+            "UDirCount": 0,
+            "UFileCount": 0,
+            "UExtCount": 0,
+            "TreeSize": [],
+            "TreeWarning": []
+        },
+        "RecursiveLinks": [],
+        "UnreadableItems": [],
+        "Status": {
+            "Size": "Good",
+            "Names": "Good",
+            "UnreadableItems": "Good",
+            "AddonSites": "Good"
+        },
+        "Dirs": [],
+        "Files": []
+    },
+    "DB": {
+        "Status": {
+            "Success": true,
+            "DB_Case": "Good",
+            "DB_Rows": "Good",
+            "DB_Size": "Good",
+            "TBL_Case": "Good",
+            "TBL_Rows": "Good",
+            "TBL_Size": "Good"
+        },
+        "Size": "5.1MB",
+        "Rows": "2,183",
+        "TableCount": 20,
+        "TableList": {
+            "wplb_advanced_cf7_data": {
+                "Case": 0,
+                "Rows": "146",
+                "Size": "61.71KB",
+                "USize": 63188
+            },
+            "wplb_commentmeta": {
+                "Case": 0,
+                "Rows": "0",
+                "Size": "4KB",
+                "USize": 4096
+            },
+            "wplb_comments": {
+                "Case": 0,
+                "Rows": "2",
+                "Size": "7.64KB",
+                "USize": 7824
+            },
+            "wplb_duplicator_packages": {
+                "Case": 0,
+                "Rows": "0",
+                "Size": "1KB",
+                "USize": 1024
+            },
+            "wplb_links": {
+                "Case": 0,
+                "Rows": "0",
+                "Size": "1KB",
+                "USize": 1024
+            },
+            "wplb_options": {
+                "Case": 0,
+                "Rows": "244",
+                "Size": "1.34MB",
+                "USize": 1400288
+            },
+            "wplb_postmeta": {
+                "Case": 0,
+                "Rows": "1,042",
+                "Size": "314.46KB",
+                "USize": 322012
+            },
+            "wplb_posts": {
+                "Case": 0,
+                "Rows": "575",
+                "Size": "3.25MB",
+                "USize": 3405152
+            },
+            "wplb_revslider_css": {
+                "Case": 0,
+                "Rows": "109",
+                "Size": "92.08KB",
+                "USize": 94288
+            },
+            "wplb_revslider_layer_animations": {
+                "Case": 0,
+                "Rows": "0",
+                "Size": "1KB",
+                "USize": 1024
+            },
+            "wplb_revslider_navigations": {
+                "Case": 0,
+                "Rows": "0",
+                "Size": "1KB",
+                "USize": 1024
+            },
+            "wplb_revslider_sliders": {
+                "Case": 0,
+                "Rows": "0",
+                "Size": "1KB",
+                "USize": 1024
+            },
+            "wplb_revslider_slides": {
+                "Case": 0,
+                "Rows": "0",
+                "Size": "1KB",
+                "USize": 1024
+            },
+            "wplb_revslider_static_slides": {
+                "Case": 0,
+                "Rows": "0",
+                "Size": "1KB",
+                "USize": 1024
+            },
+            "wplb_term_relationships": {
+                "Case": 0,
+                "Rows": "17",
+                "Size": "3.37KB",
+                "USize": 3450
+            },
+            "wplb_term_taxonomy": {
+                "Case": 0,
+                "Rows": "11",
+                "Size": "4.41KB",
+                "USize": 4512
+            },
+            "wplb_termmeta": {
+                "Case": 0,
+                "Rows": "0",
+                "Size": "4KB",
+                "USize": 4096
+            },
+            "wplb_terms": {
+                "Case": 0,
+                "Rows": "11",
+                "Size": "13.36KB",
+                "USize": 13680
+            },
+            "wplb_usermeta": {
+                "Case": 0,
+                "Rows": "25",
+                "Size": "12.81KB",
+                "USize": 13120
+            },
+            "wplb_users": {
+                "Case": 0,
+                "Rows": "1",
+                "Size": "8.1KB",
+                "USize": 8296
+            }
+        },
+        "RawSize": 5351170
+    },
+    "LL": {
+        "TotalSize": "5.1MB",
+        "Status": {
+            "TotalSize": "Good"
+        }
+    }
+}
