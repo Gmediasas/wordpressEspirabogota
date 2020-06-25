@@ -482,7 +482,7 @@ curl_close($curl);
                                     </div>                                       
                                     <div class="form-group col-sm-6">
                                        <span class="wpcf7-form-control-wrap your-phone">
-                                       <input type="text" name="numero_documento" id="numero_documento" size="40" placeholder="Número de documento*"
+                                       <input type="text" name="documento" id="documento" size="40" placeholder="Número de documento*"
                                           class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required form-control form-control--white"
                                           aria-required="true" aria-invalid="false">
                                        </span>
