@@ -666,10 +666,10 @@ curl_close($curl);
          switch (ext) {
             case 'jpg':
             case 'png':
-            case '.doc':
-            case '.docx':
-            case '.xlsx':
-            case '..zip':
+            case 'doc':
+            case 'docx':
+            case 'xlsx':
+            case 'zip':
             case 'pdf': break;
             default:
                alert('El archivo no tiene la extensión adecuada');
