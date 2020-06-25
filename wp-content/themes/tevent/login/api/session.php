@@ -1,7 +1,7 @@
 <?php
 
 //API URL
-$url = 'https://prod.gevents.co/public/api/login_user';
+$url = 'http://localhost/middleware/public/api/login_user';
 
 //create a new cURL resource
 $ch = curl_init($url);
@@ -11,7 +11,7 @@ $data = array(
     'email' => $_POST['email'],
     'tipo_registro' => 1,
     'product_id' => 3,
-    'rol' =>7,
+    'rol' =>15,
     'password' => $_POST['password'],
 );
 $payload = json_encode($data);
