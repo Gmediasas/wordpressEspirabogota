@@ -434,6 +434,10 @@ curl_close($curl);
                                                 include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/selectCodigo.php");
                                              elseif($customCampos['valores'] == '*')
                                                 include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/selectLocal.php");
+                                             elseif($customCampos['valores'] == '+')
+                                                include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/selectAct.php");
+                                             elseif($customCampos['valores'] == '-')
+                                                include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/selectAct2.php");
                                              else
                                                 include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/select.php");
                                           else
@@ -531,7 +535,7 @@ curl_close($curl);
                                        <span class="wpcf7-form-control-wrap your-name">
                                        <input type="number" name="celular" id="celular" size="40" placeholder="Número telefónico de la persona de contacto"
                                           class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required form-control form-control--white required"
-                                          aria-required="true" aria-invalid="false" onkeypress="return letras(event)">
+                                          aria-required="true" aria-invalid="false"  >
                                        </span>
                                     </div>
                                     <?php
@@ -592,14 +596,17 @@ curl_close($curl);
                                                                    
                                  </div>
 
-                                 <div class="row" style="height:20px;"></div>
+                                 <div class="row" style="height:20px;">
+                                    <input type="checkbox" id="cbox2"  class="form-group col-sm-2" value="second_checkbox" required>
+                                     <label for="cbox2" class="form-group col-sm-10"> Autorizo a ENTORNO a usar los datos de este formulario de acuerdo a la Ley 1581 de 2012, ley de protección de datos personales.</label>
+                                 </div><br>
 
                                  <div align="center" class="form-group col-sm-12">
                                     <input type="submit" value="Enviar registro" id="saveRegister"
                                        class="wpcf7-form-control wpcf7-submit btn btn-primary btn-block" style="width: 250px";>
                                  </div>
                               </div>
-                              <input type="hidden" name="programaId" value="1">  
+                              <input type="hidden" name="programaId" value="<?php echo $idPrograma ?>">  
                               <input type="hidden" name="rol" value="15">  
                               <input type="hidden" name="ipUsuario" value="<?php echo $_SERVER["REMOTE_ADDR"]; ?>">
                            </form>
@@ -634,11 +641,45 @@ curl_close($curl);
 <script type="text/javascript" src="../wp-content/themes/tevent/registro/js/jquery.validate.min.js"></script>
 <script type="text/javascript" src="../wp-content/themes/tevent/registro/js/caracterEspecial.js"></script>
 <script>
-   var urlApi = 'http://localhost/middleware/public/api/save_ForCustom';
+   var urlApi = 'http://localhost/middleware/public/api/';
    
- 
-  jQuery(function(){
-       jQuery("#formulario_de_prueba").on("submit", function(e){
+   jQuery(document).on('change','input[type="file"]',function(){
+      // this.files[0].size recupera el tamaño del archivo
+      // alert(this.files[0].size);
+      
+      var fileName = this.files[0].name;
+      var fileSize = this.files[0].size;
+
+      if(fileSize > 2000000){
+         alert('El archivo no debe superar los 2MB');
+         this.value = '';
+         this.files[0].name = '';
+      }else{
+         // recuperamos la extensión del archivo
+         var ext = fileName.split('.').pop();
+         
+         // Convertimos en minúscula porque 
+         // la extensión del archivo puede estar en mayúscula
+         ext = ext.toLowerCase();
+      
+         // console.log(ext); .doc,.docx,.xlsx,.pdf,.zip
+         switch (ext) {
+            case 'jpg':
+            case 'png':
+            case '.doc':
+            case '.docx':
+            case '.xlsx':
+            case '..zip':
+            case 'pdf': break;
+            default:
+               alert('El archivo no tiene la extensión adecuada');
+               this.value = ''; // reset del valor
+               this.files[0].name = '';
+         }
+      }
+   });
+   jQuery(function(){
+      jQuery("#formulario_de_prueba").on("submit", function(e){
 
          jQuery('#saveRegister').prop('disabled', false);
          var valuesForm =  jQuery("input[name='idFormularioF\\[\\]']").map(function() { return jQuery('#archivo_'+ jQuery(this).val()).prop('files')[0];}).get();
@@ -646,43 +687,90 @@ curl_close($curl);
          var ajaxData = new FormData(document.getElementById("formulario_de_prueba"));
       
          /* mapiar los valores encontrados para formar un arreglo*/
-        var myArray = jQuery.map(valuesForm, function(value, index) {  
+         var myArray = jQuery.map(valuesForm, function(value, index) {  
             ajaxData.append('responseFile['+index+']', value);
          });  
   
        
-        jQuery.ajax({
-          type: 'POST',
-           url: urlApi,     
-           contentType: false,
-           processData: false,
-           data: ajaxData,
-           success: function(response) {
-            console.log(response);   
-               if (response['response']['status'] == "Success") {
-                  jQuery('#formulario_de_prueba').trigger("reset");
-                  jQuery('#saveRegister').prop('disabled', false);
-                  window.location.href="gracias/";
-               }else{
-                  jQuery('#alertSuccess').html("Ocurrio un error");
-                  jQuery('#saveRegister').prop('disabled', false);
+         jQuery.ajax({
+            type: 'POST',
+            url: urlApi+'save_ForCustom',     
+            contentType: false,
+            processData: false,
+            data: ajaxData,
+            success: function(response) {
+               console.log(response);   
+                  if (response['response']['status'] == "Success") {
+                     jQuery('#formulario_de_prueba').trigger("reset");
+                     jQuery('#saveRegister').prop('disabled', false);
+                     window.location.href="gracias/";
+                  }else{
+                     jQuery('#alertSuccess').html("Ocurrio un error");
+                     jQuery('#saveRegister').prop('disabled', false);
+                  }
+            },
+            error: function(request, status, error) {   
+                  if(request.status == 401){
+                     jQuery('#alertSuccess').html("El correo ya se encuentra registrado");
+                     jQuery('#saveRegister').prop('disabled', false);
+                  }else{
+                     jQuery('#alertSuccess').html("Ocurrio un error al guardar su registro");
+                     jQuery('#formulario_de_prueba').trigger("reset");
+                     jQuery('#saveRegister').prop('disabled', false);
+                  }
                }
-           },
-           error: function(request, status, error) {   
-               if(request.status == 401){
-                  jQuery('#alertSuccess').html("El correo ya se encuentra registrado");
-                  jQuery('#saveRegister').prop('disabled', false);
-               }else{
-                  jQuery('#alertSuccess').html("Ocurrio un error al guardar su registro");
-                  jQuery('#formulario_de_prueba').trigger("reset");
-                  jQuery('#saveRegister').prop('disabled', false);
-               }
-            }
-          });
-        });
+         });
+      });
    });
  
+   function ActividadCIIU() {
+
+      var ciiu =  jQuery("#typeCodeCiiu option:selected").val();
+      console.log(ciiu);
+      setTimeout(function() {
+         if (ciiu != 0) {
+             jQuery.ajax({
+                  url:urlApi+"getActividadCiiu/" + ciiu,
+                  type: "GET",
+                  dataType: "json",
+                  success: function(respuesta) {
+                     console.log(respuesta);
+                     var subCodigoCiuu = respuesta.response;
+                     jQuery('.responseSelectAct').empty();  
+                      jQuery('.responseSelectAct2').empty();  
+                     console.log(subCodigoCiuu.length);
+                     jQuery('.responseSelectAct').append('<option selected="selected" value="">Actividad Principal</option>');
+                     jQuery('.responseSelectAct2').append('<option selected="selected" value="">Actividad Secundaria</option>');
+
+                     
+                     if (subCodigoCiuu.length) {
+                        subCodigoCiuu.forEach(function(element, index) {
+                           console.log(element.name);
+                           jQuery('.responseSelectAct').append('<option  value="'+element.id+'">'+element.name+'</option>');
+                           jQuery('.responseSelectAct2').append('<option  value="'+element.id+'">'+element.name+'</option>');
+                            
+                        });
+                     } else {
+                        jQuery('.responseSelectAct').empty();
+                        jQuery('.responseSelectAct2').empty();  
+                        jQuery('.responseSelectAct').append('<option selected="selected" value="">Actividad Principal</option>');
+                        jQuery('.responseSelectAct2').append('<option selected="selected" value="">Actividad Secundaria</option>');
+                     }
    
+                  }
+            });
+
+         } else {
+            jQuery('.responseSelectAct').empty();
+            jQuery('.responseSelectAct').append('<option selected="selected" value="">Selecciona una actividad</option>');
+         }
+
+
+
+      }, 100);
+
+   }
+
    
  
 </script>
