@@ -14,7 +14,7 @@
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-}
+   }
 
    .vc_column_container {
    padding-left: 0;
@@ -150,7 +150,7 @@
     height: auto;
     max-width: 100%;
     vertical-align: top;
-}
+   }
 
       @media (min-width: 1024px){
    nav.navbar.bootsnav.navbar-fixed.navbar-transparent .logo-display, nav.navbar.bootsnav.navbar-fixed.no-background .logo-display {
@@ -319,10 +319,10 @@
     }
 
 
-         .container {
+   .container {
     width: 767px;
-}
-      .vc_col-sm-1, .vc_col-sm-10, .vc_col-sm-11, .vc_col-sm-12, .vc_col-sm-2, .vc_col-sm-3, .vc_col-sm-4, .vc_col-sm-5, .vc_col-sm-6, .vc_col-sm-7, .vc_col-sm-8, .vc_col-sm-9 {
+   }
+   .vc_col-sm-1, .vc_col-sm-10, .vc_col-sm-11, .vc_col-sm-12, .vc_col-sm-2, .vc_col-sm-3, .vc_col-sm-4, .vc_col-sm-5, .vc_col-sm-6, .vc_col-sm-7, .vc_col-sm-8, .vc_col-sm-9 {
       }
       .vc_col-sm-4 {
       width: 33.33333333%;
@@ -354,18 +354,34 @@
         }
       }
 
-label {
-    display: inline-block;
-    max-width: 100%;
-    margin-bottom: 5px;
-    font-weight: 700;
-    color: #000;
+   label {
+      display: inline-block;
+      max-width: 100%;
+      margin-bottom: 5px;
+      font-weight: 700;
+      color: #000;
 
-}
+   }
 
-label.error { color: red;font-size: 12px; }
+   label.error { color: red;font-size: 12px; }
 
 </style>
+
+<?php
+$idPrograma=1;
+//Gestión de erorres
+$postHeaders = array('Content-Type: application/json');
+$apiUrl = 'http://localhost/middleware/public/api/getFormCustomProgram/'.$idPrograma;
+$curl = curl_init($apiUrl);
+curl_setopt($curl, CURLOPT_ENCODING, "");
+curl_setopt($curl, CURLOPT_HTTPHEADER, $postHeaders);
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+$json = curl_exec($curl);
+$responseForm = json_decode($json, true); 
+curl_close($curl);
+
+ 
+?> 
 <main id="main" class="site-main" role="main">
    <div id="post-116" class="post-116 page type-page status-publish hentry">
       <div class="entry-content">
@@ -379,105 +395,56 @@ label.error { color: red;font-size: 12px; }
                      <div>
                         <div role="form" class="wpcf7 vc_col-sm-12" id="wpcf7-f240-p116-o1" lang="en-US" dir="ltr">
                            <div class="screen-reader-response"></div>
-                           <form id="formulario_de_prueba" name="formulario_de_prueba" method="post"  action="" class="wpcf7-form demo" >
+                           <form id="formulario_de_prueba" name="formulario_de_prueba" method="post"  action="" enctype="multipart/form-data" class="wpcf7-form demo" >
                               <div class="bg-black-transparent u-BorderRadius4 u-BoxShadow40 u-PaddingTop40 u-PaddingLeft40 u-PaddingRight40" style="background-color: #f2f2f2;">
 
                                  <div class="row" style="height:20px;"></div>
 
                                  <div class="row">
-
+                               
                                     <div class="col-sm-12">
                                        <h3 align="center" class="u-MarginTop50">Formulario de registro</h3>
                                     </div>
 
                                     <div class="form-group col-sm-12">
                                        <span class="wpcf7-form-control-wrap your-name">
-                                       <input type="text" name="nombre" id="nombre" size="40" placeholder="Nombre de la empresa"
+                                       <input type="text" name="nombreEmpresa" id="nombreEmpresa" size="40" placeholder="Nombre de la empresa"
                                           class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required form-control form-control--white required"
                                           aria-required="true" aria-invalid="false" onkeypress="return letras(event)">
                                        </span>
                                     </div>
-                                 </div>
+                                 
+                                 <?php
+                                    foreach ($responseForm['customFormulario'] as $customCampos) {
+                                       if($customCampos['required'] == 1){
+                                          $required = 'required';
+                                       }else{
+                                          $required = '';
+                                       }
+                                       
+                                       if($customCampos['orden'] < 9){
+                                          if($customCampos['campo_custom_id'] == 1)
+                                             include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/input.php");
+                                          else if($customCampos['campo_custom_id'] == 2)
+                                             if($customCampos['valores'] == '$')
+                                                include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/selectPais.php");
+                                             elseif($customCampos['valores'] == '#')
+                                                include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/selectType.php");
+                                             elseif($customCampos['valores'] == '!')
+                                                include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/selectCodigo.php");
+                                             elseif($customCampos['valores'] == '*')
+                                                include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/selectLocal.php");
+                                             else
+                                                include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/select.php");
+                                          else
+                                             include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/multiple.php");
+                                       }
+                                    }  
+                                 ?>
 
-                                 <div class="row">
-                                    <div class="form-group col-sm-6">
-                                       <span class="wpcf7-form-control-wrap your-name">
-                                       <input type="text" name="cargo" id="cargo" size="40" placeholder="NIT"
-                                          class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required form-control form-control--white"
-                                          aria-required="true" aria-invalid="false">
-                                       </span>
-                                    </div>
-                                    <div class="form-group col-sm-6">
-                                       <span class="wpcf7-form-control-wrap your-phone">
-                                       <input type="text" name="celular" id="celular" size="40" placeholder="DV (Dígito de verificación)"
-                                          class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required form-control form-control--white"
-                                          aria-required="true" aria-invalid="false" onkeyup='this.value=number(this.value)'>
-                                       </span>
-                                    </div>
+                                 
                                  </div>
-
-                                 <div class="row">
-                                    <div class="form-group select-wrapper col-sm-6">
-                                       <span class="wpcf7-form-control-wrap ticket-type">
-                                          <select name="tipo_documento" class="wpcf7-form-control wpcf7-select wpcf7-validates-as-required form-control"
-                                             aria-required="true" aria-invalid="false" id="typeDocument">
-                                             <option value="">Sector económico al que pertenece la empresa*</option>
-                                             <option value="Cedula ciudadania">Agrícola</option>
-                                             <option value="Cedula extranjeria">Industrial</option>
-                                             <option value="Pasaporte">Servicios</option>
-                                          </select>
-                                       </span>
-                                    </div>
-                                    <div class="form-group col-sm-6">
-                                       <span class="wpcf7-form-control-wrap your-name">
-                                       <input type="text" name="" id="" size="40" placeholder="Código CIUU*"
-                                          class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required form-control form-control--white"
-                                          aria-required="true" aria-invalid="false">
-                                       </span>
-                                    </div>
-                                 </div>
-
-                                 <div class="row">
-                                    <div class="form-group select-wrapper col-sm-6">
-                                       <span class="wpcf7-form-control-wrap ticket-type">
-                                          <select name="tipo_documento" class="wpcf7-form-control wpcf7-select wpcf7-validates-as-required form-control"
-                                             aria-required="true" aria-invalid="false" id="typeDocument">
-                                             <option value="">Actividad principal*</option>
-                                             <option value="Actividad 1">Actividad 1</option>
-                                             <option value="Actividad 2">Actividad 2</option>
-                                             <option value="Actividad 3">Actividad 3</option>
-                                          </select>
-                                       </span>
-                                    </div>
-                                    <div class="form-group select-wrapper col-sm-6">
-                                       <span class="wpcf7-form-control-wrap ticket-type">
-                                          <select name="tipo_documento" class="wpcf7-form-control wpcf7-select wpcf7-validates-as-required form-control"
-                                             aria-required="true" aria-invalid="false" id="typeDocument">
-                                             <option value="">Actividad secundaria*</option>
-                                             <option value="Actividad 1">Actividad 1</option>
-                                             <option value="Actividad 2">Actividad 2</option>
-                                             <option value="Actividad 3">Actividad 3</option>
-                                          </select>
-                                       </span>
-                                    </div>
-                                 </div>
-
-                                 <div class="row">
-                                    <div class="form-group col-sm-6">
-                                       <span class="wpcf7-form-control-wrap your-name">
-                                       <input type="text" name="nombre" id="nombre" size="40" placeholder="Dirección"
-                                          class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required form-control form-control--white required"
-                                          aria-required="true" aria-invalid="false" onkeypress="return letras(event)">
-                                       </span>
-                                    </div>
-                                    <div class="form-group col-sm-6">
-                                       <span class="wpcf7-form-control-wrap your-name">
-                                       <input type="text" name="nombre" id="nombre" size="40" placeholder="Localidad"
-                                          class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required form-control form-control--white required"
-                                          aria-required="true" aria-invalid="false" onkeypress="return letras(event)">
-                                       </span>
-                                    </div>
-                                 </div>
+                               
 
                                  <div class="row">
                                     <h5>Datos persona de contacto</h5>
@@ -486,7 +453,14 @@ label.error { color: red;font-size: 12px; }
                                  <div class="row">
                                     <div class="form-group col-sm-6">
                                        <span class="wpcf7-form-control-wrap your-name">
-                                       <input type="text" name="" id="" size="40" placeholder="Nombre de la persona de contacto"
+                                       <input type="text" name="nombre" id="nombre" size="40" placeholder="Nombre de la persona de contacto"
+                                          class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required form-control form-control--white"
+                                          aria-required="true" aria-invalid="false">
+                                       </span>
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                       <span class="wpcf7-form-control-wrap your-name">
+                                       <input type="text" name="apellidos" id="apellidos" size="40" placeholder="Apellido de la persona de contacto"
                                           class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required form-control form-control--white"
                                           aria-required="true" aria-invalid="false">
                                        </span>
@@ -494,16 +468,14 @@ label.error { color: red;font-size: 12px; }
                                     <div class="form-group select-wrapper col-sm-6">
                                        <span class="wpcf7-form-control-wrap ticket-type">
                                           <select name="tipo_documento" class="wpcf7-form-control wpcf7-select wpcf7-validates-as-required form-control"
-                                             aria-required="true" aria-invalid="false" id="typeDocument">
+                                             aria-required="true" aria-invalid="false" id="tipo_documento">
                                              <option value="">Tipo de identificación*</option>
-                                             <option value="Cedula ciudadania">Cédula de ciudadanía</option>
-                                             <option value="Cedula extranjeria">Cédula de extranjería</option>
+                                            <?php foreach ($responseForm['tipoIdentificacion'] as $typeId) {?>
+                                                <option value="<?php echo $typeId['id']?>"> <?php echo $typeId['tipo']?></option>
+                                             <?php }  ?>  
                                           </select>
                                        </span>
-                                    </div>                                    
-                                 </div>
-
-                                 <div class="row">                                    
+                                    </div>                                       
                                     <div class="form-group col-sm-6">
                                        <span class="wpcf7-form-control-wrap your-phone">
                                        <input type="text" name="numero_documento" id="numero_documento" size="40" placeholder="Número de documento*"
@@ -513,9 +485,9 @@ label.error { color: red;font-size: 12px; }
                                     </div>
                                     <div class="form-group col-sm-6">
                                        <span class="wpcf7-form-control-wrap your-name">
-                                       <input type="text" name="nombre" id="nombre" size="40" placeholder="Cargo dentro de la empresa"
+                                       <input type="text" name="cargo" id="cargo" size="40" placeholder="Cargo dentro de la empresa"
                                           class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required form-control form-control--white required"
-                                          aria-required="true" aria-invalid="false" onkeypress="return letras(event)">
+                                          aria-required="true" aria-invalid="false"  >
                                        </span>
                                     </div>
                                  </div>
@@ -528,30 +500,63 @@ label.error { color: red;font-size: 12px; }
                                           aria-required="true" aria-invalid="false" >
                                        </span>
                                     </div>
-                                    <div class="form-group col-sm-6">
-                                       <span class="wpcf7-form-control-wrap your-email">
-                                       <input type="email" name="email" id="email" size="40" placeholder="Correo electrónico de la persona de contacto - Alternativa 2"
-                                          class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email form-control form-control--white"
-                                          aria-required="true" aria-invalid="false" >
-                                       </span>
-                                    </div>
+                                    <?php
+                                       foreach ($responseForm['customFormulario'] as $customCampos) {
+                                          if($customCampos['required'] == 1){
+                                             $required = 'required';
+                                          }else{
+                                             $required = '';
+                                          }
+                                          
+                                          if($customCampos['orden'] == 9){
+                                             if($customCampos['campo_custom_id'] == 1)
+                                                                                         
+                                                include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/input.php");
+                                             else if($customCampos['campo_custom_id'] == 2)
+                                                if($customCampos['valores'] == '$')
+                                                   include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/selectPais.php");
+                                                elseif($customCampos['valores'] == '#')
+                                                   include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/selectType.php");
+                                                else
+                                                   include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/select.php");
+                                             else
+                                                include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/multiple.php");
+                                          }
+                                       }  
+                                    ?> 
                                  </div>
 
                                  <div class="row">
                                     <div class="form-group col-sm-6">
                                        <span class="wpcf7-form-control-wrap your-name">
-                                       <input type="text" name="nombre" id="nombre" size="40" placeholder="Número telefónico de la persona de contacto"
+                                       <input type="number" name="celular" id="celular" size="40" placeholder="Número telefónico de la persona de contacto"
                                           class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required form-control form-control--white required"
                                           aria-required="true" aria-invalid="false" onkeypress="return letras(event)">
                                        </span>
                                     </div>
-                                    <div class="form-group col-sm-6">
-                                       <span class="wpcf7-form-control-wrap your-name">
-                                       <input type="text" name="nombre" id="nombre" size="40" placeholder="Otro número telefónico de contacto"
-                                          class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required form-control form-control--white required"
-                                          aria-required="true" aria-invalid="false" onkeypress="return letras(event)">
-                                       </span>
-                                    </div>
+                                    <?php
+                                       foreach ($responseForm['customFormulario'] as $customCampos) {
+                                          if($customCampos['required'] == 1){
+                                             $required = 'required';
+                                          }else{
+                                             $required = '';
+                                          }
+                                          
+                                          if($customCampos['orden'] == 10){
+                                             if($customCampos['campo_custom_id'] == 1)
+                                                include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/input.php");
+                                             else if($customCampos['campo_custom_id'] == 2)
+                                                if($customCampos['valores'] == '$')
+                                                   include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/selectPais.php");
+                                                elseif($customCampos['valores'] == '#')
+                                                   include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/selectType.php");
+                                                else
+                                                   include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/select.php");
+                                             else
+                                                include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/multiple.php");
+                                          }
+                                       }  
+                                    ?> 
                                  </div>
 
                                  <div class="row">
@@ -559,79 +564,32 @@ label.error { color: red;font-size: 12px; }
                                  </div>
 
                                  <div class="row">
-                                    <div class="form-group col-sm-12">
-                                       <label for="archivo" style="font-size:14px;font-weight:400;min-height:44px;">1. Certificado de Existencia y Representación legal con fecha de expedición no superior a treinta (30) días:</label>
-                                       <span class="wpcf7-form-control-wrap your-name">
-                                       <input type="file" name="" id="archivo" size="40" placeholder="Nombre de la persona de contacto" accept="image/png, image/jpeg, .doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-                                          class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required form-control form-control--white"
-                                          aria-required="true" aria-invalid="false">
-                                       </span>
-                                    </div>
-                                    <div class="form-group col-sm-12">
-                                       <label for="archivo" style="font-size:14px;font-weight:400;min-height:44px;">2. Fotocopia de la cédula del representante legal:</label>
-                                       <span class="wpcf7-form-control-wrap your-name">
-                                       <input type="file" name="" id="archivo" size="40" placeholder="Nombre de la persona de contacto" accept="image/png, image/jpeg, .doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-                                          class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required form-control form-control--white"
-                                          aria-required="true" aria-invalid="false">
-                                       </span>
-                                    </div>                                   
-                                 </div>
-
-                                 <div class="row">
-                                    <div class="form-group col-sm-12">
-                                       <label for="archivo" style="font-size:14px;font-weight:400;min-height:44px;">3. Boletín de responsables fiscales de la Contraloría General de la República:</label>
-                                       <span class="wpcf7-form-control-wrap your-name">
-                                       <input type="file" name="" id="archivo" size="40" placeholder="Nombre de la persona de contacto" accept="image/png, image/jpeg, .doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-                                          class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required form-control form-control--white"
-                                          aria-required="true" aria-invalid="false">
-                                       </span>
-                                    </div>
-                                    <div class="form-group col-sm-12">
-                                       <label for="archivo" style="font-size:14px;font-weight:400;min-height:44px;">4. Antecedentes Disciplinarios expedidos por la Procuraduría General de la Nación:</label>
-                                       <span class="wpcf7-form-control-wrap your-name">
-                                       <input type="file" name="" id="archivo" size="40" placeholder="Nombre de la persona de contacto" accept="image/png, image/jpeg, .doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-                                          class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required form-control form-control--white"
-                                          aria-required="true" aria-invalid="false">
-                                       </span>
-                                    </div>                                   
-                                 </div>
-
-                                 <div class="row">
-                                    <div class="form-group col-sm-12">
-                                       <label for="archivo" style="font-size:14px;font-weight:400;min-height:44px;">5. Antecedentes del sistema de Registro Nacional de Medidas Correctivas:</label>
-                                       <span class="wpcf7-form-control-wrap your-name">
-                                       <input type="file" name="" id="archivo" size="40" placeholder="Nombre de la persona de contacto" accept="image/png, image/jpeg, .doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-                                          class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required form-control form-control--white"
-                                          aria-required="true" aria-invalid="false">
-                                       </span>
-                                    </div>
-                                    <div class="form-group col-sm-12">
-                                       <label for="archivo" style="font-size:14px;font-weight:400;min-height:44px;">6. Certificado de Antecedentes Judiciales:</label>
-                                       <span class="wpcf7-form-control-wrap your-name">
-                                       <input type="file" name="" id="archivo" size="40" placeholder="Nombre de la persona de contacto" accept="image/png, image/jpeg, .doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-                                          class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required form-control form-control--white"
-                                          aria-required="true" aria-invalid="false">
-                                       </span>
-                                    </div>                                   
-                                 </div>
-
-                                 <div class="row">
-                                    <div class="form-group col-sm-12">
-                                       <label for="archivo" style="font-size:14px;font-weight:400;min-height:44px;">7. Copia del Registro Único Tributario (RUT):</label>
-                                       <span class="wpcf7-form-control-wrap your-name">
-                                       <input type="file" name="" id="archivo" size="40" placeholder="Nombre de la persona de contacto" accept="image/png, image/jpeg, .doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-                                          class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required form-control form-control--white"
-                                          aria-required="true" aria-invalid="false">
-                                       </span>
-                                    </div>
-                                    <div class="form-group col-sm-12">
-                                       <label for="archivo" style="font-size:14px;font-weight:400;min-height:44px;">8. Planilla que evidencie el pago de seguridad social de los empleados directos en el periodo de abril, mayo y junio de 2020:</label>
-                                       <span class="wpcf7-form-control-wrap your-name">
-                                       <input type="file" name="" id="archivo" size="40" placeholder="Nombre de la persona de contacto" accept="image/png, image/jpeg, .doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-                                          class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required form-control form-control--white"
-                                          aria-required="true" aria-invalid="false">
-                                       </span>
-                                    </div>                                   
+                                    <?php
+                                       foreach ($responseForm['customFormulario'] as $customCampos) {
+                                          if($customCampos['required'] == 1){
+                                             $required = 'required';
+                                          }else{
+                                             $required = '';
+                                          }
+                                          
+                                          if($customCampos['orden'] > 10){
+                                             if($customCampos['campo_custom_id'] == 1)
+                                                include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/input.php");
+                                             else if($customCampos['campo_custom_id'] == 2)
+                                                if($customCampos['valores'] == '$')
+                                                   include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/selectPais.php");
+                                                elseif($customCampos['valores'] == '#')
+                                                   include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/selectType.php");
+                                                else
+                                                   include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/select.php");
+                                             else if($customCampos['campo_custom_id'] == 4)
+                                                include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/file.php");
+                                             else
+                                                include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/multiple.php");
+                                          }
+                                       }  
+                                    ?> 
+                                                                   
                                  </div>
 
                                  <div class="row" style="height:20px;"></div>
@@ -641,9 +599,8 @@ label.error { color: red;font-size: 12px; }
                                        class="wpcf7-form-control wpcf7-submit btn btn-primary btn-block" style="width: 250px";>
                                  </div>
                               </div>
-                              <input type="hidden" name="rol" value="7">
-                              <input type="hidden" name="evento" value="20">
-                              <input type="hidden" name="idBoleta" value="31">
+                              <input type="hidden" name="programaId" value="1">  
+                              <input type="hidden" name="rol" value="15">  
                               <input type="hidden" name="ipUsuario" value="<?php echo $_SERVER["REMOTE_ADDR"]; ?>">
                            </form>
                         </div>
@@ -677,247 +634,56 @@ label.error { color: red;font-size: 12px; }
 <script type="text/javascript" src="../wp-content/themes/tevent/registro/js/jquery.validate.min.js"></script>
 <script type="text/javascript" src="../wp-content/themes/tevent/registro/js/caracterEspecial.js"></script>
 <script>
-   var urlApi = 'https://prod.gevents.co/public/api/';
+   var urlApi = 'http://localhost/middleware/public/api/save_ForCustom';
    
-   jQuery("#password").blur(function(){
-       var password = jQuery("#password").val();
-       var parametro =  new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[.,?¿=)(<>º!¡{}@#\$%\^&\*])");
-       var res = parametro.test(password);
-       var mensage='Por favor valide que su contraseña tenga 1-Mayúscula / 1-mínuscula / 1-número / 1-Caracter especial (*)'
-       if (res!=true) {
-           jQuery('#mensajePassword').css("display", "block");
-           jQuery("#mensajePassword").addClass("error");
-           jQuery("#mensajePassword").html(mensage);
-           jQuery('#saveRegister').prop('disabled', true);
-   
-       }else{
-           jQuery('#mensajePassword').css("display", "none");
-           jQuery("#mensajePassword").removeClass("is-invalid");
-           jQuery('#saveRegister').prop('disabled', false);
-       }
-   });
-   
-   jQuery("#cmFPassword").blur(function(){
-       var password = jQuery("#confirmar_contraseña").val();
-       var parametro =  new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[.,?¿=)(<>º!¡{}@#\$%\^&\*])");
-       var res = parametro.test(password);
-       var mensage='Por favor valide que su contraseña tenga 1-Mayúscula / 1-mínuscula / 1-número / 1-Caracter especial (*)'
-       if (res!=true) {
-           jQuery('#mensajePasswordR').css("display", "block");
-           jQuery("#mensajePasswordR").addClass("error");
-           jQuery("#mensajePasswordR").html(mensage);
-           jQuery('#saveRegister').prop('disabled', true);
-   
-       }else{
-           jQuery('#mensajePasswordR').css("display", "none");
-           jQuery("#mensajePasswordR").removeClass("is-invalid");
-           jQuery('#saveRegister').prop('disabled', false);
-       }
-   });
-   
-   jQuery("#saveRegister").on('click',function(){
-       jQuery("#formulario_de_prueba").validate({
-           rules: {
-               tipo_documento: {
-                   required: true,
-               },
-               numero_documento: {
-                   required: true,
-               },
-               nombre: {
-                   required: true,
-                   minlength: 3,
-                   maxlength: 60
-               },
-               apellidos: {
-                   required: true,
-                   minlength: 4,
-                   maxlength: 60
-               },
-               email: {
-                   required: true,
-                   email: true,
-                   maxlength: 50
-               },
-               cmfEmail: {
-                   required: true,
-                   email: true,
-                   equalTo: "#email",
-                   maxlength: 50
-               },
-               tipo_asistente: {
-                   required: true,
-               },
-               compania: {
-                   required: true,
-                   maxlength: 120
-               },
-               celular: {
-                   required: true,
-                   minlength: 10,
-                   maxlength: 20
-               },
-               cargo: {
-                   required: true,
-                   maxlength: 119
-               },
-               password: {
-                   required: true,
-                   minlength: 8,
-                   maxlength: 25,
-               },
-               cmfPassword: {
-                   required: true,
-                   equalTo: "#password",
-                   minlength: 8,
-                   maxlength: 25,
-               },
-               tnc: {
-                   required: true
+ 
+  jQuery(function(){
+       jQuery("#formulario_de_prueba").on("submit", function(e){
+
+         jQuery('#saveRegister').prop('disabled', false);
+         var valuesForm =  jQuery("input[name='idFormularioF\\[\\]']").map(function() { return jQuery('#archivo_'+ jQuery(this).val()).prop('files')[0];}).get();
+         
+         var ajaxData = new FormData(document.getElementById("formulario_de_prueba"));
+        
+         console.log(valuesForm);
+         /* mapiar los valores encontrados para formar un arreglo*/
+        var myArray = jQuery.map(valuesForm, function(value, index) {  
+            ajaxData.append('responseFile['+index+']', value);
+         });  
+  
+       
+        jQuery.ajax({
+          type: 'POST',
+           url: urlApi,     
+           contentType: false,
+           processData: false,
+           data: ajaxData,
+           success: function(data) {
+            console.log(response);   
+               if (response['response']['status'] == "Success") {
+                  jQuery('#formulario_de_prueba').trigger("reset");
+                  jQuery('#saveRegister').prop('disabled', false);
+                  window.location.href="gracias/";
+               }else{
+                  jQuery('#alertSuccess').html("Ocurrio un error");
+                  jQuery('#saveRegister').prop('disabled', false);
                }
-   
            },
-           messages: {
-               tipo_documento: {
-                   required: "El campo tipo de documento es requerido",
-               },
-               numero_documento: {
-                   required: "El campo tipo de documento es requerido",
-               },
-               nombre: {
-                   required: "El campo nombre es requerido",
-                   minlength: "El campo debe tener mínimo {0} caracteres.",
-                   maxlength: "El campo superera el máximo de  {0}caracteres permitidos."
-   
-               },
-               apellidos: {
-                   required: "El campo apellidos es requerido",
-                   minlength: "El campo apellidoss debe tener mínimo {0} caracteres.",
-                   maxlength: "El campo apellidoss superera el máximo de  {0}caracteres permitidos."
-               },
-               email: {
-                   required: "El campo correo es requerido",
-                   email: "Ingrese un correo valido",
-                   maxlength: "El campo de correo supera el limite de {0} caracteres permitidos"
-               },
-               cmfEmail: {
-                   required: "El campo correo es requerido",
-                   email: "Ingrese un correo valido",
-                   equalTo: "El campo no coincide con el correo",
-                   maxlength: "El campo de correo supera el limite de {0} caracteres permitidos"
-               },
-               tipo_asistente: {
-                   required: "El campo tipo de asistente es requerido",
-               },
-               compania: {
-                   required: "El campo compañia es requerido",
-                   maxlength: "El campo debe tener máximo {0} caracteres.",
-               },
-               cargo: {
-                   required: "El campo cargo es requerido",
-                   maxlength: "El campo debe tener máximo {0} caracteres.",
-               },
-               celular: {
-                   required: "El campo celular es requerido",
-                   minlength: "El campo celular debe tener mínimo {0} caracteres.",
-                   maxlength: "El campo celular superera el máximo de {0} caracteres permitidos."
-               },
-               password: {
-                   required: "El campo contraseña es requerido",
-                   minlength: "El campo contraseña debe tener mínimo {0} caracteres.",
-                   maxlength: "El campo contraseña superera el máximo de {0} caracteres permitidos."
-               },
-               cmfPassword: {
-                   required: "Debes confirmar la contraseña",
-                   equalTo: "El campo no coincide con la contraseña",
-                   minlength: "El campo confirmar contraseña debe tener mínimo {0} caracteres.",
-                   maxlength: "El campo confirmar contraseña superera el máximo de {0} caracteres permitidos."
-               },
-               tnc: {
-                   required: "Debes aceptar los  términos y condiciones"
+           error: function(request, status, error) {   
+               if(request.status == 401){
+                  jQuery('#alertSuccess').html("El correo ya se encuentra registrado");
+                  jQuery('#saveRegister').prop('disabled', false);
+               }else{
+                  jQuery('#alertSuccess').html("Ocurrio un error al guardar su registro");
+                  jQuery('#formulario_de_prueba').trigger("reset");
+                  jQuery('#saveRegister').prop('disabled', false);
                }
-   
-           }
-       });
-   
-       var typeDocument = jQuery("#typeDocument").valid();
-   
-       var nombre = jQuery("#nombre").valid();
-       var apellidos = jQuery("#apellidos").valid();
-       var email = jQuery("#email").valid();
-       var typeAssistant = jQuery("#typeAssistant option:selected").valid();
-       var compania = jQuery("#compania").valid();
-       var cargo = jQuery("#cargo").valid();
-       var celular = jQuery("#celular").valid();
-       var password = jQuery("#password").valid();
-       var tnc = jQuery("#tnc").valid();
-       var cmfEmail = jQuery("#cmfEmail").valid();
-       var cmfPassword = jQuery("#cmfPassword").valid();
-       var numero_documento = jQuery("#numero_documento").valid();
-   
-   
-       if(typeDocument == true && nombre == true && apellidos == true && email == true && typeAssistant == true && compania == true &&
-           cargo == true && celular == true && password == true && tnc == true && cmfEmail == true && cmfPassword == true
-           && numero_documento == true){
-   
-   
-           jQuery("#formulario_de_prueba").bind("submit",function(){
-               jQuery('#saveRegister').prop('disabled', true);
-   
-               jQuery.ajax({
-                   url: urlApi+"save_host_gevent",
-                   dataType: "json",
-                   type : 'post',
-                   headers: {"Accept": "application/json"},
-                   contentType: "application/x-www-form-urlencoded;charset=utf-8",
-                   data:jQuery(this).serialize(),
-                   success: function(response) {
-                       console.log(response);
-   
-                       if (response['response']['status'] == "Success") {
-                           jQuery('#formulario_de_prueba').trigger("reset");
-                           jQuery('#saveRegister').prop('disabled', false);
-                           window.location.href="gracias/";
-                       }else{
-                           jQuery('#alertSuccess').html("Ocurrio un error");
-                           jQuery('#saveRegister').prop('disabled', false);
-                       }
-   
-                   },
-                   error: function(request, status, error) {
-   
-                       if(request.status == 401){
-                           jQuery('#alertSuccess').html("El correo ya se encuentra registrado");
-                           jQuery('#saveRegister').prop('disabled', false);
-                       }else{
-                           jQuery('#alertSuccess').html("Ocurrio un error al guardar su registro");
-                           jQuery('#formulario_de_prueba').trigger("reset");
-                           jQuery('#saveRegister').prop('disabled', false);
-                       }
-                   }
-               });
-   
-           });
-       }else{
-           jQuery("#saveRegister").css('disabled',true);
-       }
+            }
+          });
+        });
    });
+ 
    
-   jQuery(document).ready( function(){
    
-       jQuery.ajax({
-           url: urlApi+"get_typeAssistant",
-           dataType: "json",
-           headers: {"Accept": "application/json"},
-           success: function(response) {
-               var i;
-               var div = '';
-               div += '<option value="" selected>Tipo de asistente*</option>';
-               for( i = 0; i < response.length; i++) {
-                   div += '<option value="' + response[i]['id'] + '">' + response[i]['nombre_asistente'] + '</option>';
-               }
-               jQuery('#typeAssistant').html(div);
-           }
-       });
-   });
+ 
 </script>
