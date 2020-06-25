@@ -471,8 +471,8 @@ curl_close($curl);
                                     </div>
                                     <div class="form-group select-wrapper col-sm-6">
                                        <span class="wpcf7-form-control-wrap ticket-type">
-                                          <select name="tipo_documento" class="wpcf7-form-control wpcf7-select wpcf7-validates-as-required form-control"
-                                             aria-required="true" aria-invalid="false" id="tipo_documento">
+                                          <select name="tipo_identificacion_id" class="wpcf7-form-control wpcf7-select wpcf7-validates-as-required form-control"
+                                             aria-required="true" aria-invalid="false" id="tipo_identificacion_id">
                                              <option value="">Tipo de identificación*</option>
                                             <?php foreach ($responseForm['tipoIdentificacion'] as $typeId) {?>
                                                 <option value="<?php echo $typeId['id']?>"> <?php echo $typeId['tipo']?></option>
