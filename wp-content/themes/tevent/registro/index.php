@@ -606,7 +606,7 @@ curl_close($curl);
                                        class="wpcf7-form-control wpcf7-submit btn btn-primary btn-block" style="width: 250px";>
                                  </div>
                               </div>
-                              <input type="hidden" name="programaId" value="1">  
+                              <input type="hidden" name="programaId" value="<?php echo $idPrograma ?>">  
                               <input type="hidden" name="rol" value="15">  
                               <input type="hidden" name="ipUsuario" value="<?php echo $_SERVER["REMOTE_ADDR"]; ?>">
                            </form>
