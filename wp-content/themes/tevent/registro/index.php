@@ -644,8 +644,7 @@ curl_close($curl);
          var valuesForm =  jQuery("input[name='idFormularioF\\[\\]']").map(function() { return jQuery('#archivo_'+ jQuery(this).val()).prop('files')[0];}).get();
          
          var ajaxData = new FormData(document.getElementById("formulario_de_prueba"));
-        
-         console.log(valuesForm);
+      
          /* mapiar los valores encontrados para formar un arreglo*/
         var myArray = jQuery.map(valuesForm, function(value, index) {  
             ajaxData.append('responseFile['+index+']', value);
@@ -658,7 +657,7 @@ curl_close($curl);
            contentType: false,
            processData: false,
            data: ajaxData,
-           success: function(data) {
+           success: function(response) {
             console.log(response);   
                if (response['response']['status'] == "Success") {
                   jQuery('#formulario_de_prueba').trigger("reset");
