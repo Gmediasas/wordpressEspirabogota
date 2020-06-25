@@ -23,13 +23,13 @@
 define('DB_NAME', 'espirabogota');
 
 /** MySQL database username */
-define('DB_USER', 'B0g0t443spira');
+define('DB_USER', 'root');
 
 /** MySQL database password */
-define('DB_PASSWORD', '54_d0fsdFA9taP?%Q%');
+define('DB_PASSWORD', '');
 
 /** MySQL hostname */
-define('DB_HOST', '64.202.190.238');
+define('DB_HOST', 'localhost');
 
 /** Database Charset to use in creating database tables. */
 define('DB_CHARSET', 'utf8mb4');
