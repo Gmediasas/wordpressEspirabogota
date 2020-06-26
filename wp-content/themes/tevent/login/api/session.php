@@ -49,7 +49,7 @@ if($login['code'] == 200){
     }else{
 
         echo '<script type="text/javascript">
-				window.location.href="rueda-de-negocios/";
+				window.location.href="bienvenido/";
 				</script>';
     }
 
