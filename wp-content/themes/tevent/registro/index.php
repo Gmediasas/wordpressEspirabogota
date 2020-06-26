@@ -459,14 +459,14 @@ curl_close($curl);
                                        <span class="wpcf7-form-control-wrap your-name">
                                        <input type="text" name="nombre" id="nombre" size="40" placeholder="Nombre de la persona de contacto"
                                           class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required form-control form-control--white"
-                                          aria-required="true" aria-invalid="false">
+                                          aria-required="true" aria-invalid="false" maxlength="20" minlength="3">
                                        </span>
                                     </div>
                                     <div class="form-group col-sm-6">
                                        <span class="wpcf7-form-control-wrap your-name">
                                        <input type="text" name="apellidos" id="apellidos" size="40" placeholder="Apellido de la persona de contacto"
                                           class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required form-control form-control--white"
-                                          aria-required="true" aria-invalid="false">
+                                          aria-required="true" aria-invalid="false" maxlength="20" minlength="3">
                                        </span>
                                     </div>
                                     <div class="form-group select-wrapper col-sm-6">
@@ -533,7 +533,7 @@ curl_close($curl);
                                  <div class="row">
                                     <div class="form-group col-sm-6">
                                        <span class="wpcf7-form-control-wrap your-name">
-                                       <input type="number" name="celular" id="celular" size="40" placeholder="Número telefónico de la persona de contacto"
+                                       <input type="number" name="celular" id="celular" maxlength="15" minlength="7" size="40" placeholder="Número telefónico de la persona de contacto"
                                           class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required form-control form-control--white required"
                                           aria-required="true" aria-invalid="false"  >
                                        </span>
