@@ -272,17 +272,19 @@ label.error { color: red;font-size: 12px; }
                 <div class="vc_column-inner">
                   <div class="wpb_wrapper">
                       <div class="screen-reader-response"></div>
+                      
                       <form action="" method="post" id="formLogin" class="wpcf7-form demo mailchimp-ext-0.5.08">
                             <div class="bg-black-transparent u-BorderRadius4 u-BoxShadow40 u-PaddingTop40 u-PaddingLeft40 u-PaddingRight40">
                                 <?php if(isset($_SESSION['token'])) {?>
                                     <script>
+                                        jQuery('#menu-item-1683').css('display','none');
                                         jQuery('#menu-item-976').css('display','none');
                                         jQuery('#menu-item-977').css('display','none');
                                     </script>
 
                                     <?php if($_SESSION['user']['idRol'] == 1) {?>
-                                       <div class="form-group">
-                                          <a href="agenda-general/" class="wpcf7-form-control wpcf7-submit btn btn-primary btn-block">
+                                       <div class="form-group" style="display:none">
+                                          <a href="agenda-general/"  class="wpcf7-form-control wpcf7-submit btn btn-primary btn-block">
                                               Ver agenda
                                           </a>
                                       </div>
@@ -294,7 +296,7 @@ label.error { color: red;font-size: 12px; }
 
 
                                     <?php }elseif($_SESSION['user']['idRol'] == 4) {?>
-                                      <div class="form-group">
+                                      <div class="form-group" style="display:none">
                                           <a href="agenda-empresa/" class="wpcf7-form-control wpcf7-submit btn btn-primary btn-block">
                                               Ver agenda
                                           </a>
@@ -306,13 +308,13 @@ label.error { color: red;font-size: 12px; }
                                     </script>
 
                                 <?php }else{ ?>
-                                        <div class="form-group">
+                                        <div class="form-group" style="display:none">
                                             <a href="mi-agenda/" class="wpcf7-form-control wpcf7-submit btn btn-primary btn-block">
                                                 Ver agenda
                                             </a>
                                         </div>
                                         <script>
-                                            jQuery('#menu-primary').append('<li itemscope="itemscope" itemtype="https://www.schema.org/SiteNavigationElement" id="menu-item-934" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-934"><a title="Ver Agenda" href="mi-agenda/" >Ver Agenda</a></li>')
+                                             
                                             jQuery('#menu-primary').append('<li itemscope="itemscope" itemtype="https://www.schema.org/SiteNavigationElement" id="menu-item-924" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-934"><a title="Cerrar Sesión" href="../wp-content/themes/tevent/login/api/logout.php">Cerrar Sesión</a></li>')
 
                                         </script>
@@ -326,6 +328,7 @@ label.error { color: red;font-size: 12px; }
 
                                 <?php }else{ ?>
                                     <script>
+                                      
                                         jQuery('#menu-item-976').css('display','block');
                                         jQuery('#menu-item-977').css('display','block');
                                     </script>

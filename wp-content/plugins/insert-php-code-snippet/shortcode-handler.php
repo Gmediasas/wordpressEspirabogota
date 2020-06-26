@@ -1,4 +1,5 @@
 <?php
+session_start();
 if ( ! defined( 'ABSPATH' ) )
     exit;
 global $wpdb;
