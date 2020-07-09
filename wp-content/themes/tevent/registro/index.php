@@ -712,7 +712,7 @@ Template Name: landing-registro
     </div>
 
     <?php
-        include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/registro/modal/errorNit.php");
+        include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/modal/errorNit.php");
         include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/registro/modal/error.php");
         include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/registro/modal/loading.php");
     ?>
