@@ -432,125 +432,92 @@ div.wpcf7 .ajax-loader.is-active {
 <!-- #main -->
 
   <?php get_footer(); ?>
-  <script type="text/javascript" src="../wp-content/themes/tevent/nueva-contrasena/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="../wp-content/themes/tevent/recuperar-contrasena/js/jquery.validate.min.js"></script>
 
 <script>
     var urlApi = 'https://prod.gevents.co/public/api/';
-
-    jQuery("#password").blur(function(){
-        var password = jQuery("#password").val();
-        var parametro =  new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[.,?¿=)(<>º!¡{}@#\$%\^&\*])");
-        var res = parametro.test(password);
-        var mensage='Por favor valide que su contraseña tenga 1-Mayúscula / 1-mínuscula / 1-número / 1-Caracter especial (*)'
-        if (res!=true) {
-            jQuery('#mensajePassword').css("display", "block");
-            jQuery("#mensajePassword").addClass("error");
-            jQuery("#mensajePassword").html(mensage);
-            jQuery('#savePassword').prop('disabled', true);
-
-        }else{
-            jQuery('#mensajePassword').css("display", "none");
-            jQuery("#mensajePassword").removeClass("is-invalid");
-            jQuery('#savePassword').prop('disabled', false);
-        }
-    });
-
-    jQuery("#cmfPassword").blur(function(){
-        var password = jQuery("#cmfPassword").val();
-        var parametro =  new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[.,?¿=)(<>º!¡{}@#\$%\^&\*])");
-        var res = parametro.test(password);
-        var mensage='Por favor valide que su contraseña tenga 1-Mayúscula / 1-mínuscula / 1-número / 1-Caracter especial (*)'
-        if (res!=true) {
-            jQuery('#mensajePasswordR').css("display", "block");
-            jQuery("#mensajePasswordR").addClass("error");
-            jQuery("#mensajePasswordR").html(mensage);
-            jQuery('#savePassword').prop('disabled', true);
-
-        }else{
-            jQuery('#mensajePasswordR').css("display", "none");
-            jQuery("#mensajePasswordR").removeClass("is-invalid");
-            jQuery('#savePassword').prop('disabled', false);
-        }
-    });
 
     jQuery("#savePassword").on('click',function(){
         jQuery("#formPassword").validate({
             rules: {
 
-                password: {
+                email: {
                     required: true,
-                    minlength: 8,
-                    maxlength: 25,
-                },
-                cmfPassword: {
-                    required: true,
-                    equalTo: "#password",
-                    minlength: 8,
-                    maxlength: 25,
+                    email: true,
+                    maxlength: 50
                 },
 
             },
             messages: {
-
-                password: {
-                    required: "El campo contraseña es requerido",
-                    minlength: "El campo contraseña debe tener mínimo {0} caracteres.",
-                    maxlength: "El campo contraseña superera el máximo de {0} caracteres permitidos."
-                },
-                cmfPassword: {
-                    required: "Debes confirmar la contraseña",
-                    equalTo: "El campo no coincide con la contraseña",
-                    minlength: "El campo confirmar contraseña debe tener mínimo {0} caracteres.",
-                    maxlength: "El campo confirmar contraseña superera el máximo de {0} caracteres permitidos."
-                },
+                email: {
+                    required: "El campo correo es requerido",
+                    email: "Ingrese un correo valido",
+                    maxlength: "El campo de correo supera el limite de {0} caracteres permitidos"
+                }
 
             }
         });
 
-        var password = jQuery("#password").valid();
-        var cmfPassword = jQuery("#cmfPassword").valid();
+        var email = jQuery("#email").valid();
 
+        if(email == true ){
 
-
-        if(password == true && cmfPassword == true ){
-
-            jQuery("#formPassword").bind("submit",function(){
+            jQuery("#formPassword").bind("submit",function() {
                 jQuery('#savePassword').prop('disabled', true);
 
+                var emailC = jQuery("#email").val();
+                var url = "http://transformabogota40.gevents.co/nueva-contrasena";
+                var registro = 7;
+
                 jQuery.ajax({
-                    url: urlApi+"rememberPasswordtoken",
+                    url: urlApi + "reset_user/" + emailC,
                     dataType: "json",
-                    type : 'post',
+                    type: 'get',
                     headers: {"Accept": "application/json"},
                     contentType: "application/x-www-form-urlencoded;charset=utf-8",
-                    data:jQuery(this).serialize(),
-                    success: function(response) {
-                        if(response['success'] == 'Success'){
-                            jQuery('#modalPassword').modal('show');
-                            jQuery('#formPassword').trigger("reset");
-                            jQuery('#savePassword').prop('disabled', false);
+                    success: function (response) {
+                        if (response['verified'] == 1) {
+
+                            jQuery.ajax({
+                                url: urlApi + "changePasswordRandom",
+                                dataType: "json",
+                                type: 'post',
+                                headers: {"Accept": "application/json"},
+                                contentType: "application/x-www-form-urlencoded;charset=utf-8",
+                                data: {"registro": registro, "url": url,"email": emailC},
+                                success: function (responseEmail) {
+                                    if (responseEmail['success'] == 'Success') {
+                                        jQuery('#modalPassword').modal('show');
+                                        jQuery('#savePassword').prop('disabled', false);
+                                        jQuery('#formPassword').trigger("reset");
+
+
+                                    } else {
+                                        jQuery('#modalFailPassword').modal('show');
+                                        jQuery('#savePassword').prop('disabled', false);
+
+                                    }
+                                },
+                                error: function (request, status, error) {
+
+                                    if (request.status == 401) {
+                                        jQuery('#modalFailPassword').modal('show');
+                                        jQuery('#formPassword').trigger("reset");
+                                        jQuery('#savePassword').prop('disabled', false);
+                                    } else {
+                                        jQuery('#modalFailPassword').modal('show');
+                                        jQuery('#formPassword').trigger("reset");
+                                        jQuery('#savePassword').prop('disabled', false);
+                                    }
+                                }
+                            });
                         }
                     },
-                    error: function(request, status, error) {
-
-                        if(request.status == 401){
-                            jQuery('#modalFailPassword').modal('show');
-                            jQuery('#formPassword').trigger("reset");
-                            jQuery('#savePassword').prop('disabled', false);
-                        }else{
-                            jQuery('#modalFailPassword').modal('show');
-                            jQuery('#formPassword').trigger("reset");
-                            jQuery('#savePassword').prop('disabled', false);
-                        }
-
-
-                    }
-
                 });
-
             });
+
         }else{
-            jQuery("#savePassword").css('disabled',true);
+            jQuery("#saveRegister").css('disabled',true);
         }
     });
 

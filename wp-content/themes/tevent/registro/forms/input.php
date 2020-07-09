@@ -5,5 +5,6 @@
         class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required form-control form-control--white"
         aria-required="true" aria-invalid="false">
     <input type="hidden" name="idFormularioI[]" value="<?php echo$customCampos['idFormulario']?>">
+    <input type="hidden" name="unique[]" value="<?php echo$customCampos['unico']?>">
     </span>
 </div>
