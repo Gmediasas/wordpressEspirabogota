@@ -8,7 +8,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                El correo electrónico ya se encuentre ragistrado.
+                El correo electrónico <b id="pintEmail"></b> ya se encuentra registrado, por favor verifica e intenta nuevamente.
             </div>
             <div class="modal-footer" style="text-align:center;">
                 <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>

@@ -429,23 +429,19 @@ Template Name: landing-registro
 </style>
 
 <?php
-    $idPrograma=1;
-    //Gestión de errores
-    $postHeaders = array('Content-Type: application/json');
+$idPrograma=1;
+//Gestión de errores
+$postHeaders = array('Content-Type: application/json');
 
-     // $apiUrl = 'https://prod.gevents.co/public/api/getFormCustomProgram/'.$idPrograma;
-  $apiUrl = 'https://middlepp.gevents.co/public/api/getFormCustomProgram/'.$idPrograma;
-    $curl = curl_init($apiUrl);
-    curl_setopt($curl, CURLOPT_ENCODING, "");
-    curl_setopt($curl, CURLOPT_HTTPHEADER, $postHeaders);
-    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-    $json = curl_exec($curl);
-    $responseForm = json_decode($json, true);
-    curl_close($curl);
-    include('modal/loading.php');
-    include('modal/faild.php');
-    include('modal/errorNit.php');
-    include('modal/error.php');
+$apiUrl = 'https://prod.gevents.co/public/api/getFormCustomProgram/'.$idPrograma;
+//$apiUrl = 'https://middlepp.gevents.co/public/api/getFormCustomProgram/'.$idPrograma;
+$curl = curl_init($apiUrl);
+curl_setopt($curl, CURLOPT_ENCODING, "");
+curl_setopt($curl, CURLOPT_HTTPHEADER, $postHeaders);
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+$json = curl_exec($curl);
+$responseForm = json_decode($json, true);
+curl_close($curl);
 ?>
 <main id="main" class="site-main" role="main">
     <script src="https://kit.fontawesome.com/fc6bfbfb08.js" crossorigin="anonymous"></script>
@@ -474,8 +470,8 @@ Template Name: landing-registro
                                                 <div class="form-group col-sm-12">
                                                     <span class="wpcf7-form-control-wrap your-name">
                                                         <input type="text" name="nombreEmpresa" id="nombreEmpresa" size="40" placeholder="Nombre de la empresa*"
-                                              class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required form-control form-control--white required"
-                                              aria-required="true" aria-invalid="false" required onchange="cargueDataUser();">
+                                                               class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required form-control form-control--white required"
+                                                               aria-required="true" aria-invalid="false" required>
                                        </span>
                                                 </div>
 
@@ -491,24 +487,24 @@ Template Name: landing-registro
 
                                                     if($customCampos['orden'] < 9){
                                                         if($customCampos['campo_custom_id'] == 1)
-                                                            include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/input.php");
+                                                            include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/registro/forms/input.php");
                                                         else if($customCampos['campo_custom_id'] == 2)
                                                             if($customCampos['valores'] == '$')
-                                                                include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/selectPais.php");
+                                                                include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/registro/forms/selectPais.php");
                                                             elseif($customCampos['valores'] == '#')
-                                                                include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/selectType.php");
+                                                                include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/registro/forms/selectType.php");
                                                             elseif($customCampos['valores'] == '!')
-                                                                include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/selectCodigo.php");
+                                                                include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/registro/forms/selectCodigo.php");
                                                             elseif($customCampos['valores'] == '*')
-                                                                include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/selectLocal.php");
+                                                                include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/registro/forms/selectLocal.php");
                                                             elseif($customCampos['valores'] == '+')
-                                                                include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/selectAct.php");
+                                                                include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/registro/forms/selectAct.php");
                                                             elseif($customCampos['valores'] == '-')
-                                                                include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/selectAct2.php");
+                                                                include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/registro/forms/selectAct2.php");
                                                             else
-                                                                include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/select.php");
+                                                                include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/registro/forms/select.php");
                                                         else
-                                                            include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/multiple.php");
+                                                            include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/registro/forms/multiple.php");
                                                     }
                                                 }
                                                 ?>
@@ -523,20 +519,20 @@ Template Name: landing-registro
                                        <span class="wpcf7-form-control-wrap your-name">
                                        <input type="text" name="nombre" id="nombre" size="40" placeholder="Nombre de la persona de contacto*"
                                               class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required form-control form-control--white"
-                                              aria-required="true" aria-invalid="false" maxlength="20" minlength="3" onchange="cargueDataUser();" required />
+                                              aria-required="true" aria-invalid="false" maxlength="20" minlength="3" required />
                                        </span>
                                                 </div>
                                                 <div class="form-group col-sm-6">
                                        <span class="wpcf7-form-control-wrap your-name">
                                        <input type="text" name="apellidos" id="apellidos" size="40" placeholder="Apellido de la persona de contacto*"
                                               class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required form-control form-control--white"
-                                              aria-required="true" aria-invalid="false" maxlength="20" minlength="3" onchange="cargueDataUser();" required/>
+                                              aria-required="true" aria-invalid="false" maxlength="20" minlength="3" required/>
                                        </span>
                                                 </div>
                                                 <div class="form-group select-wrapper col-sm-6">
                                        <span class="wpcf7-form-control-wrap ticket-type">
                                           <select name="tipo_identificacion_id" class="wpcf7-form-control wpcf7-select wpcf7-validates-as-required form-control"
-                                                  aria-required="true" aria-invalid="false" id="tipo_identificacion_id" onchange="cargueDataUser();" required>
+                                                  aria-required="true" aria-invalid="false" id="tipo_identificacion_id" required>
                                              <option value="">Tipo de identificación*</option>
                                             <?php foreach ($responseForm['tipoIdentificacion'] as $typeId) {?>
                                                 <option value="<?php echo $typeId['id']?>"> <?php echo $typeId['tipo']?></option>
@@ -548,14 +544,14 @@ Template Name: landing-registro
                                        <span class="wpcf7-form-control-wrap your-phone">
                                        <input type="text" name="documento" id="documento" size="40" placeholder="Número de documento*"
                                               class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required form-control form-control--white"
-                                              aria-required="true" aria-invalid="false" required onchange="cargueDataUser();">
+                                              aria-required="true" aria-invalid="false" required>
                                        </span>
                                                 </div>
                                                 <div class="form-group col-sm-6">
                                        <span class="wpcf7-form-control-wrap your-name">
                                        <input type="text" name="cargo" id="cargo" size="40" placeholder="Cargo dentro de la empresa*"
                                               class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required form-control form-control--white required"
-                                              aria-required="true" aria-invalid="false"  required onchange="cargueDataUser();"/>
+                                              aria-required="true" aria-invalid="false"  required/>
                                        </span>
                                                 </div>
                                             </div>
@@ -565,7 +561,7 @@ Template Name: landing-registro
                                        <span class="wpcf7-form-control-wrap your-email">
                                        <input type="email" name="email" id="email" size="40" placeholder="Correo electrónico principal*"
                                               class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email form-control form-control--white"
-                                              aria-required="true" aria-invalid="false" required onchange="cargueDataUser();"/>
+                                              aria-required="true" aria-invalid="false" required/>
                                        </span>
                                                 </div>
                                                 <?php
@@ -579,16 +575,16 @@ Template Name: landing-registro
                                                     if($customCampos['orden'] == 9){
                                                         if($customCampos['campo_custom_id'] == 1)
 
-                                                            include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/input.php");
+                                                            include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/registro/forms/input.php");
                                                         else if($customCampos['campo_custom_id'] == 2)
                                                             if($customCampos['valores'] == '$')
-                                                                include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/selectPais.php");
+                                                                include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/registro/forms/selectPais.php");
                                                             elseif($customCampos['valores'] == '#')
-                                                                include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/selectType.php");
+                                                                include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/registro/forms/selectType.php");
                                                             else
-                                                                include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/select.php");
+                                                                include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/registro/forms/select.php");
                                                         else
-                                                            include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/multiple.php");
+                                                            include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/registro/forms/multiple.php");
                                                     }
                                                 }
                                                 ?>
@@ -599,7 +595,7 @@ Template Name: landing-registro
                                                     <span class="wpcf7-form-control-wrap your-name">
                                                         <input type="text" name="celular" id="celular" title="Either 0 OR (7 chars minimum)"  placeholder="Número telefónico de la persona de contacto*"
                                                                class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required form-control form-control--white required"
-                                                               aria-required="true" aria-invalid="false"  maxlength="15" minlength="7" required onchange="cargueDataUser();"/>
+                                                               aria-required="true" aria-invalid="false"  maxlength="15" minlength="7" required/>
                                                     </span>
                                                 </div>
                                                 <?php
@@ -612,16 +608,16 @@ Template Name: landing-registro
 
                                                     if($customCampos['orden'] == 10){
                                                         if($customCampos['campo_custom_id'] == 1)
-                                                            include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/input.php");
+                                                            include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/registro/forms/input.php");
                                                         else if($customCampos['campo_custom_id'] == 2)
                                                             if($customCampos['valores'] == '$')
-                                                                include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/selectPais.php");
+                                                                include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/registro/forms/selectPais.php");
                                                             elseif($customCampos['valores'] == '#')
-                                                                include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/selectType.php");
+                                                                include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/registro/forms/selectType.php");
                                                             else
-                                                                include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/select.php");
+                                                                include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/registro/forms/select.php");
                                                         else
-                                                            include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/multiple.php");
+                                                            include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/registro/forms/multiple.php");
                                                     }
                                                 }
                                                 ?>
@@ -629,7 +625,10 @@ Template Name: landing-registro
 
                                             <div class="row">
                                                 <h5>Documentos para requisitos mínimos habilitantes</h5>
-                                            </div> 
+                                                <h5><a style="color: #3c3fe2;display:block" href="http://entornobogota.com/wp-content/uploads/2020/07/Instructivo-reducción-de-tamaño-de-archivos-Word.pdf">Aquí puedes consultar cómo optimizar el tamaño de tus archivos</a></h5>
+                                            </div>
+
+
                                             <div class="row">
                                                 <?php
                                                 foreach ($responseForm['customFormulario'] as $customCampos) {
@@ -641,18 +640,18 @@ Template Name: landing-registro
 
                                                     if($customCampos['orden'] > 10){
                                                         if($customCampos['campo_custom_id'] == 1)
-                                                            include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/input.php");
+                                                            include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/registro/forms/input.php");
                                                         else if($customCampos['campo_custom_id'] == 2)
                                                             if($customCampos['valores'] == '$')
-                                                                include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/selectPais.php");
+                                                                include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/registro/forms/selectPais.php");
                                                             elseif($customCampos['valores'] == '#')
-                                                                include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/selectType.php");
+                                                                include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/registro/forms/selectType.php");
                                                             else
-                                                                include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/select.php");
+                                                                include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/registro/forms/select.php");
                                                         else if($customCampos['campo_custom_id'] == 4)
-                                                            include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/file.php");
+                                                            include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/registro/forms/file.php");
                                                         else
-                                                            include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/multiple.php");
+                                                            include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/registro/forms/multiple.php");
                                                     }
                                                 }
                                                 ?>
@@ -686,16 +685,6 @@ Template Name: landing-registro
                                         <input type="hidden" name="rol" value="15">
                                         <input type="hidden" name="ipUsuario" value="<?php echo $_SERVER["REMOTE_ADDR"]; ?>">
                                         <input type="hidden" name="usuario_creacion" value="438">
-                                     <!--    <input type="hidden" name="usuario_creacion" value="438"> -->
-                                        
-                                     
-                                        <input type="hidden" readonly name="codigo" id="codigo" required>
-                                        <input type="hidden" readonly name="file[]" id="file1" required>
-                                        <input type="hidden" readonly name="file[]" id="file2" required>
-                                        <input type="hidden" readonly name="file[]" id="file3" required>
-                                        <input type="hidden" readonly name="file[]" id="file4" required>
-                                        <input type="hidden" readonly name="file[]" id="file5" required>
-                                        <input type="hidden" readonly name="file[]" id="file6" required> 
                                     </form>
                                 </div>
                             </div>
@@ -719,22 +708,14 @@ Template Name: landing-registro
                 </div>
                 <div class="vc_parallax-inner skrollable skrollable-between" data-bottom-top="top: -50%;" data-top-bottom="top: 0%;" style="height: 150%; background-image: url(&quot;http://transformabogota40.gevents.co/wp-content/uploads/2017/06/ban1.jpg&quot;); top: -30.2306%;"></div>
             </div>
-
-
-          <!--   <form id="upload_form" enctype="multipart/form-data" method="post">
-                <input type="file" name="file1" id="file1" onchange="uploadFile()"><br>
-                <progress id="progressBar" value="0" max="100" style="width:300px;"></progress>
-                <h3 id="status"></h3>
-                <p id="loaded_n_total"></p>
-            </form> -->
         </div>
         <!-- .entry-content -->
     </div>
 
     <?php
-        include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/modal/errorNit.php");
-        include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/modal/error.php");
-        include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/modal/loading.php");
+    include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/registro/modal/errorNit.php");
+    include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/registro/modal/error.php");
+    include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/registro/modal/loading.php");
     ?>
 
     <!-- #post-116 -->
@@ -742,17 +723,15 @@ Template Name: landing-registro
 <?php get_footer(); ?>
 <script type="text/javascript" src="../wp-content/themes/tevent/registro/js/jquery.validate.min.js"></script>
 <script type="text/javascript" src="../wp-content/themes/tevent/registro/js/caracterEspecial.js"></script>
-<script type="text/javascript" src="../wp-content/themes/tevent/registro/js/cargarArchivos.js"></script><!-- pasar -->
 <script>
- 
-   //  var urlApi = 'http://localhost/middleware/public/api/';
-    var urlApi = 'https://middlepp.gevents.co/public/api/';
-  //  var urlApi ='https://prod.gevents.co/public/api/';
+    // var urlApi = 'http://localhost/middleware/public/api/';
+    // var urlApi = 'https://middlepp.gevents.co/public/api/';
+    var urlApi ='https://prod.gevents.co/public/api/';
 
     jQuery(document).on('change','input[type="file"]',function(){
         // this.files[0].size recupera el tamaño del archivo
         // alert(this.files[0].size);
-        //uploadFile(this.files[0]);
+
         var fileName = this.files[0].name;
         var fileSize = this.files[0].size;
 
@@ -796,7 +775,10 @@ Template Name: landing-registro
 
             var ajaxData = new FormData(document.getElementById("formulario_de_prueba"));
 
-          
+            /* mapiar los valores encontrados para formar un arreglo*/
+            var myArray = jQuery.map(valuesForm, function(value, index) {
+                ajaxData.append('responseFile['+index+']', value);
+            });
 
             jQuery.ajax({
                 type: 'POST',
@@ -808,8 +790,8 @@ Template Name: landing-registro
                     if(response.response == 200){
                         jQuery("#loadMe").modal("hide");
                         jQuery('#formulario_de_prueba').trigger("reset");
-                            jQuery('#saveRegister').attr("disabled", true);
-                            window.location.href="gracias/";
+                        jQuery('#saveRegister').attr("disabled", true);
+                        window.location.href="gracias/";
                     }else if(response.response == 100){
                         jQuery("#loadMe").modal("hide");
                         jQuery('#modalErrorNit').modal('show');

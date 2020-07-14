@@ -1,0 +1,753 @@
+<?php
+   get_header();
+   /*
+   Template Name: landing-diagnostico
+   */
+   	
+   	 ?>
+<style>
+   .vc_row.vc_row-flex > .container > .vc_column_container {
+   display: -webkit-box;
+   display: -webkit-flex;
+   display: -ms-flexbox;
+   display: flex;
+   }
+   .vc_column_container {
+   padding-left: 0;
+   padding-right: 0;
+   }
+   .vc_column_container>.vc_column-inner {
+   box-sizing: border-box;
+   padding-left: 15px;
+   padding-right: 15px;
+   width: 100%;
+   }
+   .vc_row {
+   margin-left: -15px;
+   margin-right: -15px;
+   }
+   .vc_row:after, .vc_row:before {
+   content: " ";
+   display: table;
+   }
+   :after, :before {
+   -webkit-box-sizing: border-box;
+   -moz-box-sizing: border-box;
+   box-sizing: border-box;
+   }
+   .container {
+   padding-right: 15px;
+   padding-left: 15px;
+   margin-right: auto;
+   margin-left: auto;
+   }
+   .btn {
+   position: relative;
+   height: 30px;
+   padding: 0 10px;
+   font-size: 14px;
+   line-height: 30px;
+   }
+   .wpb_button, .wpb_content_element, ul.wpb_thumbnails-fluid>li {
+   margin-bottom: 35px;
+   }
+   .form-group {
+   margin-bottom: 20px;
+   }
+   .Sticky--top .nav.navbar.bootsnav ul.nav > li.active > a {
+   color: #fff;
+   }
+   .Sticky--top .nav.navbar.bootsnav ul.nav > li > a {
+   color: #fff;
+   }
+   .Sticky--not-top .nav.navbar.bootsnav ul.nav > li.active > a {
+   color: #6f6f6f;
+   }
+   .Sticky--not-top .nav.navbar.bootsnav ul.nav > li > a {
+   color: #6f6f6f;
+   }
+   .wpb_single_image img {
+   height: auto;
+   max-width: 100%;
+   vertical-align: top;
+   }
+   @media (min-width: 1024px){
+   nav.navbar.bootsnav.navbar-fixed.navbar-transparent .logo-display, nav.navbar.bootsnav.navbar-fixed.no-background .logo-display {
+   display: block;
+   height: 84%;
+   }
+   .Sticky--top nav.navbar.bootsnav ul.nav > li > a {
+   font-size: 12px;
+   color: #fff;
+   text-transform: uppercase;
+   letter-spacing: 0.06em;
+   font-weight: bold;
+   }
+   .Sticky--top nav.navbar.bootsnav ul.nav > li.active > a {
+   font-size: 12px;
+   color: #fff;
+   text-transform: uppercase;
+   letter-spacing: 0.06em;
+   font-weight: bold;
+   }
+   .Sticky--not-top nav.navbar.bootsnav ul.nav > li > a {
+   font-size: 12px;
+   color: #6f6f6f;
+   text-transform: uppercase;
+   letter-spacing: 0.06em;
+   font-weight: bold;
+   }
+   .Sticky--not-top nav.navbar.bootsnav ul.nav > li.active > a {
+   font-size: 12px;
+   color: #009cdf;
+   text-transform: uppercase;
+   letter-spacing: 0.06em;
+   font-weight: bold;
+   }
+   }
+   @media (min-width: 1200px){
+   .container {
+   width: 1170px;
+   }
+   }
+   @media (min-width: 992px){
+   .container {
+   width: 1170px;
+   }
+   }
+   @media (min-width: 768px){
+   .vc_col-sm-1, .vc_col-sm-10, .vc_col-sm-11, .vc_col-sm-12, .vc_col-sm-2, .vc_col-sm-3, .vc_col-sm-4, .vc_col-sm-5, .vc_col-sm-6, .vc_col-sm-7, .vc_col-sm-8, .vc_col-sm-9 {
+   }
+   .vc_col-sm-4 {
+   width: 33.33333333%;
+   }
+   }
+   @media (min-width: 768px) {
+   .vc_col-sm-7 {
+   width: 58.33333333%;
+   float: left;
+   }
+   .vc_col-sm-3 {
+   width: 25%;
+   float: left;
+   }
+   }
+   @media screen and (max-width: 767px) {
+   .u-xs-FontSize40 {
+   font-size: 50px !important;
+   text-align: center;
+   padding-top: 10px;
+   }
+   h3, .h3 {
+   font-size: 18px;
+   text-align: center;
+   padding-top:10px;
+   }
+   }
+   label {
+   display: inline-block;
+   max-width: 100%;
+   margin-bottom: 5px;
+   font-weight: 700;
+   color: #000;
+   }
+   label.error { color: red;font-size: 12px; }
+</style>
+<main id="main" class="site-main" role="main">
+   <head>
+      <link rel="stylesheet" href="../wp-content/themes/tevent/diagnostico/css/js_composer.min.css">
+      <link rel="stylesheet" href="../wp-content/themes/tevent/diagnostico/css/js_composer_tta.min.css">
+   </head>
+   <script type="text/javascript" src="../wp-content/themes/tevent/diagnostico/js/js_composer_front.min.js"></script>
+   <script type="text/javascript" src="../wp-content/themes/tevent/diagnostico/js/main.js"></script>
+   <script type="text/javascript" src="../wp-content/themes/tevent/diagnostico/js/jquery.js"></script>
+   <div class="vc_row-full-width vc_clearfix"></div>
+   <!-- Fila Iniciar sesión -->
+   <div class="vc_row wpb_row vc_row-fluid" style="margin-top:100px;margin-bottom:10px;">
+      <div class="container">
+      </div>
+   </div>
+   <!-- Termina Fila Iniciar sesión -->
+   <!-- Fila Inicia Diagnóstico -->
+   <div class="vc_row wpb_row vc_row-fluid">
+      <div class="container">
+         <div class="wpb_column vc_column_container vc_col-sm-12">
+            <div class="vc_column-inner ">
+               <div class="wpb_wrapper">
+                  <div class="vc_tta-container" data-vc-action="collapse">
+                     <div class="vc_general vc_tta vc_tta-tabs vc_tta-color-grey vc_tta-style-classic vc_tta-shape-rounded vc_tta-spacing-1 vc_tta-tabs-position-left vc_tta-controls-align-left ">
+                        <div class="vc_tta-tabs-container">
+                           <ul class="vc_tta-tabs-list">
+                              <li class="vc_tta-tab" data-vc-tab=""><a href="#1594413056744-67d96df0-f5eb" data-vc-tabs="" data-vc-container=".vc_tta"><i class="vc_tta-icon fa fa-star"></i><span class="vc_tta-title-text">Bienvenida</span></a></li>
+                              <li class="vc_tta-tab vc_active" data-vc-tab=""><a href="#1594413056746-df0147dd-512e" data-vc-tabs="" data-vc-container=".vc_tta"><i class="vc_tta-icon fa fa-list-alt"></i><span class="vc_tta-title-text">Diagnóstico</span></a></li>
+                           </ul>
+                        </div>
+                        <div class="vc_tta-panels-container">
+                           <div class="vc_tta-panels">
+                              <div class="vc_tta-panel" id="1594413056744-67d96df0-f5eb" data-vc-content=".vc_tta-panel-body">
+                                 <div class="vc_tta-panel-heading">
+                                    <h4 class="vc_tta-panel-title"><a href="#1594413056744-67d96df0-f5eb" data-vc-accordion="" data-vc-container=".vc_tta-container"><i class="vc_tta-icon fa fa-star"></i><span class="vc_tta-title-text">Bienvenida</span></a></h4>
+                                 </div>
+                                 <div class="vc_tta-panel-body" style="">
+                                    <div class="vc_row wpb_row vc_inner vc_row-fluid">
+                                       <div class="wpb_column vc_column_container vc_col-sm-12">
+                                          <div class="vc_column-inner ">
+                                             <div class="wpb_wrapper">
+                                                <div class="wpb_single_image wpb_content_element vc_align_center">
+                                                   <figure class="wpb_wrapper vc_figure">
+                                                      <div class="vc_single_image-wrapper   vc_box_border_grey"><img width="300" height="136" src="http://entornobogota.com/wp-content/uploads/2020/07/logo_entorno_cut-300x136.png" class="vc_single_image-img attachment-medium" alt="" srcset="http://entornobogota.com/wp-content/uploads/2020/07/logo_entorno_cut-300x136.png 300w, http://entornobogota.com/wp-content/uploads/2020/07/logo_entorno_cut-500x227.png 500w, http://entornobogota.com/wp-content/uploads/2020/07/logo_entorno_cut.png 586w" sizes="(max-width: 300px) 100vw, 300px"></div>
+                                                   </figure>
+                                                </div>
+                                                <div class="wpb_text_column wpb_content_element ">
+                                                   <div class="wpb_wrapper">
+                                                      <p>Bienvenidoasadsd a <strong>Entorno</strong>, el nuevo programa de la Alcaldía Mayor de Bogotá liderado por la Secretaría de Desarrollo Económico en alianza con Tecnalia Colombia, que brinda a Mipymes de la capital asesorías especializadas en oportunidades de sostenibilidad, reconfiguración y fortalecimiento de modelos negocio, para mejorar su capacidad de adaptación y flexibilidad frente a entornos cambiantes.</p>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="vc_tta-panel vc_active" id="1594413056746-df0147dd-512e" data-vc-content=".vc_tta-panel-body">
+                                 <div class="vc_tta-panel-heading">
+                                    <h4 class="vc_tta-panel-title"><a href="#1594413056746-df0147dd-512e" data-vc-accordion="" data-vc-container=".vc_tta-container"><i class="vc_tta-icon fa fa-list-alt"></i><span class="vc_tta-title-text">Diagnóstico</span></a></h4>
+                                 </div>
+                                 <div class="vc_tta-panel-body" style="">
+                                    <div class="vc_row wpb_row vc_inner vc_row-fluid">
+                                       <div class="wpb_column vc_column_container vc_col-sm-12">
+                                          <div class="vc_column-inner ">
+                                             <div class="wpb_wrapper">
+                                                <div class="wpb_text_column wpb_content_element ">
+                                                   <div class="wpb_wrapper">
+                                                      <h3 style="text-align: center;"><strong>FORMULARIO DE REGISTRO MIPYMES</strong></h3>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="vc_row wpb_row vc_inner vc_row-fluid">
+                                       <div class="wpb_column vc_column_container vc_col-sm-3">
+                                          <div class="vc_column-inner ">
+                                             <div class="wpb_wrapper">
+                                                <div class="wpb_text_column wpb_content_element ">
+                                                   <div class="wpb_wrapper">
+                                                      <p><strong>Nombre de la empresa:</strong></p>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class="wpb_column vc_column_container vc_col-sm-3">
+                                          <div class="vc_column-inner ">
+                                             <div class="wpb_wrapper">
+                                                <div class="wpb_text_column wpb_content_element ">
+                                                   <div class="wpb_wrapper">
+                                                      <p>Entorno Bogotá</p>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class="wpb_column vc_column_container vc_col-sm-3">
+                                          <div class="vc_column-inner ">
+                                             <div class="wpb_wrapper">
+                                                <div class="wpb_text_column wpb_content_element ">
+                                                   <div class="wpb_wrapper">
+                                                      <p><strong>NIT:</strong></p>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class="wpb_column vc_column_container vc_col-sm-3">
+                                          <div class="vc_column-inner ">
+                                             <div class="wpb_wrapper">
+                                                <div class="wpb_text_column wpb_content_element ">
+                                                   <div class="wpb_wrapper">
+                                                      <p>567987654</p>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="vc_row wpb_row vc_inner vc_row-fluid">
+                                       <div class="wpb_column vc_column_container vc_col-sm-3">
+                                          <div class="vc_column-inner ">
+                                             <div class="wpb_wrapper">
+                                                <div class="wpb_text_column wpb_content_element ">
+                                                   <div class="wpb_wrapper">
+                                                      <p><strong>Dígito de verificación:</strong></p>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class="wpb_column vc_column_container vc_col-sm-3">
+                                          <div class="vc_column-inner ">
+                                             <div class="wpb_wrapper">
+                                                <div class="wpb_text_column wpb_content_element ">
+                                                   <div class="wpb_wrapper">
+                                                      <p>11</p>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class="wpb_column vc_column_container vc_col-sm-3">
+                                          <div class="vc_column-inner ">
+                                             <div class="wpb_wrapper">
+                                                <div class="wpb_text_column wpb_content_element ">
+                                                   <div class="wpb_wrapper">
+                                                      <p><strong>Código CIIU:</strong></p>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class="wpb_column vc_column_container vc_col-sm-3">
+                                          <div class="vc_column-inner ">
+                                             <div class="wpb_wrapper">
+                                                <div class="wpb_text_column wpb_content_element ">
+                                                   <div class="wpb_wrapper">
+                                                      <p>20</p>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="vc_row wpb_row vc_inner vc_row-fluid">
+                                       <div class="wpb_column vc_column_container vc_col-sm-3">
+                                          <div class="vc_column-inner ">
+                                             <div class="wpb_wrapper">
+                                                <div class="wpb_text_column wpb_content_element ">
+                                                   <div class="wpb_wrapper">
+                                                      <p><strong>Sector económico al que pertenece:</strong></p>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class="wpb_column vc_column_container vc_col-sm-3">
+                                          <div class="vc_column-inner ">
+                                             <div class="wpb_wrapper">
+                                                <div class="wpb_text_column wpb_content_element ">
+                                                   <div class="wpb_wrapper">
+                                                      <p>Servicios</p>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class="wpb_column vc_column_container vc_col-sm-3">
+                                          <div class="vc_column-inner ">
+                                             <div class="wpb_wrapper"></div>
+                                          </div>
+                                       </div>
+                                       <div class="wpb_column vc_column_container vc_col-sm-3">
+                                          <div class="vc_column-inner ">
+                                             <div class="wpb_wrapper"></div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="vc_row wpb_row vc_inner vc_row-fluid">
+                                       <div class="wpb_column vc_column_container vc_col-sm-3">
+                                          <div class="vc_column-inner ">
+                                             <div class="wpb_wrapper">
+                                                <div class="wpb_text_column wpb_content_element ">
+                                                   <div class="wpb_wrapper">
+                                                      <p><strong>Actividad principal:</strong></p>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class="wpb_column vc_column_container vc_col-sm-9">
+                                          <div class="vc_column-inner ">
+                                             <div class="wpb_wrapper">
+                                                <div class="wpb_text_column wpb_content_element ">
+                                                   <div class="wpb_wrapper">
+                                                      <p>(6611) Administración de mercados financieros</p>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="vc_row wpb_row vc_inner vc_row-fluid">
+                                       <div class="wpb_column vc_column_container vc_col-sm-3">
+                                          <div class="vc_column-inner ">
+                                             <div class="wpb_wrapper">
+                                                <div class="wpb_text_column wpb_content_element ">
+                                                   <div class="wpb_wrapper">
+                                                      <p><strong>Actividad secundaria:</strong></p>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class="wpb_column vc_column_container vc_col-sm-9">
+                                          <div class="vc_column-inner ">
+                                             <div class="wpb_wrapper">
+                                                <div class="wpb_text_column wpb_content_element ">
+                                                   <div class="wpb_wrapper">
+                                                      <p>(6695) Instituciones especiales oficiales</p>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="vc_row wpb_row vc_inner vc_row-fluid">
+                                       <div class="wpb_column vc_column_container vc_col-sm-3">
+                                          <div class="vc_column-inner ">
+                                             <div class="wpb_wrapper">
+                                                <div class="wpb_text_column wpb_content_element ">
+                                                   <div class="wpb_wrapper">
+                                                      <p><strong>Dirección:</strong></p>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class="wpb_column vc_column_container vc_col-sm-3">
+                                          <div class="vc_column-inner ">
+                                             <div class="wpb_wrapper">
+                                                <div class="wpb_text_column wpb_content_element ">
+                                                   <div class="wpb_wrapper">
+                                                      <p>Carrera 60 No. 63A – 52</p>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class="wpb_column vc_column_container vc_col-sm-3">
+                                          <div class="vc_column-inner ">
+                                             <div class="wpb_wrapper">
+                                                <div class="wpb_text_column wpb_content_element ">
+                                                   <div class="wpb_wrapper">
+                                                      <p><strong>Localidad:</strong></p>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class="wpb_column vc_column_container vc_col-sm-3">
+                                          <div class="vc_column-inner ">
+                                             <div class="wpb_wrapper">
+                                                <div class="wpb_text_column wpb_content_element ">
+                                                   <div class="wpb_wrapper">
+                                                      <p>Teusaquillo</p>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="vc_row wpb_row vc_inner vc_row-fluid">
+                                       <div class="wpb_column vc_column_container vc_col-sm-3">
+                                          <div class="vc_column-inner ">
+                                             <div class="wpb_wrapper">
+                                                <div class="wpb_text_column wpb_content_element ">
+                                                   <div class="wpb_wrapper">
+                                                      <p><strong>Nombre de la persona de contacto:</strong></p>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class="wpb_column vc_column_container vc_col-sm-3">
+                                          <div class="vc_column-inner ">
+                                             <div class="wpb_wrapper">
+                                                <div class="wpb_text_column wpb_content_element ">
+                                                   <div class="wpb_wrapper">
+                                                      <p>Elkin Ramírez</p>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class="wpb_column vc_column_container vc_col-sm-3">
+                                          <div class="vc_column-inner ">
+                                             <div class="wpb_wrapper">
+                                                <div class="wpb_text_column wpb_content_element ">
+                                                   <div class="wpb_wrapper">
+                                                      <p><strong>Tipo de identificación:</strong></p>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class="wpb_column vc_column_container vc_col-sm-3">
+                                          <div class="vc_column-inner ">
+                                             <div class="wpb_wrapper">
+                                                <div class="wpb_text_column wpb_content_element ">
+                                                   <div class="wpb_wrapper">
+                                                      <p>Cédula de ciudadanía</p>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="vc_row wpb_row vc_inner vc_row-fluid">
+                                       <div class="wpb_column vc_column_container vc_col-sm-3">
+                                          <div class="vc_column-inner ">
+                                             <div class="wpb_wrapper">
+                                                <div class="wpb_text_column wpb_content_element ">
+                                                   <div class="wpb_wrapper">
+                                                      <p><strong>Número de documento:</strong></p>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class="wpb_column vc_column_container vc_col-sm-3">
+                                          <div class="vc_column-inner ">
+                                             <div class="wpb_wrapper">
+                                                <div class="wpb_text_column wpb_content_element ">
+                                                   <div class="wpb_wrapper">
+                                                      <p>1056767890</p>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class="wpb_column vc_column_container vc_col-sm-3">
+                                          <div class="vc_column-inner ">
+                                             <div class="wpb_wrapper">
+                                                <div class="wpb_text_column wpb_content_element ">
+                                                   <div class="wpb_wrapper">
+                                                      <p><strong>Cargo dentro de la empresa:</strong></p>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class="wpb_column vc_column_container vc_col-sm-3">
+                                          <div class="vc_column-inner ">
+                                             <div class="wpb_wrapper">
+                                                <div class="wpb_text_column wpb_content_element ">
+                                                   <div class="wpb_wrapper">
+                                                      <p>Contador</p>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="vc_row wpb_row vc_inner vc_row-fluid">
+                                       <div class="wpb_column vc_column_container vc_col-sm-3">
+                                          <div class="vc_column-inner ">
+                                             <div class="wpb_wrapper">
+                                                <div class="wpb_text_column wpb_content_element ">
+                                                   <div class="wpb_wrapper">
+                                                      <p><strong>Correo electrónico principal:</strong></p>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class="wpb_column vc_column_container vc_col-sm-3">
+                                          <div class="vc_column-inner ">
+                                             <div class="wpb_wrapper">
+                                                <div class="wpb_text_column wpb_content_element ">
+                                                   <div class="wpb_wrapper">
+                                                      <p>elkin.ramirez@correo.com</p>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class="wpb_column vc_column_container vc_col-sm-3">
+                                          <div class="vc_column-inner ">
+                                             <div class="wpb_wrapper">
+                                                <div class="wpb_text_column wpb_content_element ">
+                                                   <div class="wpb_wrapper">
+                                                      <p><strong>Correo electrónico de la persona de contacto:</strong></p>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class="wpb_column vc_column_container vc_col-sm-3">
+                                          <div class="vc_column-inner ">
+                                             <div class="wpb_wrapper">
+                                                <div class="wpb_text_column wpb_content_element ">
+                                                   <div class="wpb_wrapper">
+                                                      <p>elkin.ramirez@correo.com</p>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="vc_row wpb_row vc_inner vc_row-fluid">
+                                       <div class="wpb_column vc_column_container vc_col-sm-3">
+                                          <div class="vc_column-inner ">
+                                             <div class="wpb_wrapper">
+                                                <div class="wpb_text_column wpb_content_element ">
+                                                   <div class="wpb_wrapper">
+                                                      <p><strong>Número telefónico de la persona de contacto:</strong></p>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class="wpb_column vc_column_container vc_col-sm-3">
+                                          <div class="vc_column-inner ">
+                                             <div class="wpb_wrapper">
+                                                <div class="wpb_text_column wpb_content_element ">
+                                                   <div class="wpb_wrapper">
+                                                      <p>32146578790</p>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class="wpb_column vc_column_container vc_col-sm-3">
+                                          <div class="vc_column-inner ">
+                                             <div class="wpb_wrapper">
+                                                <div class="wpb_text_column wpb_content_element ">
+                                                   <div class="wpb_wrapper">
+                                                      <p><strong>Otro número telefónico de contacto:</strong></p>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class="wpb_column vc_column_container vc_col-sm-3">
+                                          <div class="vc_column-inner ">
+                                             <div class="wpb_wrapper">
+                                                <div class="wpb_text_column wpb_content_element ">
+                                                   <div class="wpb_wrapper">
+                                                      <p>32146578790</p>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="vc_row wpb_row vc_inner vc_row-fluid">
+                                       <div class="wpb_column vc_column_container vc_col-sm-12">
+                                          <div class="vc_column-inner ">
+                                             <div class="wpb_wrapper">
+                                                <div class="vc_separator wpb_content_element vc_separator_align_center vc_sep_width_100 vc_sep_pos_align_center vc_separator_no_text vc_sep_color_grey"><span class="vc_sep_holder vc_sep_holder_l"><span class="vc_sep_line"></span></span><span class="vc_sep_holder vc_sep_holder_r"><span class="vc_sep_line"></span></span></div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="vc_row wpb_row vc_inner vc_row-fluid">
+                                       <div class="wpb_column vc_column_container vc_col-sm-12">
+                                          <div class="vc_column-inner ">
+                                             <div class="wpb_wrapper">
+                                                <div class="wpb_text_column wpb_content_element ">
+                                                   <div class="wpb_wrapper">
+                                                      <h3 style="text-align: center;"><strong>FORMULARIO DE DIAGNÓSTICO</strong></h3>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="vc_row wpb_row vc_inner vc_row-fluid">
+                                       <div class="form-group col-sm-6">
+                                          <span class="wpcf7-form-control-wrap your-name">
+                                          <input type="text" name="nombre" id="nombre" size="40" placeholder="Nombre de la persona de contacto*"
+                                             class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required form-control form-control--white"
+                                             aria-required="true" aria-invalid="false" maxlength="20" minlength="3" required />
+                                          </span>
+                                       </div>
+                                       <div class="form-group col-sm-6">
+                                          <span class="wpcf7-form-control-wrap your-name">
+                                          <input type="text" name="apellidos" id="apellidos" size="40" placeholder="Apellido de la persona de contacto*"
+                                             class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required form-control form-control--white"
+                                             aria-required="true" aria-invalid="false" maxlength="20" minlength="3" required/>
+                                          </span>
+                                       </div>
+                                    </div>
+                                    <div class="vc_row wpb_row vc_inner vc_row-fluid">
+                                       <div class="wpb_column vc_column_container vc_col-sm-12">
+                                          <div class="vc_column-inner ">
+                                             <div class="wpb_wrapper">
+                                                <div class="vc_separator wpb_content_element vc_separator_align_center vc_sep_width_100 vc_sep_pos_align_center vc_separator_no_text vc_sep_color_grey"><span class="vc_sep_holder vc_sep_holder_l"><span class="vc_sep_line"></span></span><span class="vc_sep_holder vc_sep_holder_r"><span class="vc_sep_line"></span></span></div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="vc_row wpb_row vc_inner vc_row-fluid">
+                                       <div class="wpb_column vc_column_container vc_col-sm-12">
+                                          <div class="vc_column-inner ">
+                                             <div class="wpb_wrapper">
+                                                <div class="wpb_text_column wpb_content_element ">
+                                                   <div class="wpb_wrapper">
+                                                      <h3 style="text-align: center;"><strong>CUESTIONARIO PARA DIAGNÓSTICO DE EMPRESAS</strong></h3>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="vc_row wpb_row vc_inner vc_row-fluid">
+                                       <div class="wpb_column vc_column_container vc_col-sm-12">
+                                          <div class="vc_column-inner ">
+                                             <div class="wpb_wrapper">
+                                                <div class="wpb_text_column wpb_content_element ">
+                                                   <div class="wpb_wrapper">
+                                                      <h5 style="text-align: left;"><strong>1. NIVEL DE MADUREZ DIGITAL DE LA EMPRESA</strong></h5>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="wpb_text_column wpb_content_element ">
+                                       <div class="wpb_wrapper">
+                                          <p><strong>1.1. Nivel de madurez digital de la empresa</strong></p>
+                                       </div>
+                                    </div>
+                                    <div class="vc_row wpb_row vc_inner vc_row-fluid">
+                                       <div class="wpb_column vc_column_container vc_col-sm-12">
+                                          <div class="vc_column-inner ">
+                                             <div class="wpb_wrapper">
+                                                <div class="wpb_text_column wpb_content_element ">
+                                                   <div class="wpb_wrapper">
+                                                      <p><strong>¿Cuenta con alguna herramienta digital que apoye el desarrollo de actividades fundamentales para la subsistencia de la empresa? Por favor indicar a cuál de las siguientes opciones corresponde:</strong></p>
+                                                      <p><em><strong>Actividades fundamentales para la subsistencia de la empresa: (por ejemplo: producción, venta de producto, prestación del servicio.)</strong></em></p>
+                                                      <p><em><strong>Dentro de herramienta digital considerar todo tipo de sistemas especializados y/o apps.</strong></em></p>
+                                                      <p><em><strong>Los Sistemas especializados corresponden a software instalado y/o online, que está diseñado para apoyar un proceso específico, a través del cual se registra información, se registran reportes, se analizan datos, etc. Algunos ejemplos son: ERP, CRM, BPM, MES, etc.</strong></em></p>
+                                                      <p><label class="radio-inline"><br>
+                                                         <input name="" type="checkbox" value="1"> No cuenta con herramienta digital</label><br>
+                                                         <label class="radio-inline"><br>
+                                                         <input name="" type="checkbox" value="2"> Sí, herramientas ofimáticas usadas de forma básica (Word, Excel, PowerPoint…)</label><br>
+                                                         <label class="radio-inline"><br>
+                                                         <input name="" type="checkbox" value="3"> Sí, se hace uso de Apps especializadas y Herramientas ofimáticas usadas de forma avanzada y básica.</label><br>
+                                                         <label class="radio-inline"><br>
+                                                         <input checked="checked" name="" type="checkbox" value="4"> Sí, además de la opción anterior se hace uso de Sistemas especializados.</label><br>
+                                                         <label class="radio-inline"><br>
+                                                         <input name="" type="checkbox" value="5"> Sí, además de las opciones anteriores se hace uso de Sistemas especializados interconectados con otros sistemas de la empresa o bases de datos de la empresa. La información es analizada para tomar decisiones que impactan en el comportamiento de la empresa.</label>
+                                                      </p>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- Fila Fin Diagnóstico -->
+</main>
+<!-- #main -->
+<?php get_footer(); ?>
