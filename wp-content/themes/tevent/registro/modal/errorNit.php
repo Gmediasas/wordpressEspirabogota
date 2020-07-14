@@ -8,7 +8,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                El nit ya se encuentra registrado, por favor verifica e intenta nuevamente
+                El número de NIT <b id="pintNit"></b> ya se encuentra registrado, por favor verifica e intenta nuevamente.
             </div>
             <div class="modal-footer" style="text-align:center;">
                 <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
