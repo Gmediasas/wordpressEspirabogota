@@ -42,7 +42,7 @@ $jsonEmployee = curl_exec($curlEmployee);
 $employee = json_decode($jsonEmployee, true);
 curl_close($curlEmployee);
 
-$apiUrlCuestionario = $url.'/get_edit_consult_form/15';
+$apiUrlCuestionario = $url.'/get_edit_consult_form/7';
 $curlCuestionario = curl_init($apiUrlCuestionario);
 curl_setopt($curlCuestionario, CURLOPT_ENCODING, "");
 curl_setopt($curlCuestionario, CURLOPT_HTTPHEADER, $postToken);
@@ -50,6 +50,15 @@ curl_setopt($curlCuestionario, CURLOPT_RETURNTRANSFER, true);
 $jsonCuestionario = curl_exec($curlCuestionario);
 $cuestionarios = json_decode($jsonCuestionario, true);
 curl_close($curlCuestionario);
+
+$apiUrlCuestionariof3 = $url.'/get_edit_consult_form/5';
+$curlCuestionariof3 = curl_init($apiUrlCuestionariof3);
+curl_setopt($curlCuestionariof3, CURLOPT_ENCODING, "");
+curl_setopt($curlCuestionariof3, CURLOPT_HTTPHEADER, $postToken);
+curl_setopt($curlCuestionariof3, CURLOPT_RETURNTRANSFER, true);
+$jsonCuestionariof3 = curl_exec($curlCuestionariof3);
+$cuestionariosp3 = json_decode($jsonCuestionariof3, true);
+curl_close($curlCuestionariof3);
 
 ?>
 	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
@@ -75,7 +84,9 @@ curl_close($curlCuestionario);
 			</div>
 		</nav>
 		<div class="sections">
-			<form action="">
+		<form action="" method="post" id="formulariodiagnostico">
+                <input type="hidden" name="anfitrionId" value="<?php echo $employee['employee']['id'] ?>">
+                <input type="hidden" name="idProgram" value="<?php echo $idProgram ?>">
 	<!--			paso1-->
 				<section class="active my-md-5 py-md-5 my-4 py-4 f1">
 				  <div class="menu_diagnostico">
@@ -202,84 +213,111 @@ curl_close($curlCuestionario);
                             <?php
                                 foreach ($cuestionarios['custom'] as $cuestionario) {
                                     if($cuestionario['orden'] == 1){
-
+                                        if($cuestionario['required'] == 1){
+                                            $required = 'required';
+                                        }else{
+                                            $required = '';
+                                        }
                             ?>
 							<div class="col-md-6 mb-4">
 								<label class="d-block px-3"><?php echo $cuestionario['nombreCampo'] ?></label>
-								<input type="<?php echo $cuestionario['codigo'] ?>" name="<?php echo $cuestionario['nombre_campo'] ?>">
+								<input type="<?php echo $cuestionario['codigo'] ?>" name="<?php echo $cuestionario['nombre_campo'] ?>"
+                                    <?php echo $required?>>
 							</div>
                             <?php }} ?>
+
+
 							<div class="col-md-6">
 								<div class="row">
-									<div class="col-md-6  mb-4">
-										<label class="d-block px-3">Tipo de documento</label>
-										<select name="" id="">
-											<option value="">-Selecciona</option>
-										</select>
-									</div>
-									<div class="col-md-6  mb-4">
-										<label class="d-block px-3">Número de documento</label>
-										<input type="text">
-									</div>
+                                    <?php
+                                    foreach ($cuestionarios['custom'] as $cuestionario) {
+                                        if($cuestionario['required'] == 1){
+                                            $required = 'required';
+                                        }else{
+                                            $required = '';
+                                        }
+
+                                        if($cuestionario['orden'] == 2 || $cuestionario['orden'] == 3){
+                                    ?>
+                                    <?php
+                                        if($cuestionario['codigo'] == 'select'){
+
+                                            $arraySelect = json_decode($cuestionario['valores'] ,true);
+                                    ?>
+                                        <div class="col-md-6  mb-4">
+                                            <label class="d-block px-3"><?php echo $cuestionario['nombreCampo'] ?></label>
+                                            <select name="<?php echo $cuestionario['nombre_campo'] ?>" id="" <?php echo $required?> >
+                                                <?php
+                                                    foreach($arraySelect as $dbA) {
+                                                ?>
+                                                    <option value="<?php echo $dbA['value']?>"><?php echo $dbA['label']?></option>
+                                                <?php
+                                                    }
+                                                ?>
+                                            </select>
+                                        </div>
+
+                                    <?php }else{ ?>
+                                            <div class="col-md-6 mb-4">
+                                                <label class="d-block px-3"><?php echo $cuestionario['nombreCampo'] ?></label>
+                                                <input type="<?php echo $cuestionario['codigo'] ?>"
+                                                       name="<?php echo $cuestionario['nombre_campo'] ?>" <?php echo $required?>>
+                                            </div>
+                                    <?php } ?>
+                                    <?php }} ?>
 								</div>
 							</div>
-							<div class="col-md-6 mb-4">
-								<label class="d-block px-3">Expedida en la ciudad:</label>
-								<input type="text">
-							</div>
-							<div class="col-md-6 mb-4">
-								<label class="d-block px-3">País:</label>
-								<input type="text">
-							</div>
-							<div class="col-md-6 mb-4">
-								<label class="d-block px-3">Matrícula Cámara de Comercio:</label>
-								<input type="text">
-							</div>
-							<div class="col-md-6 ">
-								<div class="row">
-									<div class="col-md-6 mb-4">
-										<label class="d-block px-3">Fecha de constitución:</label>
-										<input type="date">
-									</div>
-									<div class="col-md-6 mb-4">
-										<label class="d-block px-3">Teléfono de la empresa</label>
-										<input type="text">
-									</div>
-								</div>
-							</div>
-							<div class="col-md-6 mb-4">
-								<label class="d-block px-3">Correo electrónico:</label>
-								<input type="text">
-							</div>
-							<div class="col-md-6 mb-4">
-								<label class="d-block px-3">Activos Totales a diciembre de 2019:</label>
-								<input type="text">
-							</div>
-							<div class="col-md-6 mb-4">
-								<label class="d-block px-3">Valor ventas Totales a diciembre de 2019:</label>
-								<input type="text">
-							</div>
-							<div class="col-md-6 mb-4">
-								<label class="d-block px-3">Exporta actualmente:</label>
-								<div class="px-3 mt-3 pt-1">
-									<label>
-										<input type="radio">
-										<span>Si</span>
-									</label>
-									<label class="pl-4">
-										<input type="radio">
-										<span>No</span>
-									</label>
-								</div>
-							</div>
-							<div class="col-md-6 mb-4">
-								<label class="d-block px-3">Porcentaje de ventas en el exterior:</label>
-								<input type="text">
-							</div>
-							<div class="col-md-6 mb-4">
-								<label class="d-block px-3">Países destino de las exportaciones:</label>
-								<input type="text">
-							</div>
+
+                            <?php
+                            foreach ($cuestionarios['custom'] as $cuestionario) {
+                                if($cuestionario['required'] == 1){
+                                    $required = 'required';
+                                }else{
+                                    $required = '';
+                                }
+                            if($cuestionario['orden'] >= 4){
+                            ?>
+                            <?php
+                                if($cuestionario['codigo'] == 'select'){
+                                    $array = json_decode($cuestionario['valores'] ,true);
+                            ?>
+                                <div class="col-md-6 mb-4">
+                                    <label class="d-block px-3"><?php echo $cuestionario['nombreCampo'] ?></label>
+                                    <select name="<?php echo $cuestionario['nombre_campo'] ?>" id="" <?php echo $required?>>
+                                        <?php
+                                        foreach($arraySelect as $dbA) {
+                                            ?>
+                                            <option value="<?php echo $dbA['value']?>"><?php echo $dbA['label']?></option>
+                                            <?php
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                            <?php
+                                }else if($cuestionario['codigo'] == 'radio-group'){
+                                    $check = json_decode($cuestionario['valores'] ,true);
+                            ?>
+                                    <label class="d-block px-3">Exporta actualmente:</label>
+                                    <div class="px-3 mt-3 pt-1">
+                                        <?php
+                                        foreach($check as $checkSelect) {
+                                            ?>
+                                            <label>
+                                                <input type="radio" value="<?php echo $checkSelect['value']?>" name="<?php echo $cuestionario['nombre_campo'] ?>" <?php echo $required?>>
+                                                <span><?php echo $checkSelect['label']?></span>
+                                            </label>
+                                        <?php
+                                        }
+                                        ?>
+
+                                    </div>
+                            <?php }else{ ?>
+                                    <div class="col-md-6 mb-4">
+                                        <label class="d-block px-3"><?php echo $cuestionario['nombreCampo'] ?></label>
+                                        <input type="<?php echo $cuestionario['codigo'] ?>" name="<?php echo $cuestionario['nombre_campo'] ?>" <?php echo $required?>>
+                                    </div>
+                            <?php } ?>
+                            <?php }} ?>
 						</div>
 						<div class="px-lg-5 px-4 mx-5 mt-4">
 							<hr>
@@ -306,69 +344,56 @@ curl_close($curlCuestionario);
 						</ul>
 					</div>
 					<h3 class="text-center my-md-5 my-4 pt-md-5 pb-3 px-3">Cuestionario para diagnóstico de empresas</h3>
-					<div class="px-lg-5 px-3 new_form">
+					<div class="px-lg-5 px-3 new_form">  
 						<div class="row">
-						  <div class="col-12">
-							  <h4 class="text-white p-3">1. NIVEL DE MADUREZ DIGITAL DE LA EMPRESA</h4>
-							  <div class="mt-4 radius container_question p-lg-4 p-3">
-								  <div>
-									  <b>1.1. Nivel de madurez digital de la empresa</b><br><br>
-									  ¿Cuenta con alguna herramienta digital que apoye el desarrollo de actividades fundamentales para la subsistencia de la empresa? Por favor indicar a cuál de las siguientes opciones corresponde:<br><br>
-									
-									  <b><i>Actividades fundamentales para la subsistencia de la empresa:</i></b> (por ejemplo: producción, venta de producto, prestación del servicio.)<br><br>
-									
-									  Dentro de herramienta digital considerar todo tipo de sistemas especializados y/o apps.<br><br>
-									
-									  Los  <b><i>Sistemas especializados</i></b> corresponden a software instalado y/o online, que está diseñado para apoyar un proceso específico, a través del cual se registra información, se registran reportes, se analizan datos, etc. Algunos ejemplos son: ERP, CRM, BPM, MES, etc.
-								  </div>
-								  <div class="bg-purple radius p-lg-4 p-3 mt-4 c_options_question">
-									  <label>
-										  <input type="radio">
-										  <p>No cuenta con herramienta digital.</p>
-									  </label>
-									  <label>
-										  <input type="radio">
-										  <p>Sí, herramientas ofimáticas usadas de forma básica (Word, Excel, PowerPoint…)</p>
-									  </label>
-									  <label>
-										  <input type="radio">
-										  <p>Sí, se hace uso de Apps especializadas y Herramientas ofimáticas usadas de forma avanzada y básica.</p>
-									  </label>
-									  <label>
-										  <input type="radio">
-										  <p>Sí, además de la opción anterior se hace uso de Sistemas especializados.</p>
-									  </label>
-									  <label>
-										  <input type="radio">
-										  <p>Sí, además de las opciones anteriores se hace uso de Sistemas especializados interconectados con otros sistemas de la empresa o bases de datos de la empresa. La información es analizada para tomar decisiones que impactan en el comportamiento de la empresa.</p>
-									  </label>
-								  </div>
-							  </div>
-						  </div>
-							<div class="col-12 mt-4">
-								<h4 class="text-white p-3">2. Producto / Servicio que genera principalmente los ingresos</h4>
-								<div class="mt-4 radius container_question p-lg-4 p-3">
-									<div>
-										<b>3.1. Producto/servicio que genera principalmente los ingresos de su compañía (desde el mes de febrero 2020 – Actualidad)</b><br><br>
-										Considerando el siguiente periodo, mes de febrero 2020 – Actualidad: ¿Cuál es el producto que le genera más ingresos a la organización?
-									</div>
-									<div class="bg-purple radius p-lg-4 p-3 mt-4 c_options_question">
-										<div class="row">
-											<div class="col-md-6 mb-4">
-												<label class="d-block px-3">Producto fabricado</label>
-												<input type="text" placeholder="¿Cuál?">
+						  	<div class="col-12">  
+								<?php							   
+								 $array=[];
+								 $display='';
+								 $suma=0;
+								foreach ($cuestionariosp3['custom'] as $cuestionariof3) {
+										
+									foreach ($cuestionariosp3['grupos'] as $key=>$grupos) {  
+										  
+										if($cuestionariof3['required'] == 1){
+											$required = 'required';
+										}else{
+											$required = '';
+										}
+									 
+										if (!in_array($cuestionariof3['grupo_formulario'], $array)) {
+												array_push($array, $cuestionariof3['grupo_formulario']);
+											if($suma === 0){
+												$display='style="display:block"'
+												?>
+												
+												<a href="javascript:void(0);" class="text-white p-3 d-block text-decoration-none link_acordeon active"><?php echo  $cuestionariof3['grupo_formulario']?></a>	
+											<?php }else{
+												$display='style="display:none"' ?>
+												
+												<a href="javascript:void(0);" class="text-white p-3 d-block text-decoration-none link_acordeon"><?php echo $cuestionariof3['grupo_formulario']?></a>
+											<?php }?>											
+										 	
+										<?php }?>	 
+										 	
+										<div class="mt-4 radius container_question p-lg-4 p-3" style="display:block">
+											<div>										 
+											<?php if(!empty($cuestionariof3['descripcion'])){?><b><?php echo $cuestionariof3['nombreCampo']; ?></b><br><br><?php }	?>												 
+											<?php if(!empty($cuestionariof3['descripcion'])){ ?> <div style=""> <?php echo  $cuestionariof3['descripcion'];?></div> <?php }	?>											 
 											</div>
-											<div class="col-md-6 mb-4">
-												<label class="d-block px-3">Venta de servicio</label>
-												<input type="text" placeholder="¿Qué servicio?">
-											</div>
-											<div class="col-md-6 mb-4">
-												<label class="d-block px-3">Comercialización</label>
-												<input type="text" placeholder="¿Qué tipo de productos?">
-											</div>
-										</div>
-									</div>
-								</div>
+											<?php   if( $cuestionariof3['valores'] != 'N/A'){?>	
+												<div class="bg-purple radius p-lg-4 p-3 mt-4 c_options_question">
+													<?php if($cuestionariof3['codigo'] == 'radio-group'){ 
+															include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/diagnostico/forms/radio-group.php");
+														}elseif($cuestionariof3['codigo'] == 'text'){
+															include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/diagnostico/forms/text.php");
+														} ?>
+												</div>
+											<?php }?>											
+										</div> 
+									  
+									<?php $suma++;  break;	} ?>
+								<?php }?>									
 							</div>
 						</div>
 						<div class="px-lg-5 px-4 mx-5 mt-4">
@@ -376,7 +401,7 @@ curl_close($curlCuestionario);
 						</div>
 						<div class="arrows clearfix mt-5">
 							<a href="#" class="btns float-left text-white px-lg-5 px-3  arrow_left" onclick="passForm('.f2');">Volver</a>
-							<a href="#" class="btns float-right text-white px-lg-5 px-3  arrow_right">Finalizar</a>
+							<button type="submit" id="save_diagnostico" class="btns float-right text-white px-lg-5 px-3  arrow_right">Finalizar</button>
 						</div>
 					</div>
 				</section>
@@ -384,6 +409,12 @@ curl_close($curlCuestionario);
 		</div>
 	</main>
 
+
+    <?php
+        include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/modal/errorNit.php");
+        include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/modal/error.php");
+        include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/modal/loading.php");
+    ?>
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>

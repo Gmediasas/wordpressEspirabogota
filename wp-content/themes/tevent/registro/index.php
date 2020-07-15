@@ -432,9 +432,9 @@ Template Name: landing-registro
     $idPrograma=1;
     //Gestión de errores
     $postHeaders = array('Content-Type: application/json');
-
+    $apiUrl = 'http://localhost/middleware/public/api/getFormCustomProgram/'.$idPrograma;;
      // $apiUrl = 'https://prod.gevents.co/public/api/getFormCustomProgram/'.$idPrograma;
-  $apiUrl = 'https://middlepp.gevents.co/public/api/getFormCustomProgram/'.$idPrograma;
+    //$apiUrl = 'https://middlepp.gevents.co/public/api/getFormCustomProgram/'.$idPrograma;
     $curl = curl_init($apiUrl);
     curl_setopt($curl, CURLOPT_ENCODING, "");
     curl_setopt($curl, CURLOPT_HTTPHEADER, $postHeaders);
@@ -685,7 +685,7 @@ Template Name: landing-registro
                                         <input type="hidden" name="programaId" value="<?php echo $idPrograma ?>">
                                         <input type="hidden" name="rol" value="15">
                                         <input type="hidden" name="ipUsuario" value="<?php echo $_SERVER["REMOTE_ADDR"]; ?>">
-                                        <input type="hidden" name="usuario_creacion" value="438">
+                                        <input type="hidden" name="usuario_creacion" value="9">
                                      <!--    <input type="hidden" name="usuario_creacion" value="438"> -->
                                         
                                      
@@ -745,8 +745,8 @@ Template Name: landing-registro
 <script type="text/javascript" src="../wp-content/themes/tevent/registro/js/cargarArchivos.js"></script><!-- pasar -->
 <script>
  
-   //  var urlApi = 'http://localhost/middleware/public/api/';
-    var urlApi = 'https://middlepp.gevents.co/public/api/';
+    var urlApi = 'http://localhost/middleware/public/api/';
+    // var urlApi = 'https://middlepp.gevents.co/public/api/';
   //  var urlApi ='https://prod.gevents.co/public/api/';
 
     jQuery(document).on('change','input[type="file"]',function(){

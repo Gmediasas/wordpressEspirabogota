@@ -446,8 +446,8 @@ $token = $_GET['email'];
 <script type="text/javascript" src="../wp-content/themes/tevent/nueva-contrasena/js/jquery.validate.min.js"></script>
 
 <script>
-    // var urlApi = 'http://localhost/middleware/public/api/';
-    var urlApi = 'https://prod.gevents.co/public/api/';
+    var urlApi = 'http://localhost/middleware/public/api/';
+     //var urlApi = 'https://prod.gevents.co/public/api/';
 
     jQuery("#password").blur(function(){
         var password = jQuery("#password").val();

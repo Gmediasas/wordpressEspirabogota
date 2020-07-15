@@ -49,7 +49,7 @@ if($login['code'] == 200){
     }else{
 
         echo '<script type="text/javascript">
-				window.location.href="bienvenido/";
+				window.location.href="diagnostico/";
 				</script>';
     }
 

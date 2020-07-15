@@ -433,7 +433,8 @@ $idPrograma=1;
 //Gestión de errores
 $postHeaders = array('Content-Type: application/json');
 
-$apiUrl = 'https://prod.gevents.co/public/api/getFormCustomProgram/'.$idPrograma;
+$apiUrl = 'http://localhost/middleware/public/api/'.$idPrograma;
+//$apiUrl = 'https://prod.gevents.co/public/api/getFormCustomProgram/'.$idPrograma;
 //$apiUrl = 'https://middlepp.gevents.co/public/api/getFormCustomProgram/'.$idPrograma;
 $curl = curl_init($apiUrl);
 curl_setopt($curl, CURLOPT_ENCODING, "");
