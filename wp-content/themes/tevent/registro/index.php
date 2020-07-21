@@ -432,9 +432,9 @@ Template Name: landing-registro
     $idPrograma=1;
     //Gestión de errores
     $postHeaders = array('Content-Type: application/json');
-    $apiUrl = 'http://localhost/middleware/public/api/getFormCustomProgram/'.$idPrograma;;
+
      // $apiUrl = 'https://prod.gevents.co/public/api/getFormCustomProgram/'.$idPrograma;
-    //$apiUrl = 'https://middlepp.gevents.co/public/api/getFormCustomProgram/'.$idPrograma;
+  $apiUrl = 'https://middlepp.gevents.co/public/api/getFormCustomProgram/'.$idPrograma;
     $curl = curl_init($apiUrl);
     curl_setopt($curl, CURLOPT_ENCODING, "");
     curl_setopt($curl, CURLOPT_HTTPHEADER, $postHeaders);
@@ -491,24 +491,24 @@ Template Name: landing-registro
 
                                                     if($customCampos['orden'] < 9){
                                                         if($customCampos['campo_custom_id'] == 1)
-                                                            include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/input.php");
+                                                            include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/registro/forms/input.php");
                                                         else if($customCampos['campo_custom_id'] == 2)
                                                             if($customCampos['valores'] == '$')
-                                                                include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/selectPais.php");
+                                                                include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/registro/forms/selectPais.php");
                                                             elseif($customCampos['valores'] == '#')
-                                                                include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/selectType.php");
+                                                                include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/registro/forms/selectType.php");
                                                             elseif($customCampos['valores'] == '!')
-                                                                include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/selectCodigo.php");
+                                                                include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/registro/forms/selectCodigo.php");
                                                             elseif($customCampos['valores'] == '*')
-                                                                include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/selectLocal.php");
+                                                                include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/registro/forms/selectLocal.php");
                                                             elseif($customCampos['valores'] == '+')
-                                                                include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/selectAct.php");
+                                                                include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/registro/forms/selectAct.php");
                                                             elseif($customCampos['valores'] == '-')
-                                                                include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/selectAct2.php");
+                                                                include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/registro/forms/selectAct2.php");
                                                             else
-                                                                include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/select.php");
+                                                                include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/registro/forms/select.php");
                                                         else
-                                                            include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/multiple.php");
+                                                            include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/registro/forms/multiple.php");
                                                     }
                                                 }
                                                 ?>
@@ -579,16 +579,16 @@ Template Name: landing-registro
                                                     if($customCampos['orden'] == 9){
                                                         if($customCampos['campo_custom_id'] == 1)
 
-                                                            include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/input.php");
+                                                            include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/registro/forms/input.php");
                                                         else if($customCampos['campo_custom_id'] == 2)
                                                             if($customCampos['valores'] == '$')
-                                                                include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/selectPais.php");
+                                                                include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/registro/forms/selectPais.php");
                                                             elseif($customCampos['valores'] == '#')
-                                                                include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/selectType.php");
+                                                                include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/registro/forms/selectType.php");
                                                             else
-                                                                include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/select.php");
+                                                                include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/registro/forms/select.php");
                                                         else
-                                                            include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/multiple.php");
+                                                            include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/registro/forms/multiple.php");
                                                     }
                                                 }
                                                 ?>
@@ -612,16 +612,16 @@ Template Name: landing-registro
 
                                                     if($customCampos['orden'] == 10){
                                                         if($customCampos['campo_custom_id'] == 1)
-                                                            include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/input.php");
+                                                            include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/registro/forms/input.php");
                                                         else if($customCampos['campo_custom_id'] == 2)
                                                             if($customCampos['valores'] == '$')
-                                                                include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/selectPais.php");
+                                                                include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/registro/forms/selectPais.php");
                                                             elseif($customCampos['valores'] == '#')
-                                                                include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/selectType.php");
+                                                                include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/registro/forms/selectType.php");
                                                             else
-                                                                include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/select.php");
+                                                                include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/registro/forms/select.php");
                                                         else
-                                                            include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/multiple.php");
+                                                            include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/registro/forms/multiple.php");
                                                     }
                                                 }
                                                 ?>
@@ -641,18 +641,18 @@ Template Name: landing-registro
 
                                                     if($customCampos['orden'] > 10){
                                                         if($customCampos['campo_custom_id'] == 1)
-                                                            include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/input.php");
+                                                            include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/registro/forms/input.php");
                                                         else if($customCampos['campo_custom_id'] == 2)
                                                             if($customCampos['valores'] == '$')
-                                                                include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/selectPais.php");
+                                                                include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/registro/forms/selectPais.php");
                                                             elseif($customCampos['valores'] == '#')
-                                                                include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/selectType.php");
+                                                                include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/registro/forms/selectType.php");
                                                             else
-                                                                include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/select.php");
+                                                                include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/registro/forms/select.php");
                                                         else if($customCampos['campo_custom_id'] == 4)
-                                                            include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/file.php");
+                                                            include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/registro/forms/file.php");
                                                         else
-                                                            include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/forms/multiple.php");
+                                                            include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/registro/forms/multiple.php");
                                                     }
                                                 }
                                                 ?>
@@ -685,7 +685,7 @@ Template Name: landing-registro
                                         <input type="hidden" name="programaId" value="<?php echo $idPrograma ?>">
                                         <input type="hidden" name="rol" value="15">
                                         <input type="hidden" name="ipUsuario" value="<?php echo $_SERVER["REMOTE_ADDR"]; ?>">
-                                        <input type="hidden" name="usuario_creacion" value="9">
+                                        <input type="hidden" name="usuario_creacion" value="438">
                                      <!--    <input type="hidden" name="usuario_creacion" value="438"> -->
                                         
                                      
@@ -732,9 +732,9 @@ Template Name: landing-registro
     </div>
 
     <?php
-        include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/modal/errorNit.php");
-        include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/modal/error.php");
-        include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/modal/loading.php");
+        include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/registro/modal/errorNit.php");
+        include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/registro/modal/error.php");
+        include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/registro/modal/loading.php");
     ?>
 
     <!-- #post-116 -->
@@ -745,8 +745,8 @@ Template Name: landing-registro
 <script type="text/javascript" src="../wp-content/themes/tevent/registro/js/cargarArchivos.js"></script><!-- pasar -->
 <script>
  
-    var urlApi = 'http://localhost/middleware/public/api/';
-    // var urlApi = 'https://middlepp.gevents.co/public/api/';
+   //  var urlApi = 'http://localhost/middleware/public/api/';
+    var urlApi = 'https://middlepp.gevents.co/public/api/';
   //  var urlApi ='https://prod.gevents.co/public/api/';
 
     jQuery(document).on('change','input[type="file"]',function(){

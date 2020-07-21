@@ -14,7 +14,7 @@
 
 get_header();
 /*
-Template Name: landing-nueva-contraseña1
+Template Name: landing-nueva-contraseña
 */
 
 ?>
@@ -441,17 +441,12 @@ $token = $_GET['email'];
     </div>
 </main>
 <!-- #main -->
-    <?php
-   
-        include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/modal/modalPassword.php");
-    ?>
 
 <?php get_footer(); ?>
 <script type="text/javascript" src="../wp-content/themes/tevent/nueva-contrasena/js/jquery.validate.min.js"></script>
 
 <script>
-     // var urlApi = 'https://middlepp.gevents.co/public/api/';
-    //var urlApi = 'http://localhost/middleware/public/api/';
+    // var urlApi = 'http://localhost/middleware/public/api/';
     var urlApi = 'https://prod.gevents.co/public/api/';
 
     jQuery("#password").blur(function(){
@@ -541,8 +536,6 @@ $token = $_GET['email'];
                     contentType: "application/x-www-form-urlencoded;charset=utf-8",
                     data:jQuery(this).serialize(),
                     success: function(response) {
-                        console.log(response.message)
-
                         if(response.message == 'Success'){
                             jQuery('#modalPassword').modal('show');
                             jQuery('#formPassword').trigger("reset");
@@ -560,10 +553,7 @@ $token = $_GET['email'];
                             jQuery('#formPassword').trigger("reset");
                             jQuery('#savePassword').prop('disabled', false);
                         }
-
-
                     }
-
                 });
 
             });

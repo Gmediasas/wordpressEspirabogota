@@ -2,6 +2,7 @@
 
 //API URL
 $url = 'http://localhost/middleware/public/api/login_user';
+//$url = 'https://middlepp.gevents.co/public/api/login_user';
 
 //create a new cURL resource
 $ch = curl_init($url);
@@ -49,7 +50,7 @@ if($login['code'] == 200){
     }else{
 
         echo '<script type="text/javascript">
-				window.location.href="diagnostico/";
+				window.location.href="../diagnostico/bienvenida";
 				</script>';
     }
 

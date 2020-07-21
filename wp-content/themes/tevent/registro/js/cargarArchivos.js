@@ -1,6 +1,6 @@
 function uploadFile(id) {
-    var urlApi = 'http://localhost/middleware/public/api/';
-    //var urlApi = 'https://middlepp.gevents.co/public/api/';
+    //var urlApi = 'http://localhost/middleware/public/api/';
+    var urlApi = 'https://middlepp.gevents.co/public/api/';
     // var urlApi = 'https://prod.gevents.co/public/api/';
     var file = jQuery('#archivo_' + id).prop('files')[0];
 

@@ -15,8 +15,6 @@ get_header();
   
     <?php 
     $fechahabilitacion= '2020-07-17';
-     //$ulrPHPS= '/espiraBogota/wp-content/';
-   $ulrPHPS= '/wp-content/';
     if(isset($_SESSION['token'])) {?>
         <script> 
           jQuery('#menu-item-976').css('display','none');  
@@ -48,11 +46,10 @@ get_header();
             </div>
         </nav>
         <div class="sections">
-            <form action="" method="post" id="formulariodiagnostico">
+        <form action="" method="post" id="formulariodiagnostico">
                 <input type="hidden" name="anfitrionId" value="<?php echo $employee['employee']['id'] ?>">
                 <input type="hidden" name="idProgram" value="<?php echo $idProgram ?>">
-                <input type="hidden" name="idEstado" id="idEstado" value="38">
-            <!--paso1-->
+            <!--			paso1-->
                 <section class="active my-md-5 py-md-5 my-4 py-4 f1">
                     <div class="menu_diagnostico">
                         <ul class="list-unstyled d-flex justify-content-center">
@@ -82,15 +79,15 @@ get_header();
                                 if($customCampos['orden'] < 9){
                                     if($customCampos['campo_custom_id'] == 2)
                                         if($customCampos['valores'] == '*')
-                                            include($_SERVER['DOCUMENT_ROOT'].$ulrPHPS."themes/tevent/diagnostico/forms/form_local.php");
+                                            include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/diagnostico/forms/form_local.php");
                                         elseif($customCampos['valores'] == '+')
-                                            include($_SERVER['DOCUMENT_ROOT'].$ulrPHPS."themes/tevent/diagnostico/forms/form_act.php");
+                                            include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/diagnostico/forms/form_act.php");
                                         elseif($customCampos['valores'] == '-')
-                                            include($_SERVER['DOCUMENT_ROOT'].$ulrPHPS."themes/tevent/diagnostico/forms/form_act2.php");
+                                            include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/diagnostico/forms/form_act2.php");
                                         else
-                                            include($_SERVER['DOCUMENT_ROOT'].$ulrPHPS."themes/tevent/diagnostico/forms/form_select.php");
+                                            include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/diagnostico/forms/form_select.php");
                                     else
-                                        include($_SERVER['DOCUMENT_ROOT'].$ulrPHPS."themes/tevent/diagnostico/forms/form_1.php");
+                                        include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/diagnostico/forms/form_1.php");
                                 }
                             }
 
@@ -98,7 +95,7 @@ get_header();
                             foreach ($custom['tipoIdentificacion'] as $typeId){
 
                                 if($employee['userE']['tipo_identificacion_id'] == $typeId['id'])
-                                $typeDocument = $typeId['tipo'];
+                                    $typeDocument = $typeId['tipo'];
                             }
                             ?>
 
@@ -131,7 +128,7 @@ get_header();
                             foreach ($custom['customFormulario'] as $customCampos) {
 
                                 if($customCampos['orden'] == 9){
-                                    include($_SERVER['DOCUMENT_ROOT'].$ulrPHPS."themes/tevent/diagnostico/forms/form_1.php");
+                                    include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/diagnostico/forms/form_1.php");
                                 }
                             }
                             ?>
@@ -144,7 +141,7 @@ get_header();
                             foreach ($custom['customFormulario'] as $customCampos) {
 
                                 if($customCampos['orden'] == 10){
-                                    include($_SERVER['DOCUMENT_ROOT'].$ulrPHPS."themes/tevent/diagnostico/forms/form_1.php");
+                                    include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/diagnostico/forms/form_1.php");
                                 }
                             }
                             ?>
@@ -154,13 +151,13 @@ get_header();
                         </div>
                         <?php if( date( 'Y-m-d H:i:s' ) >=   $fechahabilitacion){?>
                         <div class="arrows clearfix mt-5">
-                            <a  class="btns float-right text-white px-lg-5 px-3  arrow_right" onclick="passForm('.f2');">Continuar</a>
+                            <a href="#" class="btns float-right text-white px-lg-5 px-3  arrow_right" onclick="passForm('.f2');">Continuar</a>
                         </div>
                         <?php }?>
                     </div>
                 </section>
-            <?php if( date( 'Y-m-d H:i:s' ) >=   $fechahabilitacion ){?>
-            <!--paso2-->
+                <?php if( date( 'Y-m-d H:i:s' ) >=   $fechahabilitacion ){?>
+            <!--			paso2-->
                 <section class="my-md-5 py-md-5 my-4 py-4 f2">
                     <div class="menu_diagnostico">
                         <ul class="list-unstyled d-flex justify-content-center">
@@ -175,143 +172,251 @@ get_header();
                             </li>
                         </ul>
                     </div>
-                    <h3 class="text-center my-md-5 my-4 pt-md-5 pb-3 px-3">Información adicional </h3>
-
+                    <h3 class="text-center my-md-5 my-4 pt-md-5 pb-3 px-3">Información adicional</h3>
                     
-                    <?php if(!empty($diagnosticoUser['custom'][0]['estado_diagnostico_id']) && $diagnosticoUser['custom'][0]['estado_diagnostico_id'] != 37){?>
+                    <?php   if(!empty($diagnosticoUser['custom'][1]['response'])){?>
                         <div class="px-lg-5 px-3 new_form">
                             <div class="row">
-                                <?php foreach ($diagnosticoUser['custom'] as $cuestionario) { ?>
-                                    <?php if($cuestionario['codigo'] == 'select'){ $arraySelect = json_decode($cuestionario['valores'] ,true);?>
-                                        <div class="col-md-6  mb-4">
-                                            <label class="d-block px-3"><?php echo $cuestionario['nombreCampo'] ?></label>
-                                            <select  disabled readonly>
-                                                <?php  foreach($arraySelect as $dbA) { 
-                                                            if($cuestionario['response']== $dbA['value']){ ?>
-                                                    <option value="<?php echo $dbA['value']?>" selected><?php echo $dbA['label']?></option>
-                                                <?php       }else{ ?>
-                                                    <option value="<?php echo $dbA['value']?>"><?php echo $dbA['label']?></option>
-                                                <?php       }
-                                                        }
-                                                ?>
-                                            </select>
-                                        </div>
+                                <?php
+                                    foreach ($diagnosticoUser['custom'] as $cuestionario) {
+                                        if($cuestionario['orden'] == 1){          
+                                ?>
+                                <div class="col-md-6 mb-4">
+                                    <label class="d-block px-3"><?php echo $cuestionario['nombreCampo'] ?></label>
+                                    <input type="<?php echo $cuestionario['codigo'] ?>"  value="<?php echo $cuestionario['response']?>" disabled readonly>
+                                </div>
+                                <?php }} ?>
 
-                                    <?php }else if($cuestionario['codigo'] == 'radio-group'){ $check = json_decode($cuestionario['valores'] ,true);?>
-                                        <div class="col-md-6 mb-4">
-                                            <label class="d-block px-3"><?php echo $cuestionario['nombreCampo'] ?></label>
-                                            <div class="px-3 mt-3 pt-1">
-                                                <?php foreach($check as $checkSelect) { $activeCheck = ''; if($cuestionario['response']== $checkSelect['value']){ $activeCheck = 'checked'; } ?>
-                                                    <label>
-                                                        <input type="radio" value="<?php echo $checkSelect['value']?>"  <?php echo $activeCheck?> disabled readonly>
-                                                        <span><?php echo $checkSelect['label']?></span>
-                                                    </label>
-                                                <?php }?>
+
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <?php
+                                        foreach ($diagnosticoUser['custom'] as $cuestionario) {
+                                            if($cuestionario['orden'] == 2 || $cuestionario['orden'] == 3){
+                                        ?>
+                                        <?php
+                                            if($cuestionario['codigo'] == 'select'){
+
+                                                $arraySelect = json_decode($cuestionario['valores'] ,true);
+                                        ?>
+                                            <div class="col-md-6  mb-4">
+                                                <label class="d-block px-3"><?php echo $cuestionario['nombreCampo'] ?></label>
+                                                <select  disabled readonly>
+                                                    <?php
+                                                        foreach($arraySelect as $dbA) {
+                                                            if($cuestionario['response']== $dbA['value']){
+                                                    ?>
+                                                        <option value="<?php echo $dbA['value']?>" selected><?php echo $dbA['label']?></option>
+                                                    <?php   }else{ ?>
+                                                        <option value="<?php echo $dbA['value']?>"><?php echo $dbA['label']?></option>
+                                                    <?php
+                                                            }
+                                                        }
+                                                    ?>
+                                                </select>
                                             </div>
+
+                                        <?php }else{ ?>
+                                                <div class="col-md-6 mb-4">
+                                                    <label class="d-block px-3"><?php echo $cuestionario['nombreCampo'] ?></label>
+                                                    <input type="<?php echo $cuestionario['codigo'] ?>" value="<?php echo $cuestionario['response']?>"  disabled readonly>
+                                                </div>
+                                        <?php } ?>
+                                        <?php }} ?>
+                                    </div>
+                                </div>
+
+                                <?php
+                                foreach ($diagnosticoUser['custom'] as $cuestionario) { 
+                                    if($cuestionario['orden'] >= 4){
+                                ?>
+                                <?php
+                                    if($cuestionario['codigo'] == 'select'){
+                                        $array = json_decode($cuestionario['valores'] ,true);
+                                ?>
+                                    <div class="col-md-6 mb-4">
+                                        <label class="d-block px-3"><?php echo $cuestionario['nombreCampo'] ?></label>
+                                        <select disabled readonly>
+                                            <?php
+                                            foreach($arraySelect as $dbA) {
+                                                if($cuestionario['response']== $dbA['value']){ ?>
+                                                    <option value="<?php echo $dbA['value']?>" selected><?php echo $dbA['label']?></option>
+                                                <?php }else{ ?>
+                                                    <option value="<?php echo $dbA['value']?>"><?php echo $dbA['label']?></option>
+                                                <?php
+                                                }
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+                                <?php
+                                    }else if($cuestionario['codigo'] == 'radio-group'){
+                                        $check = json_decode($cuestionario['valores'] ,true);
+                                ?>
+                                    <div class="col-md-6 mb-4">
+                                        <?php echo $cuestionario['nombreCampo'] ?>
+                                        <div class="px-3 mt-3 pt-1">
+                                            <?php
+                                            foreach($check as $checkSelect) {
+                                                $activeCheck = '';
+                                                if($cuestionario['response']== $checkSelect['value']){
+                                                    $activeCheck = 'checked';
+                                                }
+                                                ?>
+                                                <label>
+                                                    <input type="radio" value="<?php echo $checkSelect['value']?>"  <?php echo $activeCheck?> disabled readonly>
+                                                    <span><?php echo $checkSelect['label']?></span>
+                                                </label>
+                                            <?php
+                                            }
+                                            ?>
+
                                         </div>
-                                    <?php }else{ ?>
+                                    </div>
+                                <?php }else{ ?>
                                         <div class="col-md-6 mb-4">
                                             <label class="d-block px-3"><?php echo $cuestionario['nombreCampo'] ?></label>
                                             <input type="<?php echo $cuestionario['codigo'] ?>" value="<?php echo $cuestionario['response']?>"  disabled readonly>
                                         </div>
-                                    <?php } ?>
-                                <?php } ?>                                 
+                                <?php } ?>
+                                <?php }} ?>
                             </div>
                             <div class="px-lg-5 px-4 mx-5 mt-4">
                                 <hr>
-                            </div>     
+                            </div>
                             <div class="arrows clearfix mt-5">
-                                <a class="btns float-left text-white px-lg-5 px-3  arrow_left" onclick="passForm('.f1');">Volver</a>
-                                <a class="btns float-right text-white px-lg-5 px-3  arrow_right" onclick="passForm('.f3');">Continuar</a>
+                                <a href="#" class="btns float-left text-white px-lg-5 px-3  arrow_left" onclick="passForm('.f1');">Volver</a>
+                                <a href="#" class="btns float-right text-white px-lg-5 px-3  arrow_right" onclick="passForm('.f3');">Continuar</a>
                             </div>
                         </div>
-                    <?php } else{?>                     
+                    <?php } else{?> 
+                    
                         <div class="px-lg-5 px-3 new_form">
                             <div class="row">
-                                <?php  foreach ($cuestionarios['custom'] as $cuestionario) { $required = ''; 
-                                        if($diagnosticoUser['custom'][1]['estado_diagnostico_id'] == 37){
-                                            foreach ($diagnosticoUser['custom'] as $cuestionarioResp) {
-                                           
-                                                if($cuestionarioResp['campo_form_custom_id'] == $cuestionario['id']){ 
-                                                    if($cuestionarioResp['codigo'] == 'select'){ 
-                                                        $arraySelect = json_decode($cuestionario['valores'] ,true); 
-                                                        foreach($arraySelect as $dbA) {   
-                                                            if($cuestionarioResp['response']== $dbA['value']){  
-                                                                $cuestionario['response']=$dbA['value']; ?>
-                                                                    <input type="hidden" name="idrespuestas[]" value="<?php echo $cuestionarioResp['campo_form_custom_id'] ?>">
-                                                            <?php } 
-                                                        }   break;
-                                                  
-                                                    }else if($cuestionarioResp['codigo'] == 'radio-group'){ 
-                                                        $check = json_decode($cuestionario['valores'] ,true);
-                                                        foreach($check as $checkSelect) {   
-                                                            if($cuestionarioResp['response']== $checkSelect['value']){  
-                                                                $cuestionario['response']=$checkSelect['value'];?>
-                                                                    <input type="hidden" name="idrespuestas[]" value="<?php echo $cuestionarioResp['campo_form_custom_id'] ?>">
+                                <?php
+                                    foreach ($cuestionarios['custom'] as $cuestionario) {
+                                        if($cuestionario['orden'] == 1){
+                                            if($cuestionario['required'] == 1){
+                                                $required = 'required';
+                                            }else{
+                                                $required = '';
+                                        }
+                                ?>
+                                <div class="col-md-6 mb-4">
+                                    <label class="d-block px-3"><?php echo $cuestionario['nombreCampo'] ?></label>
+                                    <input type="<?php echo $cuestionario['codigo'] ?>" name="<?php echo $cuestionario['nombre_campo'] ?>"
+                                        <?php echo $required?>>
+                                </div>
+                                <?php }} ?>
 
-                                                            <?php } 
-                                                        }   break;
-                                                      
-                                                    }else{ 
-                                                        $cuestionario['response']=$cuestionarioResp['response']; ?>
-                                                           <input type="hidden" name="idrespuestas[]" value="<?php echo $cuestionarioResp['campo_form_custom_id'] ?>">
 
-                                                        <?php break;
-                                                        
-                                                    }                                                   
-                                                } 
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <?php
+                                        foreach ($cuestionarios['custom'] as $cuestionario) {
+                                            if($cuestionario['required'] == 1){
+                                                $required = 'required';
+                                            }else{
+                                                $required = '';
                                             }
-                                        }?>
-                                        <?php  if($cuestionario['codigo'] == 'select'){ $arraySelect = json_decode($cuestionario['valores'] ,true); ?>
+
+                                            if($cuestionario['orden'] == 2 || $cuestionario['orden'] == 3){
+                                        ?>
+                                        <?php
+                                            if($cuestionario['codigo'] == 'select'){
+
+                                                $arraySelect = json_decode($cuestionario['valores'] ,true);
+                                        ?>
                                             <div class="col-md-6  mb-4">
                                                 <label class="d-block px-3"><?php echo $cuestionario['nombreCampo'] ?></label>
                                                 <select name="<?php echo $cuestionario['nombre_campo'] ?>" id="" <?php echo $required?> >
-                                                    <?php  foreach($arraySelect as $dbA) { if(  $dbA['value'] ==  $cuestionario['response']){ ?>
-                                                        <option value="<?php echo $dbA['value']?>" selected><?php echo $dbA['label']?></option>
-                                                    <?php   } else {  ?>
+                                                    <?php
+                                                        foreach($arraySelect as $dbA) {
+                                                    ?>
                                                         <option value="<?php echo $dbA['value']?>"><?php echo $dbA['label']?></option>
-                                                    <?php   } }  ?>
+                                                    <?php
+                                                        }
+                                                    ?>
                                                 </select>
                                             </div>
-                                        <?php  }else if($cuestionario['codigo'] == 'radio-group'){ $check = json_decode($cuestionario['valores'] ,true);  ?>
-                                            <div class="col-md-6 mb-4">
-                                                <label class="d-block px-3"><?php echo $cuestionario['nombreCampo'] ?></label>
-                                                <div class="px-3 mt-3 pt-1">
-                                                    <?php foreach($check as $checkSelect) { if(  $checkSelect['value'] ==  $cuestionario['response']){ ?>
-                                                        <label>
-                                                            <input type="radio" checked value="<?php echo $checkSelect['value']?>" name="<?php echo $cuestionario['nombre_campo'] ?>" <?php echo $required?> >
-                                                            <span><?php echo $checkSelect['label']?></span>
-                                                        </label>
-                                                        <?php   } else {  ?>
-                                                        <label>
-                                                            <input type="radio" value="<?php echo $checkSelect['value']?>" name="<?php echo $cuestionario['nombre_campo'] ?>" <?php echo $required?> >
-                                                            <span><?php echo $checkSelect['label']?></span>
-                                                        </label>
-                                                    <?php } } ?>
-                                                </div>
-                                            </div>
+
                                         <?php }else{ ?>
                                                 <div class="col-md-6 mb-4">
                                                     <label class="d-block px-3"><?php echo $cuestionario['nombreCampo'] ?></label>
-                                                    <input type="<?php echo $cuestionario['codigo'] ?>"   name="<?php echo $cuestionario['nombre_campo'] ?>" <?php echo $required?> value="<?php echo $cuestionario['response'] ?>" >
+                                                    <input type="<?php echo $cuestionario['codigo'] ?>"
+                                                        name="<?php echo $cuestionario['nombre_campo'] ?>" <?php echo $required?>>
                                                 </div>
                                         <?php } ?>
-                                <?php } ?>  
+                                        <?php }} ?>
+                                    </div>
+                                </div>
+
+                                <?php
+                                foreach ($cuestionarios['custom'] as $cuestionario) {
+                                    if($cuestionario['required'] == 1){
+                                        $required = 'required';
+                                    }else{
+                                        $required = '';
+                                    }
+                                if($cuestionario['orden'] >= 4){
+                                ?>
+                                <?php
+                                    if($cuestionario['codigo'] == 'select'){
+                                        $array = json_decode($cuestionario['valores'] ,true);
+                                ?>
+                                    <div class="col-md-6 mb-4">
+                                        <label class="d-block px-3"><?php echo $cuestionario['nombreCampo'] ?></label>
+                                        <select name="<?php echo $cuestionario['nombre_campo'] ?>" id="" <?php echo $required?>>
+                                            <?php
+                                            foreach($arraySelect as $dbA) {
+                                                ?>
+                                                <option value="<?php echo $dbA['value']?>"><?php echo $dbA['label']?></option>
+                                                <?php
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+                                <?php
+                                    }else if($cuestionario['codigo'] == 'radio-group'){
+                                        $check = json_decode($cuestionario['valores'] ,true);
+                                ?>
+                                <div class="col-md-6 mb-4">
+                                    <?php echo $cuestionario['nombreCampo'] ?>
+                                    <div class="px-3 mt-3 pt-1">
+                                        <?php
+                                        foreach($check as $checkSelect) {
+                                            ?>
+                                            <label>
+                                                <input type="radio" value="<?php echo $checkSelect['value']?>" name="<?php echo $cuestionario['nombre_campo'] ?>" <?php echo $required?>>
+                                                <span><?php echo $checkSelect['label']?></span>
+                                            </label>
+                                        <?php
+                                        }
+                                        ?>
+
+                                    </div>
+                                </div>
+                                <?php }else{ ?>
+                                        <div class="col-md-6 mb-4">
+                                            <label class="d-block px-3"><?php echo $cuestionario['nombreCampo'] ?></label>
+                                            <input type="<?php echo $cuestionario['codigo'] ?>" name="<?php echo $cuestionario['nombre_campo'] ?>" <?php echo $required?>>
+                                        </div>
+                                <?php } ?>
+                                <?php }} ?>
                             </div>
                             <div class="px-lg-5 px-4 mx-5 mt-4">
                                 <hr>
-                            </div> 
-                            <div class="arrows clearfix mt-4 text-center">
-                                <button type="submit"  id="SaveTemp2" class="btns text-white px-5 d-inline-block">Guardar</button>
                             </div>
                             <div class="arrows clearfix mt-5">
-                                <a class="btns float-left text-white px-lg-5 px-3  arrow_left" onclick="passForm('.f1');">Volver</a>
-                                <a class="btns float-right text-white px-lg-5 px-3  arrow_right" onclick="passForm('.f3');">Continuar</a>
+                                <a href="#" class="btns float-left text-white px-lg-5 px-3  arrow_left" onclick="passForm('.f1');">Volver</a>
+                                <?php if( date( 'Y-m-d H:i:s' ) >=   $fechahabilitacion){?>
+                                <a href="#" class="btns float-right text-white px-lg-5 px-3  arrow_right" onclick="passForm('.f3');">Continuar</a>
+                                <?php }?>
                             </div>
                         </div>
                     <?php }?>
                 </section>
-            <!--paso 3-->
+            <!--			paso 3-->
                 <section class="my-md-5 py-md-5 my-4 py-4 f3">
                     <div class="menu_diagnostico">
                         <ul class="list-unstyled d-flex justify-content-center">
@@ -328,10 +433,14 @@ get_header();
                     </div>
                     <h3 class="text-center my-md-5 my-4 pt-md-5 pb-3 px-3">Cuestionario para diagnóstico de empresas</h3>
                     <div class="px-lg-5 px-3 new_form">  
-                        <?php if(!empty($diagnosticoUserP['respuestasPuntaje'][1]['respuesta'])  && $diagnosticoUserP['respuestasPuntaje'][1]['respuesta'] != 'N/A-DESCRIP' && $diagnosticoUser['custom'][0]['estado_diagnostico_id'] != 37){ ?>
+                        <div class="row">
+                        
                             <div class="kt-portlet__body">
-                                <div class="row"> 
-                                    <?php $array=[];
+                                <div class="row">
+                                    
+                                    <?php  if(!empty($diagnosticoUserP['respuestasPuntaje'][1]['grupo'])){ ?>
+                                        <?php
+                                        $array=[];
                                         foreach ($diagnosticoUserP['respuestasPuntaje'] as $respuestasPuntaje){
                                             if (!empty($respuestasPuntaje['grupo'])) {
                                                 if (!in_array($respuestasPuntaje['grupo'], $array)) {
@@ -349,6 +458,7 @@ get_header();
                                             <?php if(!empty($respuestasPuntaje['campo_custom_id'])){
                                                     if( $respuestasPuntaje['campo_custom_id'] == 1){ ?>
                                                     <div class=" col-sm-12">
+
                                                         <label> <?php echo strip_tags($respuestasPuntaje['pregunta'])?></label>  
                                                         <p> <?php  echo  $respuestasPuntaje['descripcion']; ?></p>
                                                         <?php if($respuestasPuntaje['respuesta'] != 'N/A-DESCRIP'){?>
@@ -358,63 +468,41 @@ get_header();
                                                         <?php }?>
                                                     </div>
 
-                                                <?php }elseif($respuestasPuntaje['campo_custom_id'] == 7 || $respuestasPuntaje['campo_custom_id'] == 2 ){ ?>
+                                                <?php }elseif($respuestasPuntaje['campo_custom_id'] == 7){ ?>
 
-                                                    <div class=" col-sm-12">
-                                                        <label> <?php  echo strip_tags($respuestasPuntaje['pregunta'])?></label>  
-                                                        <p> <?php  echo  $respuestasPuntaje['descripcion']; ?></p><br/>
-                                                        <label> Respuesta :</label><br/>
-                                                        <div style="height: unset; background: #eee;"readonly><?php echo $respuestasPuntaje['respuestaselect']?></div><br/>
-                                                    </div>
+                                                        <div class=" col-sm-12">
+                                                            <label> <?php  echo strip_tags($respuestasPuntaje['pregunta'])?></label>  
+                                                            <p> <?php  echo  $respuestasPuntaje['descripcion']; ?></p><br/>
+                                                            <label> Respuesta :</label><br/>
+                                                            <div style="height: unset; background: #eee;"readonly><?php echo $respuestasPuntaje['respuestaselect']?></div><br/>
+                                                        </div>
                                                 <?php }
                                             } ?>                                     
-                                    <?php }  ?>
+                                        <?php }  ?>
+                                    </div>
+                                </div> 
+                                <div class="px-lg-5 px-4 mx-5 mt-4">
+                                    <hr>
                                 </div>
-                            </div>  
-                            <div class="px-lg-5 px-4 mx-5 mt-4">
-                                <hr>
-                            </div> 
-                            <div class="arrows clearfix mt-5">
-                                <a  class="btns float-left text-white px-lg-5 px-3  arrow_left" onclick="passForm('.f2');">Volver</a> 
-                            </div>
+                                <div class="arrows clearfix mt-5">
+                                    <a href="#" class="btns float-left text-white px-lg-5 px-3  arrow_left" onclick="passForm('.f2');">Volver</a> 
+                                </div>
                         <?php }else{?>
-                            <div class="row">
                                 <div class="col-12"> 
                         
                                     <?php							   
                                     $array=[];
                                     $display='';
-                                    $suma=0; 
-                                    
-                                    foreach ($cuestionariosp3['custom'] as $cuestionariof3) { $required = '';
-                                            
-                                            if($diagnosticoUser['custom'][0]['estado_diagnostico_id'] == 37){
-                                                foreach ($diagnosticoUserP['respuestasPuntaje'] as $respuestasPuntaje) { 
-                                                 
-                                                    if($respuestasPuntaje['respuesta'] != 'N/A-DESCRIP'){
-                                                        if($respuestasPuntaje['id'] == $cuestionariof3['id']){ 
-                                                         
-                                                            if($respuestasPuntaje['campo_custom_id'] == 7 || $respuestasPuntaje['campo_custom_id'] == 2 ){ 
-                                                                $arraySelect = json_decode($cuestionariof3['valores'] ,true); 
-                                                                foreach($arraySelect as $dbA) {   
-                                                                    if($respuestasPuntaje['respuesta']== $dbA['value']){  
-                                                                        $cuestionariof3['response']=$dbA['value']; ?>
-                                                                        <input type="hidden" name="idrespuestas[]" value="<?php echo $respuestasPuntaje['id'] ?>">
-                                                                    <?php } 
-                                                                }   break;
-                                                        
-                                                            }else{   
-                                                                $cuestionariof3['response']=$respuestasPuntaje['respuesta']; ?>
-                                                                <input type="hidden" name="idrespuestas[]" value="<?php echo $respuestasPuntaje['id'] ?>">
+                                    $suma=0;
 
-                                                                <?php break;
-                                                                
-                                                            }                                                   
-                                                        } 
-                                                    }
-                                                }
-                                            }?>
-                                            <?php  if (!in_array($cuestionariof3['grupo_formulario'], $array)) {
+                                    foreach ($cuestionariosp3['custom'] as $cuestionariof3) { 
+                                            if($cuestionariof3['required'] == 1){
+                                                $required = 'required';
+                                            }else{
+                                                $required = '';
+                                            }
+                                        
+                                            if (!in_array($cuestionariof3['grupo_formulario'], $array)) {
                                                     array_push($array, $cuestionariof3['grupo_formulario']);
                                                 if($suma === 0){
                                                     $display='style="display:block"'
@@ -437,11 +525,9 @@ get_header();
                                                 <?php   if( $cuestionariof3['valores'] != 'N/A'){?>	
                                                     <div class="bg-purple radius p-lg-4 p-3 mt-4 c_options_question">
                                                         <?php if($cuestionariof3['codigo'] == 'radio-group'){ 
-                                                                include($_SERVER['DOCUMENT_ROOT'].$ulrPHPS."themes/tevent/diagnostico/forms/radio-group.php");
+                                                                include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/diagnostico/forms/radio-group.php");
                                                             }elseif($cuestionariof3['codigo'] == 'text'){
-                                                                include($_SERVER['DOCUMENT_ROOT'].$ulrPHPS."themes/tevent/diagnostico/forms/text.php");
-                                                            }elseif($cuestionariof3['codigo'] == 'select'){
-                                                                include($_SERVER['DOCUMENT_ROOT'].$ulrPHPS."themes/tevent/diagnostico/forms/select.php");
+                                                                include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/diagnostico/forms/text.php");
                                                             } ?>
                                                     </div>
                                                 <?php }?>											
@@ -449,46 +535,41 @@ get_header();
                                         
                                         <?php $suma++; ?>
                                     <?php }?>									
-                                </div>    
-                            </div>                         
+                                </div> 
+                            
                             <div class="px-lg-5 px-4 mx-5 mt-4">
                                 <hr>
                             </div>
-                            <div class="arrows clearfix mt-4 text-center">
-                                <button type="submit" id="SaveTemp" class="btns text-white px-5 d-inline-block">Guardar</button>
-                            </div>
                             <div class="arrows clearfix mt-5">
-                                <a class="btns float-left text-white px-lg-5 px-3  arrow_left" onclick="passForm('.f2');">Volver</a>
+                                <a href="#" class="btns float-left text-white px-lg-5 px-3  arrow_left" onclick="passForm('.f2');">Volver</a>
                                 <button type="submit" id="save_diagnostico" class="btns float-right text-white px-lg-5 px-3  arrow_right">Finalizar</button>
                             </div>
-                        <?php }?> 
-                    </div>
+                        <?php }?>
                         
+                        </div>
+                    </div>
                 </section>
-                
-            <?php }else {?> 
+                <?php }else {?>
+                        
                     <div class="alert alert-warning" role="alert">
                         La fase de diagnostico se encontrará disponible aquí a partir del de Julio 22 del 2020
-                    </div>          
-            <?php }?>
-
+                    </div>
+                        
+                <?php }?>
             </form>
         </div> 
 	</main>
    
 
     <?php
-        include($_SERVER['DOCUMENT_ROOT'].$ulrPHPS."themes/tevent/registro/modal/dataEnviadaTemp.php");
-        include($_SERVER['DOCUMENT_ROOT'].$ulrPHPS."themes/tevent/registro/modal/dataEnviada.php");
-        include($_SERVER['DOCUMENT_ROOT'].$ulrPHPS."themes/tevent/registro/modal/errorNit.php");
-        include($_SERVER['DOCUMENT_ROOT'].$ulrPHPS."themes/tevent/registro/modal/error.php");
-        include($_SERVER['DOCUMENT_ROOT'].$ulrPHPS."themes/tevent/registro/modal/loading.php");
-        include($_SERVER['DOCUMENT_ROOT'].$ulrPHPS."themes/tevent/registro/modal/faild.php");
-        include($_SERVER['DOCUMENT_ROOT'].$ulrPHPS."themes/tevent/registro/modal/faildDatos.php");
+        include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/registro/modal/dataEnviada.php");
+        include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/registro/modal/errorNit.php");
+        include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/registro/modal/error.php");
+        include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/registro/modal/loading.php");
     ?>
 
 
-<script src="<?php echo get_template_directory_uri(); ?>/diagnostico/_/scripts/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript" src="../wp-content/themes/tevent/diagnostico/_/scripts/functions.js"></script>
 	<!-- #main -->
 <?php get_footer(); ?>
