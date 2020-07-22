@@ -1,18 +1,18 @@
 (function($) {
     $(document).ready(function() {
-
+        //$('input[name='s']').val("otro");
         jQuery('#modalFailPassword').modal('show');
         $(".tit_menu").click(function(event) {
             $('.menu_new > div').toggleClass('active');
         });
-        $(".link_acordeon").click(function(event) {
+        /*$(".link_acordeon").click(function(event) {
             $(this).toggleClass('active');
             if ($(this).hasClass("active")) {
                 $(this).next('div').slideDown(300);
             } else {
                 $(this).next('div').slideUp(300);
             }
-        });
+        });*/
         var enviarData;
         var typeModal = 'modalEviadaData';
         $("#SaveTemp").click(function(event) {
@@ -29,19 +29,31 @@
         var enviarDataA = [];
         $("#save_diagnostico").click(function(event) {
 
-            $("input").map(function() {
+            $("#formulariodiagnostico input").map(function() {
 
                 if (this.type == "text") {
-                    if ($(this).val() == '' || $(this).val() == undefined) {
-                        enviarDataA.push(false);
+                    if (this.name != 's') {
+                        if ($(this).val() == '' || $(this).val() == undefined) {
+                            enviarDataA.push(false);
+                            enviarDataA.push(this.name);
+                            enviarDataA.push('text');
+                            $('input[name=' + this.name + ']').css("border-color", 'red');
+                        }
                     }
+
                 } else if (this.type == "radio") {
                     if ($('input[name=' + this.name + ']').is(":checked") == false) {
                         enviarDataA.push(false);
+                        enviarDataA.push(this.name);
+                        enviarDataA.push('radio');
+                        $('input[name=' + this.name + ']').css("border-color", 'red');
                     }
                 } else if (this.type == "number") {
-                    if ($('input[name=' + this.name + ']').is(":checked") == false) {
+                    if ($(this).val() == '' || $(this).val() == undefined) {
                         enviarDataA.push(false);
+                        enviarDataA.push(this.name);
+                        enviarDataA.push('number');
+                        $('input[name=' + this.name + ']').css("border-color", 'red');
                     }
                 }
             }).get();
@@ -49,6 +61,9 @@
             $("select").map(function() {
                 if ($(this).val() == '' || $(this).val() == undefined || $(this).val() == 0) {
                     enviarDataA.push(false);
+                    enviarDataA.push(this.name);
+                    enviarDataA.push('select');
+                    $('input[name=' + this.name + ']').css("border-color", 'red');
                 }
 
             }).get();
@@ -124,4 +139,12 @@
 function passForm(div) {
     $('.sections section').removeClass('active');
     $(div).addClass('active');
+}
+
+function acordeon(div) {
+    if (!$(div).hasClass("active")) {
+        $(div).addClass('active').children('.container_question').slideDown(300);
+    } else {
+        $(div).removeClass('active').children('.container_question').slideUp(300);
+    }
 }

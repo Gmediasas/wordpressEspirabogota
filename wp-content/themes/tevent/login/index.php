@@ -282,12 +282,7 @@ label.error { color: red;font-size: 12px; }
                                         jQuery('#menu-item-977').css('display','none');
                                     </script>
 
-                                    <?php if($_SESSION['user']['idRol'] == 1) {?>
-                                       <div class="form-group" style="display:none">
-                                          <a href="agenda-general/"  class="wpcf7-form-control wpcf7-submit btn btn-primary btn-block">
-                                              Ver agenda
-                                          </a>
-                                      </div>
+                                    <?php if($_SESSION['user']['idRol'] == 1) {?> 
                                     <script>
                                         jQuery('#menu-primary').append('<li itemscope="itemscope" itemtype="https://www.schema.org/SiteNavigationElement" id="menu-item-934" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-934"><a title="Ver Agenda" href="agenda-general/">Ver Agenda</a></li>')
                                         jQuery('#menu-primary').append('<li itemscope="itemscope" itemtype="https://www.schema.org/SiteNavigationElement" id="menu-item-924" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-934"><a title="Cerrar Sesión" href="../wp-content/themes/tevent/login/api/logout.php">Cerrar Sesión</a></li>')
@@ -295,24 +290,14 @@ label.error { color: red;font-size: 12px; }
 
 
 
-                                    <?php }elseif($_SESSION['user']['idRol'] == 4) {?>
-                                      <div class="form-group" style="display:none">
-                                          <a href="agenda-empresa/" class="wpcf7-form-control wpcf7-submit btn btn-primary btn-block">
-                                              Ver agenda
-                                          </a>
-                                      </div>
+                                    <?php }elseif($_SESSION['user']['idRol'] == 4) {?> 
                                     <script>
                                         jQuery('#menu-primary').append('<li itemscope="itemscope" itemtype="https://www.schema.org/SiteNavigationElement" id="menu-item-934" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-934"><a title="Ver Agenda" href="agenda-empresa/">Ver Agenda</a></li>')
                                         jQuery('#menu-primary').append('<li itemscope="itemscope" itemtype="https://www.schema.org/SiteNavigationElement" id="menu-item-924" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-934"><a title="Cerrar Sesión" href="../wp-content/themes/tevent/login/api/logout.php">Cerrar Sesión</a></li>')
 
                                     </script>
 
-                                <?php }else{ ?>
-                                        <div class="form-group" style="display:none">
-                                            <a href="mi-agenda/" class="wpcf7-form-control wpcf7-submit btn btn-primary btn-block">
-                                                Ver agenda
-                                            </a>
-                                        </div>
+                                <?php }else{ ?> 
                                         <script>
                                              
                                             jQuery('#menu-primary').append('<li itemscope="itemscope" itemtype="https://www.schema.org/SiteNavigationElement" id="menu-item-924" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-934"><a title="Cerrar Sesión" href="../wp-content/themes/tevent/login/api/logout.php">Cerrar Sesión</a></li>')
@@ -321,9 +306,7 @@ label.error { color: red;font-size: 12px; }
                                     <?php } ?>
 
                                     <div class="form-group">
-                                        <a href="../wp-content/themes/tevent/login/api/logout.php" class="wpcf7-form-control wpcf7-submit btn btn-primary btn-block">
-                                            Cerrar sesión
-                                        </a>
+                                        <button id="abrirModalSesion" type="button" class="wpcf7-form-control wpcf7-submit btn btn-primary btn-block"> Cerrar sesión </button>
                                     </div>
 
                                 <?php }else{ ?>
@@ -439,12 +422,18 @@ label.error { color: red;font-size: 12px; }
       </div>
 
 </main>
+<?php 
+ include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/registro/modal/cerrarSesion.php");
+?>
       <!-- #main -->
 
 <?php get_footer(); ?>
 <script type="text/javascript" src="../wp-content/themes/tevent/login/js/jquery.validate.min.js"></script>
 
 <script>
+    jQuery("#abrirModalSesion").click(function() { 
+      jQuery("#modalCerrarSesion").modal("show");
+    });
     jQuery("#saveLogin").on('click',function(){
         jQuery("#formLogin").validate({
             rules: {

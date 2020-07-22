@@ -6,8 +6,9 @@ for ($i = 0; $i < count($employee['respuesta']); $i++) {
     }
 }
 ?>
-
-<div class="col-md-6 mb-4">
-    <label class="d-block px-3"><?php echo $customCampos['nombreCampo'] ?></label>
-    <input type="text" value="<?php echo $input ?>" disabled>
-</div>
+<?php if($input != ''){ ?>
+    <div class="col-md-6 mb-4">
+        <label class="d-block px-3"><?php echo $customCampos['nombreCampo'] ?></label>
+        <input type="text" value="<?php echo $input ?>" disabled>
+    </div>
+<?php } ?>

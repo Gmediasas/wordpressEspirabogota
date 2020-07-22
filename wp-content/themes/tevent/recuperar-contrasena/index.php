@@ -436,6 +436,8 @@ div.wpcf7 .ajax-loader.is-active {
 
 <script>
     var urlApi = 'https://prod.gevents.co/public/api/';
+    //var urlApi = 'http://localhost/middleware/public/api/';
+    //var urlApi = 'https://middlepp.gevents.co/public/api/';
 
     jQuery("#savePassword").on('click',function(){
         jQuery("#formPassword").validate({
@@ -466,7 +468,7 @@ div.wpcf7 .ajax-loader.is-active {
                 jQuery('#savePassword').prop('disabled', true);
 
                 var emailC = jQuery("#email").val();
-                var url = "http://transformabogota40.gevents.co/nueva-contrasena";
+                var url = "http://entornopre.gevents.co/nueva-contrasena/";
                 var registro = 7;
 
                 jQuery.ajax({
