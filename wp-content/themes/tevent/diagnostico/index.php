@@ -587,7 +587,7 @@ get_header();
     foreach($regExp as $nombreCampo => $value){
         $expresion =  $value["pattern"];
         $patterns.='"'.$nombreCampo.'"'.": {
-            regex: '".$expresion."'
+            regex: ".$expresion."
         },
         ";
         $mensajes .= $nombreCampo.": {
