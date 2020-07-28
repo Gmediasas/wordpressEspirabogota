@@ -16,11 +16,15 @@
         var enviarData;
         var typeModal = 'modalEviadaData';
         $("#SaveTemp").click(function(event) {
+            $(".requerido").each(function(){$(this).removeClass('required');});
+            $('.requerido').css("border-color", '');
             enviarData = true;
             typeModal = 'modalEviadaDataTemp';
             $('#idEstado').val(37);
         });
         $("#SaveTemp2").click(function(event) {
+            $(".requerido").each(function(){$(this).removeClass('required');});
+            $('.requerido').css("border-color", '');
              enviarData = true;
             typeModal = 'modalEviadaDataTemp';
             $('#idEstado').val(37);
@@ -29,7 +33,7 @@
         var enviarDataA = [];
         $("#save_diagnostico").click(function(event) {
 
-            $("#formulariodiagnostico input").map(function() {
+            $("#formulariodiagnostico input.requerido ").map(function() {
 
                 if (this.type == "text") {
                     if (this.name != 's') {
@@ -58,7 +62,7 @@
                 }
             }).get();
 
-            $("select").map(function() {
+            $("select.requerido").map(function() {
                 if ($(this).val() == '' || $(this).val() == undefined || $(this).val() == 0) {
                     enviarDataA.push(false);
                     enviarDataA.push(this.name);
@@ -144,6 +148,7 @@
 function passForm(div) {
     $('.sections section').removeClass('active');
     $(div).addClass('active');
+    $('#formulariodiagnostico').valid();
 }
 
 function acordeon(div) {

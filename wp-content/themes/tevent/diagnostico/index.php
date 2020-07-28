@@ -514,7 +514,6 @@ get_header();
                                                         <?php if($cuestionariof3['codigo'] == 'radio-group'){ 
                                                                 include($_SERVER['DOCUMENT_ROOT'].$ulrPHPS."themes/tevent/diagnostico/forms/radio-group.php");
                                                             }elseif($cuestionariof3['codigo'] == 'text'){
-                                                                echo $_SERVER['DOCUMENT_ROOT'].$ulrPHPS."themes/tevent/diagnostico/forms/text.php";
                                                                 include($_SERVER['DOCUMENT_ROOT'].$ulrPHPS."themes/tevent/diagnostico/forms/text.php");
                                                             }elseif($cuestionariof3['codigo'] == 'select'){
                                                                 include($_SERVER['DOCUMENT_ROOT'].$ulrPHPS."themes/tevent/diagnostico/forms/select.php");
@@ -584,8 +583,9 @@ get_header();
         
         $patterns = "";
     $mensajes = "";
-    $expresion = "/^[a-zA-Z0-9\._-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,4}$/";
+    
     foreach($regExp as $nombreCampo => $value){
+        $expresion =  $value["message"];
         $patterns.='"'.$nombreCampo.'"'.": {
             regex: ".$expresion."
         },
