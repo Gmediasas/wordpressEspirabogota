@@ -128,3 +128,6 @@ body{ font-family: Roboto;}
     .menu_diagnostico li a{ width: 80px;}
     .logo_entorno { width: 75%;}
 }
+#formulariodiagnostico label.error {
+    color: red;
+}

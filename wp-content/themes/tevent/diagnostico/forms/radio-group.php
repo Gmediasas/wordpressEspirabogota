@@ -3,14 +3,14 @@
         ?>
         <div class="bg-purple radius p-lg-4 p-3 mt-4 c_options_question">
             <label>
-                <input type="radio" value="<?php echo $checkSelect['value']?>" name="<?php echo $cuestionariof3['nombre_campo'] ?>" <?php echo $required?> checked>
+                <input type="radio" <?php echo "class='class_".$className." ".$classInteractive."'"?> value="<?php echo $checkSelect['value']?>" name="<?php echo $cuestionariof3['nombre_campo'] ?>" <?php echo $required?> checked>
                 <p><?php echo $checkSelect['label']?></p>
             </label>
         </div> 
         <?php   } else {  ?>
             <div class="bg-purple radius p-lg-4 p-3 mt-4 c_options_question">
                 <label>
-                    <input type="radio" value="<?php echo $checkSelect['value']?>" name="<?php echo $cuestionariof3['nombre_campo'] ?>" <?php echo $required?> >
+                    <input type="radio" <?php echo "class='class_".$className." ".$classInteractive."'"?> value="<?php echo $checkSelect['value']?>" name="<?php echo $cuestionariof3['nombre_campo'] ?>" <?php echo $required?> >
                     <span><?php echo $checkSelect['label']?></span>
                 </label>
             </div> 

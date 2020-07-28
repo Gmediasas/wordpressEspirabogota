@@ -5,8 +5,63 @@ get_header();
   /*
   Template Name: landing-diagnostico
   */
-  include 'services.php';
 
+  include 'services.php';
+  $regExp=array();
+  $enabledFields = array();
+  $disabledFields = array();
+  $hiddenFields = array();
+  $showFields = array();
+  $allFiedlInteractive = array();
+  $mensajesValidacion = "";
+  
+  
+  $TodosLosCuestionarios = array($cuestionarios,$cuestionariosp3);
+  foreach($TodosLosCuestionarios as $Cuestionarios){
+    foreach ($cuestionarios['custom'] as $cuestionario) { 
+        
+    $mensajesValidacion .= "'".$cuestionario['nombre_campo']."': {
+         required: 'El campo (".$cuestionario['nombreCampo'].") es requerido'
+    },
+    ";
+      if(isset($cuestionario['regrecion']) && !empty($cuestionario['regrecion'])){
+          $regExp[$cuestionario['nombre_campo']] = array("pattern"=>$cuestionario['regrecion'],
+                'message'=>'El texto del campo ('.$cuestionario['nombreCampo'].') es invalido');
+      }
+      if(in_array($cuestionario['codigo'],array('select','radio-group'))){
+          $arraySelect = json_decode($cuestionario['valores'] ,true);
+          foreach($arraySelect as $dbA) { 
+              if(isset($dbA['oculto']) && !empty($dbA['oculto']) && $dbA['oculto']!='oculto'){
+                  $allFiedlInteractive[$cuestionario['nombre_campo']]="Interactive";
+                  $arrayValues = explode(",",$dbA['oculto']);
+                  foreach($arrayValues as $value){
+                      if($cuestionario['codigo'] == 'select'){
+                          $hiddenFields[$cuestionario['nombre_campo']][$dbA['value']][$value]=$value;
+                      }
+                      elseif($cuestionario['codigo'] == 'radio-group'){
+                          $disabledFields[$cuestionario['nombre_campo']][$dbA['value']][$value]=$value;
+                      }
+                  }
+              }
+              if(isset($dbA['mostrar']) && !empty($dbA['mostrar']) && $dbA['mostrar']!='mostrar'){
+                  $arrayValues = explode(",",$dbA['mostrar']);
+                  $allFiedlInteractive[$cuestionario['nombre_campo']]="Interactive";
+                  foreach($arrayValues as $value){
+                      if($cuestionario['codigo'] == 'select'){
+                          $showFields[$cuestionario['nombre_campo']][$dbA['value']][$value]=$value;
+                      }
+                      elseif($cuestionario['codigo'] == 'radio-group'){
+                          $enabledFields[$cuestionario['nombre_campo']][$dbA['value']][$value]=$value;
+                      }
+                  }
+              }
+          }
+      }
+    }
+  }
+   
+  
+  
 ?>
 	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 	
@@ -262,29 +317,39 @@ get_header();
                                                 } 
                                             }
                                         }?>
-                                        <?php  if($cuestionario['codigo'] == 'select'){ $arraySelect = json_decode($cuestionario['valores'] ,true); ?>
+                                        <?php  
+                                        $className = substr($cuestionario['nombre_campo'],0,strrpos(substr($cuestionario['nombre_campo'],0,strrpos($cuestionario['nombre_campo'],"_")),"_"));
+                                        $classInteractive = (isset($allFiedlInteractive[$cuestionario['nombre_campo']]))?" Interactive ":"";
+                                        if($cuestionario['required'] == 1){
+                                                $classInteractive .= " requerido ";
+                                            }
+                                        if($cuestionario['codigo'] == 'select'){ $arraySelect = json_decode($cuestionario['valores'] ,true); 
+                                        
+                                        ?>
                                             <div class="col-md-6  mb-4">
                                                 <label class="d-block px-3"><?php echo $cuestionario['nombreCampo'] ?></label>
-                                                <select name="<?php echo $cuestionario['nombre_campo'] ?>" id="" <?php echo $required?> >
+                                                <select name="<?php echo $cuestionario['nombre_campo'] ?>" id="" <?php echo $required?>  <?php echo "class='class_".$className." ".$classInteractive."'"?> >
                                                     <?php  foreach($arraySelect as $dbA) { if(  $dbA['value'] ==  $cuestionario['response']){ ?>
                                                         <option value="<?php echo $dbA['value']?>" selected><?php echo $dbA['label']?></option>
                                                     <?php   } else {  ?>
                                                         <option value="<?php echo $dbA['value']?>"><?php echo $dbA['label']?></option>
                                                     <?php   } }  ?>
-                                                </select>
+                                                </select><i class="fa fa-check check-ok"></i>
                                             </div>
-                                        <?php  }else if($cuestionario['codigo'] == 'radio-group'){ $check = json_decode($cuestionario['valores'] ,true);  ?>
+                                        <?php  }else if($cuestionario['codigo'] == 'radio-group'){ $check = json_decode($cuestionario['valores'] ,true); ?>
                                             <div class="col-md-6 mb-4">
                                                 <label class="d-block px-3"><?php echo $cuestionario['nombreCampo'] ?></label>
                                                 <div class="px-3 mt-3 pt-1">
                                                     <?php foreach($check as $checkSelect) { if(  $checkSelect['value'] ==  $cuestionario['response']){ ?>
                                                         <label>
-                                                            <input type="radio" checked value="<?php echo $checkSelect['value']?>" name="<?php echo $cuestionario['nombre_campo'] ?>" <?php echo $required?> >
+                                                            <input type="radio" checked <?php echo "class='class_".$className." ".$classInteractive."'"?> 
+                                                                   value="<?php echo $checkSelect['value']?>" name="<?php echo $cuestionario['nombre_campo'] ?>" <?php echo $required?> >
                                                             <span><?php echo $checkSelect['label']?></span>
                                                         </label>
                                                         <?php   } else {  ?>
                                                         <label>
-                                                            <input type="radio" value="<?php echo $checkSelect['value']?>" name="<?php echo $cuestionario['nombre_campo'] ?>" <?php echo $required?> >
+                                                            <input type="radio" <?php echo "class='class_".$className." ".$classInteractive."'"?> 
+                                                                   value="<?php echo $checkSelect['value']?>" name="<?php echo $cuestionario['nombre_campo'] ?>" <?php echo $required?> >
                                                             <span><?php echo $checkSelect['label']?></span>
                                                         </label>
                                                     <?php } } ?>
@@ -293,7 +358,9 @@ get_header();
                                         <?php }else{ ?>
                                                 <div class="col-md-6 mb-4">
                                                     <label class="d-block px-3"><?php echo $cuestionario['nombreCampo'] ?></label>
-                                                    <input type="<?php echo $cuestionario['codigo'] ?>"   name="<?php echo $cuestionario['nombre_campo'] ?>" <?php echo $required?> value="<?php echo $cuestionario['response'] ?>" >
+                                                    <input type="<?php echo $cuestionario['codigo'] ?>"  <?php echo "class='class_".$className." ".$classInteractive."'"?> 
+                                                           name="<?php echo $cuestionario['nombre_campo'] ?>" 
+                                                           id="<?php echo $cuestionario['nombre_campo'] ?>" <?php echo $required?> value="<?php echo $cuestionario['response'] ?>" >
                                                 </div>
                                         <?php } ?>
                                 <?php } ?>  
@@ -427,7 +494,15 @@ get_header();
                                                     <a href="javascript:void(0);" class="text-white p-3 d-block text-decoration-none link_acordeon"><?php echo strip_tags($cuestionariof3['grupo_formulario'])?></a>
                                                 <?php }?>											
                                                 
-                                            <?php }?>	 
+                                            <?php }
+                                            
+                                            $className = substr($cuestionariof3['nombre_campo'],0,strrpos(substr($cuestionariof3['nombre_campo'],0,strrpos($cuestionariof3['nombre_campo'],"_")),"_"));
+                                        
+                                            $classInteractive = (isset($allFiedlInteractive[$cuestionario['nombre_campo']]))?" Interactive ":"";
+                                            if($cuestionario['required'] == 1){
+                                                    $classInteractive .= " requerido ";
+                                                }
+                                            ?>	 
                                                 
                                             <div class="mt-4 radius container_question p-lg-4 p-3" style="display:block">
                                                 <div>										 
@@ -439,6 +514,7 @@ get_header();
                                                         <?php if($cuestionariof3['codigo'] == 'radio-group'){ 
                                                                 include($_SERVER['DOCUMENT_ROOT'].$ulrPHPS."themes/tevent/diagnostico/forms/radio-group.php");
                                                             }elseif($cuestionariof3['codigo'] == 'text'){
+                                                                echo $_SERVER['DOCUMENT_ROOT'].$ulrPHPS."themes/tevent/diagnostico/forms/text.php";
                                                                 include($_SERVER['DOCUMENT_ROOT'].$ulrPHPS."themes/tevent/diagnostico/forms/text.php");
                                                             }elseif($cuestionariof3['codigo'] == 'select'){
                                                                 include($_SERVER['DOCUMENT_ROOT'].$ulrPHPS."themes/tevent/diagnostico/forms/select.php");
@@ -490,5 +566,157 @@ get_header();
 
 <script src="<?php echo get_template_directory_uri(); ?>/diagnostico/_/scripts/jquery.min.js"></script>
 <script type="text/javascript" src="../wp-content/themes/tevent/diagnostico/_/scripts/functions.js"></script>
+
 	<!-- #main -->
-<?php get_footer(); ?>
+
+        <script type="text/javascript" src="../wp-content/themes/tevent/diagnostico/_/scripts/jquery.validate.min.js"></script>
+        <script type='text/javascript'>
+            $( document ).ready(function() {
+        $.validator.addMethod(
+            "regex",
+            function(value, element, regexp) {
+                var check = false;
+                return this.optional(element) || regexp.test(value);
+            },
+            "Favor revisa el valor ingresado."
+        );
+        <?php
+        
+        $patterns = "";
+    $mensajes = "";
+    $expresion = "/^[a-zA-Z0-9\._-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,4}$/";
+    foreach($regExp as $nombreCampo => $value){
+        $patterns.='"'.$nombreCampo.'"'.": {
+            regex: ".$expresion."
+        },
+        ";
+        $mensajes .= $nombreCampo.": {
+            regex: '".$value["message"]."'
+        },
+        "; 
+        
+    }
+    echo "$('#formulariodiagnostico').validate({
+        rules: {
+            ".$patterns."
+        },
+        messages: {
+            ".$mensajesValidacion."
+            ".$mensajes."
+            }
+    });";
+    
+       
+//Ocultar todos los campos que se muestran segun una condicion dada
+if(count($showFields)>0 || count($hiddenFields)>0){
+    foreach($showFields as $field =>$values){
+        foreach($values as $items){
+            foreach($items as $value){
+                echo '$(".class_'.$value.'").parent().hide();';
+                echo '$(".class_'.$value.'").attr("disabled", true);';
+            }
+        }
+    }
+    foreach($hiddenFields as $field =>$values){
+        foreach($values as $items){
+            foreach($items as $value){
+                echo '$(".class_'.$value.'").parent().hide();';
+                echo '$(".class_'.$value.'").attr("disabled", true);';
+            }
+        }
+    }
+}
+//deshabilitar todos los campos de dependencias
+ if(count($enabledFields)>0 || count($disabledFields)>0){
+    foreach($enabledFields as $field =>$values){
+        foreach($values as $items){
+            foreach($items as $value){
+                echo '$(".class_'.$value.'").attr("disabled", true);';
+            }
+        }
+    }
+    foreach($disabledFields as $field =>$values){
+        foreach($values as $value){
+            echo '$(".class_'.$value.'").attr("disabled", true);';
+        }
+    }
+}
+//mostrar las que esten seleccionadas
+?>
+    function ShowHideSelect(obj){
+        valueSelected = $(obj).val();
+        nameSelected = $(obj).attr("name");
+        
+        <?php
+            
+            foreach($showFields as $field =>$values){
+                foreach($values as $key =>$items){
+                    echo 'if(nameSelected=="'.$field.'" && valueSelected=="'.$key.'"){';
+                    foreach($items as $value){
+                        echo '$(".class_'.$value.'").parent().show();';
+                        echo '$(".class_'.$value.'").attr("disabled", false);';
+                    }
+                    echo '}
+                        ';
+                }
+            }
+            foreach($hiddenFields as $field =>$values){
+                foreach($values as $key =>$items){
+                    echo 'if(nameSelected=="'.$field.'" && valueSelected=="'.$key.'"){';
+                    foreach($items as $value){
+                        echo '$(".class_'.$value.'").parent().hide();';
+                        echo '$(".class_'.$value.'").attr("disabled", true);';
+                    }
+                    echo '}
+                        ';
+                }
+            }
+        ?>
+        
+    }
+    function EnabledDisabled(obj){
+        valueSelected = $(obj).val();
+        nameSelected = $(obj).attr("name");
+        
+        <?php
+            
+            foreach($enabledFields as $field =>$values){
+                foreach($values as $key =>$items){
+                    echo 'if(nameSelected=="'.$field.'" && valueSelected=="'.$key.'"){';
+                    foreach($items as $value){
+                        echo '$(".class_'.$value.'").attr("disabled", false);';
+                    }
+                    echo '}
+                        ';
+                }
+            }
+            foreach($disabledFields as $field =>$values){
+                foreach($values as $key =>$items){
+                    echo 'if(nameSelected=="'.$field.'" && valueSelected=="'.$key.'"){';
+                    foreach($items as $value){
+                        echo '$(".class_'.$value.'").attr("disabled", true);';
+                    }
+                    echo '}
+                        ';
+                }
+            }
+        ?>
+        
+    }
+    
+    $("select.Interactive").each(function(){
+        ShowHideSelect(this);
+    });
+    $("select.Interactive").change(function(){
+        ShowHideSelect(this);
+    });
+    $("input.Interactive").each(function(){
+        EnabledDisabled(this);
+    });
+    $("input.Interactive").click(function(){
+        EnabledDisabled(this);
+    });
+});
+</script>
+<?php
+get_footer(); ?>

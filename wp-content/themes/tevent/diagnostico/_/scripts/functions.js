@@ -21,7 +21,7 @@
             $('#idEstado').val(37);
         });
         $("#SaveTemp2").click(function(event) {
-            enviarData = true;
+             enviarData = true;
             typeModal = 'modalEviadaDataTemp';
             $('#idEstado').val(37);
         });
@@ -73,15 +73,20 @@
 
             if (enviarDataA.includes(false) == true) {
                 enviarData = false;
+                $(".requerido").each(function(){$(this).addClass('required');});
+                $('#formulariodiagnostico').valid();
             } else {
                 enviarData = true;
             }
             console.log('data', enviarData);
+            
             typeModal = 'modalEviadaData';
             $('#idEstado').val(38);
         });
 
         jQuery("#formulariodiagnostico").on("submit", function(e) {
+            e.preventDefault();
+            return false;
             if (enviarData == true) {
                 jQuery("#loadMe").modal({
                     backdrop: "static", //remove ability to close modal with click
