@@ -89,8 +89,6 @@
         });
 
         jQuery("#formulariodiagnostico").on("submit", function(e) {
-            e.preventDefault();
-            return false;
             if (enviarData == true) {
                 jQuery("#loadMe").modal({
                     backdrop: "static", //remove ability to close modal with click
