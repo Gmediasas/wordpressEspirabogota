@@ -4,10 +4,10 @@ $idProgram = 1;
 //Gestión de errores
 $postHeaders = array('Content-Type: application/json');
 
-$url = 'http://localhost/middleware/public/api';
-//$url = 'https://middlepp.gevents.co/public/api';
+//$url = 'http://localhost/middleware/public/api';
+$url = 'https://middlepp.gevents.co/public/api';
 
-$apiUrl = $url.'/getFormCustomProgram/'.$idProgram;
+$apiUrl = $url.'/getFormCustomProgram/'.$idProgram.'/1';
 $curl = curl_init($apiUrl);
 curl_setopt($curl, CURLOPT_ENCODING, "");
 curl_setopt($curl, CURLOPT_HTTPHEADER, $postHeaders);
@@ -15,7 +15,6 @@ curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 $json = curl_exec($curl);
 $custom = json_decode($json, true);
 curl_close($curl);
-
 
 $postToken = array('Content-Type: application/json','Authorization: Bearer '.$_SESSION['token']);
 $apiUrlResponse = $url.'/consult_employee_user_program/'.$idProgram."/".$userId;
@@ -54,7 +53,7 @@ $diagUserP = curl_exec($curlEmployeediagP);
 $diagnosticoUserP = json_decode($diagUserP, true);
 curl_close($curlEmployeediagP);
 
-$apiUrlCuestionario = $url.'/get_edit_consult_form/7';
+$apiUrlCuestionario = $url.'/get_edit_consult_form/16';
 $curlCuestionario = curl_init($apiUrlCuestionario);
 curl_setopt($curlCuestionario, CURLOPT_ENCODING, "");
 curl_setopt($curlCuestionario, CURLOPT_HTTPHEADER, $postToken);
@@ -63,7 +62,7 @@ $jsonCuestionario = curl_exec($curlCuestionario);
 $cuestionarios = json_decode($jsonCuestionario, true);
 curl_close($curlCuestionario);
 
-$apiUrlCuestionariof3 = $url.'/get_edit_consult_form/5';
+$apiUrlCuestionariof3 = $url.'/get_edit_consult_form/15';
 $curlCuestionariof3 = curl_init($apiUrlCuestionariof3);
 curl_setopt($curlCuestionariof3, CURLOPT_ENCODING, "");
 curl_setopt($curlCuestionariof3, CURLOPT_HTTPHEADER, $postToken);
@@ -71,5 +70,3 @@ curl_setopt($curlCuestionariof3, CURLOPT_RETURNTRANSFER, true);
 $jsonCuestionariof3 = curl_exec($curlCuestionariof3);
 $cuestionariosp3 = json_decode($jsonCuestionariof3, true);
 curl_close($curlCuestionariof3);
-
-?>

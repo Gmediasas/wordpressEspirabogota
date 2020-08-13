@@ -17,17 +17,27 @@ get_header();
   
   
   $TodosLosCuestionarios = array($cuestionarios,$cuestionariosp3);
+  $Path = dirname( __FILE__ );
+  
   foreach($TodosLosCuestionarios as $Cuestionarios){
     foreach ($cuestionarios['custom'] as $cuestionario) { 
         
-    $mensajesValidacion .= "'".$cuestionario['nombre_campo']."': {
+     if(isset($cuestionario['regrecion']) && !empty($cuestionario['regrecion'])){
+          $regExp[$cuestionario['nombre_campo']] = array("pattern"=>$cuestionario['regrecion'],
+                'message'=>'El texto del campo ('.$cuestionario['nombreCampo'].') es invalido');
+      
+          $mensajesValidacion .= "'".$cuestionario['nombre_campo']."': {
+         required: 'El campo (".$cuestionario['nombreCampo'].") es requerido',
+         regex: 'El texto del campo (".$cuestionario['nombreCampo'].") es invalido'
+        },
+        ";
+     } else {
+        $mensajesValidacion .= "'".$cuestionario['nombre_campo']."': {
          required: 'El campo (".$cuestionario['nombreCampo'].") es requerido'
     },
     ";
-      if(isset($cuestionario['regrecion']) && !empty($cuestionario['regrecion'])){
-          $regExp[$cuestionario['nombre_campo']] = array("pattern"=>$cuestionario['regrecion'],
-                'message'=>'El texto del campo ('.$cuestionario['nombreCampo'].') es invalido');
-      }
+     }
+     
       if(in_array($cuestionario['codigo'],array('select','radio-group'))){
           $arraySelect = json_decode($cuestionario['valores'] ,true);
           foreach($arraySelect as $dbA) { 
@@ -107,6 +117,7 @@ get_header();
                 <input type="hidden" name="anfitrionId" value="<?php echo $employee['employee']['id'] ?>">
                 <input type="hidden" name="idProgram" value="<?php echo $idProgram ?>">
                 <input type="hidden" name="idEstado" id="idEstado" value="38">
+                <input type="hidden" name="arrayForm" id="idEstado" value="16,15">
             <!--paso1-->
                 <section class="active my-md-5 py-md-5 my-4 py-4 f1">
                     <div class="menu_diagnostico">
@@ -131,21 +142,22 @@ get_header();
                                 <input type="text" value="<?php echo $employee['employee']['empresa'] ?>" disabled>
                             </div>
                             <?php
-
+                             
+                             
                             foreach ($custom['customFormulario'] as $customCampos) {
 
                                 if($customCampos['orden'] < 9){
                                     if($customCampos['campo_custom_id'] == 2)
                                         if($customCampos['valores'] == '*')
-                                            include($_SERVER['DOCUMENT_ROOT'].$ulrPHPS."themes/tevent/diagnostico/forms/form_local.php");
+                                            include($Path."/forms/form_local.php");
                                         elseif($customCampos['valores'] == '+')
-                                            include($_SERVER['DOCUMENT_ROOT'].$ulrPHPS."themes/tevent/diagnostico/forms/form_act.php");
+                                            include($Path."/forms/form_act.php");
                                         elseif($customCampos['valores'] == '-')
-                                            include($_SERVER['DOCUMENT_ROOT'].$ulrPHPS."themes/tevent/diagnostico/forms/form_act2.php");
+                                            include($Path."/forms/form_act2.php");
                                         else
-                                            include($_SERVER['DOCUMENT_ROOT'].$ulrPHPS."themes/tevent/diagnostico/forms/form_select.php");
+                                            include($Path."/forms/form_select.php");
                                     else
-                                        include($_SERVER['DOCUMENT_ROOT'].$ulrPHPS."themes/tevent/diagnostico/forms/form_1.php");
+                                        include($Path."/forms/form_1.php");
                                 }
                             }
 
@@ -186,7 +198,7 @@ get_header();
                             foreach ($custom['customFormulario'] as $customCampos) {
 
                                 if($customCampos['orden'] == 9){
-                                    include($_SERVER['DOCUMENT_ROOT'].$ulrPHPS."themes/tevent/diagnostico/forms/form_1.php");
+                                    include($Path."/forms/form_1.php");
                                 }
                             }
                             ?>
@@ -199,7 +211,7 @@ get_header();
                             foreach ($custom['customFormulario'] as $customCampos) {
 
                                 if($customCampos['orden'] == 10){
-                                    include($_SERVER['DOCUMENT_ROOT'].$ulrPHPS."themes/tevent/diagnostico/forms/form_1.php");
+                                    include($Path."/forms/form_1.php");
                                 }
                             }
                             ?>
@@ -334,7 +346,7 @@ get_header();
                                                     <?php   } else {  ?>
                                                         <option value="<?php echo $dbA['value']?>"><?php echo $dbA['label']?></option>
                                                     <?php   } }  ?>
-                                                </select><i class="fa fa-check check-ok"></i>
+                                                </select>
                                             </div>
                                         <?php  }else if($cuestionario['codigo'] == 'radio-group'){ $check = json_decode($cuestionario['valores'] ,true); ?>
                                             <div class="col-md-6 mb-4">
@@ -512,11 +524,11 @@ get_header();
                                                 <?php   if( $cuestionariof3['valores'] != 'N/A'){?>	
                                                     <div class="bg-purple radius p-lg-4 p-3 mt-4 c_options_question">
                                                         <?php if($cuestionariof3['codigo'] == 'radio-group'){ 
-                                                                include($_SERVER['DOCUMENT_ROOT'].$ulrPHPS."themes/tevent/diagnostico/forms/radio-group.php");
+                                                                include($Path."/forms/radio-group.php");
                                                             }elseif($cuestionariof3['codigo'] == 'text'){
-                                                                include($_SERVER['DOCUMENT_ROOT'].$ulrPHPS."themes/tevent/diagnostico/forms/text.php");
+                                                                include($Path."/forms/text.php");
                                                             }elseif($cuestionariof3['codigo'] == 'select'){
-                                                                include($_SERVER['DOCUMENT_ROOT'].$ulrPHPS."themes/tevent/diagnostico/forms/select.php");
+                                                                include($Path."/forms/select.php");
                                                             } ?>
                                                     </div>
                                                 <?php }?>											
@@ -602,7 +614,6 @@ get_header();
         },
         messages: {
             ".$mensajesValidacion."
-            ".$mensajes."
             }
     });";
     
