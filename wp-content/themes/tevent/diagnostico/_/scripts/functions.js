@@ -41,7 +41,7 @@
                             enviarDataA.push(false);
                             enviarDataA.push(this.name);
                             enviarDataA.push('text');
-                            $('input[name=' + this.name + ']').css("border-color", 'red');
+                            //$('input[name=' + this.name + ']').css("border-color", 'red');
                         }
                     }
 
@@ -50,14 +50,14 @@
                         enviarDataA.push(false);
                         enviarDataA.push(this.name);
                         enviarDataA.push('radio');
-                        $('input[name=' + this.name + ']').css("border-color", 'red');
+                        //$('input[name=' + this.name + ']').css("border-color", 'red');
                     }
                 } else if (this.type == "number") {
                     if ($(this).val() == '' || $(this).val() == undefined) {
                         enviarDataA.push(false);
                         enviarDataA.push(this.name);
                         enviarDataA.push('number');
-                        $('input[name=' + this.name + ']').css("border-color", 'red');
+                        //$('input[name=' + this.name + ']').css("border-color", 'red');
                     }
                 }
             }).get();
@@ -67,22 +67,29 @@
                     enviarDataA.push(false);
                     enviarDataA.push(this.name);
                     enviarDataA.push('select');
-                    $('input[name=' + this.name + ']').css("border-color", 'red');
+                    //$('input[name=' + this.name + ']').css("border-color", 'red');
                 }
 
             }).get();
 
 
-            console.log('array', enviarDataA);
+            //console.log('array', enviarDataA);
 
             if (enviarDataA.includes(false) == true) {
                 enviarData = false;
                 $(".requerido").each(function(){$(this).addClass('required');});
+				$('label.error').remove();
                 $('#formulariodiagnostico').valid();
+				passForm(".f2");
+				if($(".f2").find('label.error').length>0){
+					
+				}else{
+					passForm(".f3");
+				}
             } else {
                 enviarData = true;
             }
-            console.log('data', enviarData);
+            //console.log('data', enviarData);
             
             typeModal = 'modalEviadaData';
             $('#idEstado').val(38);
@@ -139,13 +146,14 @@
 
 
 
-
+$('a[title="Registro"]').parent().hide();
     });
 })(jQuery);
 
 function passForm(div) {
     $('.sections section').removeClass('active');
     $(div).addClass('active');
+	$('html, body').animate({scrollTop:0}, 1);
     $('#formulariodiagnostico').valid();
 }
 
@@ -155,4 +163,15 @@ function acordeon(div) {
     } else {
         $(div).removeClass('active').children('.container_question').slideUp(300);
     }
+}
+
+function open_extern(obj){
+	if(obj==1){
+	//window.open("https://younoodle.com/", "YouNoodle", "width=800, height=600");
+		jQuery("#modalEviadaData").modal("hide");
+		passForm('.f4');
+	}else{
+		jQuery("#modalEviadaData").modal("hide");
+		passForm('.f4');
+	}
 }

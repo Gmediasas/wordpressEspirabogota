@@ -15,29 +15,38 @@ get_header();
   $allFiedlInteractive = array();
   $mensajesValidacion = "";
   
+  $respuestasCustom=array();
+  foreach ($diagnosticoUserP["respuesta"] as $respuestasDiagnostico) { 
+	$respuestasCustom[$respuestasDiagnostico["campo_form_custom_id"]] = $respuestasDiagnostico["response"];
+  }
+
+
+foreach ($cuestionarios["custom"] as $keyCustom => $cuestionario) { 
+	if(isset($respuestasCustom[$cuestionario["id"]]) && empty($cuestionarios["custom"][$keyCustom]["response"]) ){
+		$cuestionarios["custom"][$keyCustom]["response"] = $respuestasCustom[$cuestionario["id"]];
+	}
+  }
+  
+foreach ($cuestionariosp3["custom"] as $keyCustom => $cuestionario) { 
+	if(isset($respuestasCustom[$cuestionario["id"]]) && empty($cuestionariosp3["custom"][$keyCustom]["response"]) ){
+		$cuestionariosp3["custom"][$keyCustom]["response"] = $respuestasCustom[$cuestionario["id"]];
+	}
+  }
+  
   
   $TodosLosCuestionarios = array($cuestionarios,$cuestionariosp3);
-  $Path = dirname( __FILE__ );
-  
-  foreach($TodosLosCuestionarios as $Cuestionarios){
-    foreach ($cuestionarios['custom'] as $cuestionario) { 
+  foreach($TodosLosCuestionarios as $oneCuestionarios){
+	  $campos="custom";
+    foreach ($oneCuestionarios[$campos] as $cuestionario) { 
         
-     if(isset($cuestionario['regrecion']) && !empty($cuestionario['regrecion'])){
-          $regExp[$cuestionario['nombre_campo']] = array("pattern"=>$cuestionario['regrecion'],
-                'message'=>'El texto del campo ('.$cuestionario['nombreCampo'].') es invalido');
-      
-          $mensajesValidacion .= "'".$cuestionario['nombre_campo']."': {
-         required: 'El campo (".$cuestionario['nombreCampo'].") es requerido',
-         regex: 'El texto del campo (".$cuestionario['nombreCampo'].") es invalido'
-        },
-        ";
-     } else {
-        $mensajesValidacion .= "'".$cuestionario['nombre_campo']."': {
-         required: 'El campo (".$cuestionario['nombreCampo'].") es requerido'
+    $mensajesValidacion .= "'".$cuestionario['nombre_campo']."': {
+         required: 'El campo (".preg_replace("[\n|\r|\n\r]", "", strip_tags($cuestionario['nombreCampo'])).") es requerido'
     },
     ";
-     }
-     
+      if(isset($cuestionario['regrecion']) && !empty($cuestionario['regrecion'])){
+          $regExp[$cuestionario['nombre_campo']] = array("pattern"=>$cuestionario['regrecion'],
+                'message'=>'El texto del campo ('.$cuestionario['nombreCampo'].') es invalido');
+      }
       if(in_array($cuestionario['codigo'],array('select','radio-group'))){
           $arraySelect = json_decode($cuestionario['valores'] ,true);
           foreach($arraySelect as $dbA) { 
@@ -45,22 +54,28 @@ get_header();
                   $allFiedlInteractive[$cuestionario['nombre_campo']]="Interactive";
                   $arrayValues = explode(",",$dbA['oculto']);
                   foreach($arrayValues as $value){
-                      if($cuestionario['codigo'] == 'select'){
+                      if(($cuestionario['codigo'] == 'select' && "organizacion_16_16"!=$cuestionario['nombre_campo'])||"instalada_12_15"==$cuestionario['nombre_campo']){
+						  $allFiedlInteractive[$cuestionario['nombre_campo']]="Interactives";
                           $hiddenFields[$cuestionario['nombre_campo']][$dbA['value']][$value]=$value;
+						  $hiddenFields[$cuestionario['nombre_campo']][$dbA['value']][" "]=" ";
                       }
-                      elseif($cuestionario['codigo'] == 'radio-group'){
+                      elseif(($cuestionario['codigo'] == 'radio-group' || "organizacion_16_16"==$cuestionario['nombre_campo'])&&"instalada_12_15"!=$cuestionario['nombre_campo']){
+						  $allFiedlInteractive[$cuestionario['nombre_campo']]="Interactiver";
                           $disabledFields[$cuestionario['nombre_campo']][$dbA['value']][$value]=$value;
+						  $disabledFields[$cuestionario['nombre_campo']][$dbA['value']][" "]=" ";
                       }
                   }
               }
               if(isset($dbA['mostrar']) && !empty($dbA['mostrar']) && $dbA['mostrar']!='mostrar'){
                   $arrayValues = explode(",",$dbA['mostrar']);
-                  $allFiedlInteractive[$cuestionario['nombre_campo']]="Interactive";
+				  $allFiedlInteractive[$cuestionario['nombre_campo']]="Interactive";
                   foreach($arrayValues as $value){
-                      if($cuestionario['codigo'] == 'select'){
+                      if(($cuestionario['codigo'] == 'select' && "organizacion_16_16"!=$cuestionario['nombre_campo'])||"instalada_12_15"==$cuestionario['nombre_campo']){
+						  $allFiedlInteractive[$cuestionario['nombre_campo']]="Interactives";
                           $showFields[$cuestionario['nombre_campo']][$dbA['value']][$value]=$value;
                       }
-                      elseif($cuestionario['codigo'] == 'radio-group'){
+                      elseif(($cuestionario['codigo'] == 'radio-group' || "organizacion_16_16"==$cuestionario['nombre_campo'])||"instalada_12_15"!=$cuestionario['nombre_campo']){
+						  $allFiedlInteractive[$cuestionario['nombre_campo']]="Interactiver";
                           $enabledFields[$cuestionario['nombre_campo']][$dbA['value']][$value]=$value;
                       }
                   }
@@ -77,6 +92,38 @@ get_header();
 	
 	<link rel="stylesheet" href="../wp-content/themes/tevent/diagnostico/_/styles/bootstrap.min.css">
 	<link rel="stylesheet" href="../wp-content/themes/tevent/diagnostico/_/styles/main.css">
+
+    <style>
+
+.alert-info {
+    color: #ffffff;
+    border-left: 2px solid rgba(237,0,255,1) !important;
+    background-color: rgb(255 255 255) !important;
+    -webkit-box-shadow: 0px 3px 6px 0px rgba(183,31,56,0.3) !important;
+    -moz-box-shadow: 0px 3px 6px 0px rgba(183,31,56,0.3) !important;
+    box-shadow: 0px 3px 6px 0px rgb(237 0 255 / 30%) !important;
+}
+
+    @media (max-width: 1424px) {
+    .btns {font-size: 14px;}
+    }
+
+    @media (min-width: 1024px){
+    .btns {font-size: 14px;}
+    }
+
+    @media (max-width: 991px){
+    .btns {font-size: 14px;}
+    }
+
+    @media (max-width: 767px) {
+    .btns {font-size: 14px;}
+    }
+	iframe {
+		width: 100%;
+}
+
+    </style>
   
     <?php 
     $fechahabilitacion= '2020-07-17';
@@ -102,7 +149,7 @@ get_header();
             <a href="javascript:void(0);" class="d-lg-none px-lg-4 px-3 tit_menu radius d-block">Selecciona una opción</a>
             <div class="row align-content-center h-100 no-gutters">
                 <div class="c_menu col-12">
-                    <ul class="list-unstyled  mb-0">
+                    <ul class="list-unstyled mb-0">
                         <li class=""><a href="../diagnostico/bienvenida">Bienvenida</a></li>
                         <li class=""><a href="diagnostico/" class="active">Diagnóstico</a></li> 
                         <li class=""><a href="mi-cuenta/">Mi cuenta</a></li>
@@ -117,7 +164,7 @@ get_header();
                 <input type="hidden" name="anfitrionId" value="<?php echo $employee['employee']['id'] ?>">
                 <input type="hidden" name="idProgram" value="<?php echo $idProgram ?>">
                 <input type="hidden" name="idEstado" id="idEstado" value="38">
-                <input type="hidden" name="arrayForm" id="idEstado" value="16,15">
+				<input type="hidden" name="arrayForm" id="idEstado" value="16,15">
             <!--paso1-->
                 <section class="active my-md-5 py-md-5 my-4 py-4 f1">
                     <div class="menu_diagnostico">
@@ -126,14 +173,26 @@ get_header();
                                 <a href="javascript:void(0);"> <span class="d-md-block d-none">Información empresa </span></a>
                             </li>
                             <li class="mx-2">
-                                <a href="javascript:void(0);">  <span class="d-md-block d-none">Información adicional</span></a>
+                                <a href="javascript:passForm('.f2');">  <span class="d-md-block d-none">Información adicional</span></a>
                             </li>
                             <li class="mx-2">
-                                <a href="javascript:void(0);"> <span class="d-md-block d-none">Cuestionario de diagnóstico</span></a>
+                                <a href="javascript:passForm('.f3');"> <span class="d-md-block d-none">Cuestionario de diagnóstico</span></a>
                             </li>
                         </ul>
                     </div>
-                    <h3 class="text-center my-md-5 my-4 pt-md-5 pb-3 px-3">Información de la empresa</h3>
+					<?php //pt-md-5 my-md-5 my-4 pb-3 px-3 ?>
+					<h3 class="text-center my-md-5 ">Información de la empresa</h3>
+					<?php if(isset($diagnosticoUserP['employee']) && $diagnosticoUserP['employee']['estado_diagnostico_id'] == 38){ ?>
+						
+						<div class="alert alert-info" role="alert">
+							<p style="text-align: center;">Para continuar con el proceso de diagnóstico, debe dirigirse a la Evaluación de Expertos (internacionales y/o nacionales).</p>
+							<hr style="margin-top: 10px !important;margin-bottom: 10px !important;">
+							<p class="mb-0 mx-auto" style="text-align: center;">
+								<button type="button" onclick="open_extern(0)" class="btns text-white px-5 d-inline-block mx-auto">Ir a evaluación de expertos</button>
+							</p>
+						</div>
+						
+					<?php } ?>
                     <div class="px-lg-5 px-3 new_form">
                         <div class="row">
                     
@@ -142,22 +201,21 @@ get_header();
                                 <input type="text" value="<?php echo $employee['employee']['empresa'] ?>" disabled>
                             </div>
                             <?php
-                             
-                             
+
                             foreach ($custom['customFormulario'] as $customCampos) {
 
                                 if($customCampos['orden'] < 9){
                                     if($customCampos['campo_custom_id'] == 2)
                                         if($customCampos['valores'] == '*')
-                                            include($Path."/forms/form_local.php");
+                                            include($_SERVER['DOCUMENT_ROOT'].$ulrPHPS."themes/tevent/diagnostico/forms/form_local.php");
                                         elseif($customCampos['valores'] == '+')
-                                            include($Path."/forms/form_act.php");
+                                            include($_SERVER['DOCUMENT_ROOT'].$ulrPHPS."themes/tevent/diagnostico/forms/form_act.php");
                                         elseif($customCampos['valores'] == '-')
-                                            include($Path."/forms/form_act2.php");
+                                            include($_SERVER['DOCUMENT_ROOT'].$ulrPHPS."themes/tevent/diagnostico/forms/form_act2.php");
                                         else
-                                            include($Path."/forms/form_select.php");
+                                            include($_SERVER['DOCUMENT_ROOT'].$ulrPHPS."themes/tevent/diagnostico/forms/form_select.php");
                                     else
-                                        include($Path."/forms/form_1.php");
+                                        include($_SERVER['DOCUMENT_ROOT'].$ulrPHPS."themes/tevent/diagnostico/forms/form_1.php");
                                 }
                             }
 
@@ -198,7 +256,7 @@ get_header();
                             foreach ($custom['customFormulario'] as $customCampos) {
 
                                 if($customCampos['orden'] == 9){
-                                    include($Path."/forms/form_1.php");
+                                    include($_SERVER['DOCUMENT_ROOT'].$ulrPHPS."themes/tevent/diagnostico/forms/form_1.php");
                                 }
                             }
                             ?>
@@ -211,7 +269,7 @@ get_header();
                             foreach ($custom['customFormulario'] as $customCampos) {
 
                                 if($customCampos['orden'] == 10){
-                                    include($Path."/forms/form_1.php");
+                                    include($_SERVER['DOCUMENT_ROOT'].$ulrPHPS."themes/tevent/diagnostico/forms/form_1.php");
                                 }
                             }
                             ?>
@@ -232,18 +290,17 @@ get_header();
                     <div class="menu_diagnostico">
                         <ul class="list-unstyled d-flex justify-content-center">
                             <li class="active mx-2">
-                                <a href="javascript:void(0);"> <span class="d-md-block d-none">Información empresa</span></a>
+                                <a href="javascript:passForm('.f1');"> <span class="d-md-block d-none">Información empresa</span></a>
                             </li>
                             <li class="mx-2 active">
                                 <a href="javascript:void(0);"> <span class="d-md-block d-none">Información adicional</span></a>
                             </li>
                             <li class="mx-2">
-                                <a href="javascript:void(0);"><span class="d-md-block d-none">Cuestionario de diagnóstico</span></a>
+                                <a href="javascript:passForm('.f3');"><span class="d-md-block d-none">Cuestionario de diagnóstico</span></a>
                             </li>
                         </ul>
                     </div>
-                    <h3 class="text-center my-md-5 my-4 pt-md-5 pb-3 px-3">Información adicional </h3>
-
+                    <h3 class="text-center  my-md-5">Información adicional </h3>
                     
                     <?php if(!empty($diagnosticoUser['custom'][0]['estado_diagnostico_id']) && $diagnosticoUser['custom'][0]['estado_diagnostico_id'] != 37){?>
                         <div class="px-lg-5 px-3 new_form">
@@ -331,7 +388,7 @@ get_header();
                                         }?>
                                         <?php  
                                         $className = substr($cuestionario['nombre_campo'],0,strrpos(substr($cuestionario['nombre_campo'],0,strrpos($cuestionario['nombre_campo'],"_")),"_"));
-                                        $classInteractive = (isset($allFiedlInteractive[$cuestionario['nombre_campo']]))?" Interactive ":"";
+                                        $classInteractive = (isset($allFiedlInteractive[$cuestionario['nombre_campo']]))?" {$allFiedlInteractive[$cuestionario['nombre_campo']]} ":"";
                                         if($cuestionario['required'] == 1){
                                                 $classInteractive .= " requerido ";
                                             }
@@ -353,26 +410,28 @@ get_header();
                                                 <label class="d-block px-3"><?php echo $cuestionario['nombreCampo'] ?></label>
                                                 <div class="px-3 mt-3 pt-1">
                                                     <?php foreach($check as $checkSelect) { if(  $checkSelect['value'] ==  $cuestionario['response']){ ?>
-                                                        <label>
+                                                        <div>
                                                             <input type="radio" checked <?php echo "class='class_".$className." ".$classInteractive."'"?> 
                                                                    value="<?php echo $checkSelect['value']?>" name="<?php echo $cuestionario['nombre_campo'] ?>" <?php echo $required?> >
                                                             <span><?php echo $checkSelect['label']?></span>
-                                                        </label>
+                                                        </div>
                                                         <?php   } else {  ?>
-                                                        <label>
+                                                        <div>
                                                             <input type="radio" <?php echo "class='class_".$className." ".$classInteractive."'"?> 
                                                                    value="<?php echo $checkSelect['value']?>" name="<?php echo $cuestionario['nombre_campo'] ?>" <?php echo $required?> >
                                                             <span><?php echo $checkSelect['label']?></span>
-                                                        </label>
+                                                        </div>
                                                     <?php } } ?>
                                                 </div>
                                             </div>
                                         <?php }else{ ?>
                                                 <div class="col-md-6 mb-4">
+													<div>
                                                     <label class="d-block px-3"><?php echo $cuestionario['nombreCampo'] ?></label>
                                                     <input type="<?php echo $cuestionario['codigo'] ?>"  <?php echo "class='class_".$className." ".$classInteractive."'"?> 
                                                            name="<?php echo $cuestionario['nombre_campo'] ?>" 
                                                            id="<?php echo $cuestionario['nombre_campo'] ?>" <?php echo $required?> value="<?php echo $cuestionario['response'] ?>" >
+													</div>
                                                 </div>
                                         <?php } ?>
                                 <?php } ?>  
@@ -381,7 +440,9 @@ get_header();
                                 <hr>
                             </div> 
                             <div class="arrows clearfix mt-4 text-center">
+							<?php if(!isset($diagnosticoUserP['employee']) || $diagnosticoUserP['employee']['estado_diagnostico_id'] == 37 || empty($diagnosticoUserP['employee']['estado_diagnostico_id'])){ ?>
                                 <button type="submit"  id="SaveTemp2" class="btns text-white px-5 d-inline-block">Guardar</button>
+							<?php } ?>
                             </div>
                             <div class="arrows clearfix mt-5">
                                 <a class="btns float-left text-white px-lg-5 px-3  arrow_left" onclick="passForm('.f1');">Volver</a>
@@ -395,19 +456,35 @@ get_header();
                     <div class="menu_diagnostico">
                         <ul class="list-unstyled d-flex justify-content-center">
                             <li class="active mx-2">
-                                <a href="javascript:void(0);"> <span class="d-md-block d-none">Información empresa</span></a>
+                                <a href="javascript:passForm('.f1');"> <span class="d-md-block d-none">Información empresa</span></a>
                             </li>
                             <li class="mx-2 active">
-                                <a href="javascript:void(0);"> <span class="d-md-block d-none">Información adicional</span></a>
+                                <a href="javascript:passForm('.f2');"> <span class="d-md-block d-none">Información adicional</span></a>
                             </li>
                             <li class="mx-2 active">
                                 <a href="javascript:void(0);"><span class="d-md-block d-none">Cuestionario de diagnóstico</span></a>
                             </li>
                         </ul>
                     </div>
-                    <h3 class="text-center my-md-5 my-4 pt-md-5 pb-3 px-3">Cuestionario para diagnóstico de empresas</h3>
+                    <h3 class="text-center my-md-5">Cuestionario para diagnóstico de empresas</h3>
+					<?php if(isset($diagnosticoUserP['employee']) && $diagnosticoUserP['employee']['estado_diagnostico_id'] == 38){ ?>
+
+                        <div class="alert alert-info" role="alert">
+							<p style="text-align: center;">Para continuar con el proceso de diagnóstico, debe dirigirse a la Evaluación de Expertos (internacionales y/o nacionales).</p>
+							<hr style="margin-top: 10px !important;margin-bottom: 10px !important;">
+							<p class="mb-0 mx-auto" style="text-align: center;">
+								<button type="button" onclick="open_extern(0)" class="btns text-white px-5 d-inline-block mx-auto">Ir a evaluación de expertos</button>
+							</p>
+						</div>
+
+					<?php } ?>
                     <div class="px-lg-5 px-3 new_form">  
-                        <?php if(!empty($diagnosticoUserP['respuestasPuntaje'][1]['respuesta'])  && $diagnosticoUserP['respuestasPuntaje'][1]['respuesta'] != 'N/A-DESCRIP' && $diagnosticoUser['custom'][0]['estado_diagnostico_id'] != 37){ ?>
+			<?php	/*	var_dump($diagnosticoUserP['respuestasPuntaje']);
+					var_dump($diagnosticoUser); 
+					var_dump(count($diagnosticoUser["custom"]));*/
+					?>
+                        <?php //if(//!empty($diagnosticoUserP['respuestasPuntaje'][1]['respuesta'])  && $diagnosticoUserP['respuestasPuntaje'][1]['respuesta'] != 'N/A-DESCRIP' && 
+						if(count($diagnosticoUser["custom"])>0 && $diagnosticoUser['custom'][0]['estado_diagnostico_id'] != 37){ ?>
                             <div class="kt-portlet__body">
                                 <div class="row"> 
                                     <?php $array=[];
@@ -466,6 +543,7 @@ get_header();
                                     $suma=0; 
                                     
                                     foreach ($cuestionariosp3['custom'] as $cuestionariof3) { $required = '';
+									//var_dump($cuestionariof3);
                                             
                                             if($diagnosticoUser['custom'][0]['estado_diagnostico_id'] == 37){
                                                 foreach ($diagnosticoUserP['respuestasPuntaje'] as $respuestasPuntaje) { 
@@ -495,7 +573,7 @@ get_header();
                                             }?>
                                             <?php  if (!in_array($cuestionariof3['grupo_formulario'], $array)) {
                                                     array_push($array, $cuestionariof3['grupo_formulario']);
-                                                if($suma === 0){
+                                                /*if($suma === 0){
                                                     $display='style="display:block"'
                                                     ?>
                                                     
@@ -504,31 +582,34 @@ get_header();
                                                     $display='style="display:none"' ?>
                                                     
                                                     <a href="javascript:void(0);" class="text-white p-3 d-block text-decoration-none link_acordeon"><?php echo strip_tags($cuestionariof3['grupo_formulario'])?></a>
-                                                <?php }?>											
+                                                <?php }*/?>											
                                                 
                                             <?php }
                                             
                                             $className = substr($cuestionariof3['nombre_campo'],0,strrpos(substr($cuestionariof3['nombre_campo'],0,strrpos($cuestionariof3['nombre_campo'],"_")),"_"));
                                         
-                                            $classInteractive = (isset($allFiedlInteractive[$cuestionario['nombre_campo']]))?" Interactive ":"";
-                                            if($cuestionario['required'] == 1){
+                                            $classInteractive = (isset($allFiedlInteractive[$cuestionariof3['nombre_campo']]))?" {$allFiedlInteractive[$cuestionariof3['nombre_campo']]} ":"";
+                                            if($cuestionariof3['required'] == 1){
                                                     $classInteractive .= " requerido ";
                                                 }
                                             ?>	 
                                                 
                                             <div class="mt-4 radius container_question p-lg-4 p-3" style="display:block">
                                                 <div>										 
-                                                <?php if(!empty($cuestionariof3['descripcion'])){?><b><?php echo strip_tags( $cuestionariof3['nombreCampo']); ?></b><br><br><?php }	?>												 
+                                                <?php //var_dump($cuestionariof3);
+												if(!empty($cuestionariof3['nombreCampo'])){?><b><?php echo strip_tags( $cuestionariof3['nombreCampo']); ?></b><br><br><?php }	?>												 
                                                 <?php if(!empty($cuestionariof3['descripcion'])){ ?> <div style=""> <?php echo  $cuestionariof3['descripcion'];?></div> <?php }	?>											 
                                                 </div>
                                                 <?php   if( $cuestionariof3['valores'] != 'N/A'){?>	
                                                     <div class="bg-purple radius p-lg-4 p-3 mt-4 c_options_question">
                                                         <?php if($cuestionariof3['codigo'] == 'radio-group'){ 
-                                                                include($Path."/forms/radio-group.php");
+                                                                include($_SERVER['DOCUMENT_ROOT'].$ulrPHPS."themes/tevent/diagnostico/forms/radio-group.php");
                                                             }elseif($cuestionariof3['codigo'] == 'text'){
-                                                                include($Path."/forms/text.php");
+                                                                include($_SERVER['DOCUMENT_ROOT'].$ulrPHPS."themes/tevent/diagnostico/forms/text.php");
                                                             }elseif($cuestionariof3['codigo'] == 'select'){
-                                                                include($Path."/forms/select.php");
+                                                                include($_SERVER['DOCUMENT_ROOT'].$ulrPHPS."themes/tevent/diagnostico/forms/select.php");
+                                                            }elseif($cuestionariof3['codigo'] == 'textarea'){
+                                                                include($_SERVER['DOCUMENT_ROOT'].$ulrPHPS."themes/tevent/diagnostico/forms/textarea.php");
                                                             } ?>
                                                     </div>
                                                 <?php }?>											
@@ -541,6 +622,14 @@ get_header();
                             <div class="px-lg-5 px-4 mx-5 mt-4">
                                 <hr>
                             </div>
+							<?php if(isset($diagnosticoUserP['employee']) && $diagnosticoUserP['employee']['estado_diagnostico_id'] == 38){ ?>
+							<p class="text-center" style="font-size: 0.75rem;">
+								<div class="text-center">
+								<button type="button" onclick="open_extern(0)"  class="btns text-white px-5 d-inline-block">Ir a evaluación de expertos</button>
+								<div>
+							</p>
+							<?php } ?>
+							<?php if(!isset($diagnosticoUserP['employee']) || $diagnosticoUserP['employee']['estado_diagnostico_id'] == 37 || empty($diagnosticoUserP['employee']['estado_diagnostico_id'])){ ?>
                             <div class="arrows clearfix mt-4 text-center">
                                 <button type="submit" id="SaveTemp" class="btns text-white px-5 d-inline-block">Guardar</button>
                             </div>
@@ -548,10 +637,31 @@ get_header();
                                 <a class="btns float-left text-white px-lg-5 px-3  arrow_left" onclick="passForm('.f2');">Volver</a>
                                 <button type="submit" id="save_diagnostico" class="btns float-right text-white px-lg-5 px-3  arrow_right">Finalizar</button>
                             </div>
-                        <?php }?> 
+							<?php } else{?>
+                            <div class="arrows clearfix mt-4 text-center">
+                            </div>
+                            <div class="arrows clearfix mt-5">
+                                <a class="btns float-left text-white px-lg-5 px-3  arrow_left" onclick="passForm('.f2');">Volver</a>
+                            </div>
+							<?php }
+						}?> 
                     </div>
                         
                 </section>
+				<section class="my-md-5 py-md-5 my-4 py-4 f4">
+                    <div class="menu_diagnostico" height="100%">
+					<script type="text/javascript" src="https://static.younoodle.com/static/shared/scripts/embed.min.js"></script>
+					<script type="text/javascript">
+					YouNoodleEmbed.init({
+						iframe: 'https://platform.younoodle.com/client/entry-rounds/entorno_bogota/apply',
+						id: 'iframe_younoodle',
+						scrolling : 'no',
+						width : 800,
+						height: 900
+					});
+					</script>
+					</div>
+				</section>
                 
             <?php }else {?> 
                     <div class="alert alert-warning" role="alert">
@@ -614,7 +724,16 @@ get_header();
         },
         messages: {
             ".$mensajesValidacion."
-            }
+            ".$mensajes."
+            },
+        errorPlacement: function(error, element) {
+                            if (element.is(':radio'))
+                                    error.appendTo(element.parent().parent());
+                            else if (element.is(':checkbox'))
+                                    error.appendTo(element.parent().parent());
+                            else error.appendTo(element.parent());
+                            
+                    }
     });";
     
        
@@ -623,7 +742,7 @@ if(count($showFields)>0 || count($hiddenFields)>0){
     foreach($showFields as $field =>$values){
         foreach($values as $items){
             foreach($items as $value){
-                echo '$(".class_'.$value.'").parent().hide();';
+                echo '$(".class_'.$value.'").parent().parent().hide();';
                 echo '$(".class_'.$value.'").attr("disabled", true);';
             }
         }
@@ -631,7 +750,7 @@ if(count($showFields)>0 || count($hiddenFields)>0){
     foreach($hiddenFields as $field =>$values){
         foreach($values as $items){
             foreach($items as $value){
-                echo '$(".class_'.$value.'").parent().hide();';
+                echo '$(".class_'.$value.'").parent().parent().hide();';
                 echo '$(".class_'.$value.'").attr("disabled", true);';
             }
         }
@@ -643,12 +762,14 @@ if(count($showFields)>0 || count($hiddenFields)>0){
         foreach($values as $items){
             foreach($items as $value){
                 echo '$(".class_'.$value.'").attr("disabled", true);';
+				echo '$(".class_'.$value.'").addClass("class_disable");';
             }
         }
     }
     foreach($disabledFields as $field =>$values){
         foreach($values as $value){
             echo '$(".class_'.$value.'").attr("disabled", true);';
+			echo '$(".class_'.$value.'").addClass("class_disable");';
         }
     }
 }
@@ -664,8 +785,9 @@ if(count($showFields)>0 || count($hiddenFields)>0){
                 foreach($values as $key =>$items){
                     echo 'if(nameSelected=="'.$field.'" && valueSelected=="'.$key.'"){';
                     foreach($items as $value){
-                        echo '$(".class_'.$value.'").parent().show();';
+                        echo '$(".class_'.$value.'").parent().parent().show();';
                         echo '$(".class_'.$value.'").attr("disabled", false);';
+						echo '$(".class_'.$value.'").removeClass("class_disable");';
                     }
                     echo '}
                         ';
@@ -675,8 +797,9 @@ if(count($showFields)>0 || count($hiddenFields)>0){
                 foreach($values as $key =>$items){
                     echo 'if(nameSelected=="'.$field.'" && valueSelected=="'.$key.'"){';
                     foreach($items as $value){
-                        echo '$(".class_'.$value.'").parent().hide();';
+                        echo '$(".class_'.$value.'").parent().parent().hide();';
                         echo '$(".class_'.$value.'").attr("disabled", true);';
+						echo '$(".class_'.$value.'").addClass("class_disable");';
                     }
                     echo '}
                         ';
@@ -696,6 +819,7 @@ if(count($showFields)>0 || count($hiddenFields)>0){
                     echo 'if(nameSelected=="'.$field.'" && valueSelected=="'.$key.'"){';
                     foreach($items as $value){
                         echo '$(".class_'.$value.'").attr("disabled", false);';
+						echo '$(".class_'.$value.'").removeClass("class_disable");';
                     }
                     echo '}
                         ';
@@ -706,6 +830,7 @@ if(count($showFields)>0 || count($hiddenFields)>0){
                     echo 'if(nameSelected=="'.$field.'" && valueSelected=="'.$key.'"){';
                     foreach($items as $value){
                         echo '$(".class_'.$value.'").attr("disabled", true);';
+						echo '$(".class_'.$value.'").addClass("class_disable");';
                     }
                     echo '}
                         ';
@@ -715,16 +840,29 @@ if(count($showFields)>0 || count($hiddenFields)>0){
         
     }
     
-    $("select.Interactive").each(function(){
+    $("select.Interactives").each(function(){
         ShowHideSelect(this);
     });
-    $("select.Interactive").change(function(){
+    $("select.Interactives").change(function(){
         ShowHideSelect(this);
     });
-    $("input.Interactive").each(function(){
+	$("input.Interactives").each(function(){
+        ShowHideSelect(this);
+    });
+    $("input.Interactives").change(function(){
+        ShowHideSelect(this);
+    });
+	$("select.Interactiver").each(function(){
         EnabledDisabled(this);
     });
-    $("input.Interactive").click(function(){
+    $("select.Interactiver").change(function(){
+        EnabledDisabled(this);
+    });
+
+    $("input.Interactiver").each(function(){
+        EnabledDisabled(this);
+    });
+    $("input.Interactiver").click(function(){
         EnabledDisabled(this);
     });
 });

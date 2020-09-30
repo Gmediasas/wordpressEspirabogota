@@ -1,0 +1,1 @@
+<textarea rows="6" style="width: 100%;" <?php echo "class='class_".$className." ".$classInteractive."'"?> placeholder="<?php echo strip_tags($cuestionariof3['placeholder'])?>" name="<?php echo $cuestionariof3['nombre_campo'] ?>" <?php echo $required?>><?php echo  $cuestionariof3['response'] ?></textarea>

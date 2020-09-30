@@ -7,7 +7,7 @@ session_start();
   include 'services.php';
 ?>
 
-<?php if(isset($_SESSION['token'])) {?>
+    <?php if(isset($_SESSION['token'])) {?>
         <script> 
           jQuery('#menu-item-976').css('display','none');  
           jQuery('#menu-item-1683').css('display','none');  
@@ -46,19 +46,7 @@ session_start();
 			<form action="">
 				<!--paso1-->
 				<section class="active my-md-5 py-md-5 my-4 py-4 f1">
-				  <div class="menu_diagnostico">
-					  <ul class="list-unstyled d-flex justify-content-center">
-						  <li class="active mx-2">
-							  <a href="javascript:void(0);"> <span class="d-md-block d-none">Información empresa </span></a>
-						  </li>
-						  <li class="mx-2">
-							  <a href="javascript:void(0);">  <span class="d-md-block d-none">Información adicional</span></a>
-						  </li>
-						  <li class="mx-2">
-							  <a href="javascript:void(0);"> <span class="d-md-block d-none">Cuestionario de diagnóstico</span></a>
-						  </li>
-					  </ul>
-				  </div>
+				  
 					<h3 class="text-center my-md-5 my-4 pt-md-5 pb-3 px-3">Información de la empresa</h3>
 					<div class="px-lg-5 px-3 new_form">
 						<div class="row">
@@ -145,13 +133,14 @@ session_start();
 							<hr>
 						</div>
 						<div class="arrows clearfix mt-5">
-							<a href="#" class="btns float-right text-white px-lg-5 px-3  arrow_right" onclick="passForm('.f2');">Continuar</a>
+							<a href='../diagnostico/' class="btns float-right text-white px-lg-5 px-3  arrow_right" onclick="passForm('.f2');">Regresar</a>
 						</div>
 					</div>
 				</section>
 			</form>
 		</div>
 	</main>
+
 
 
 
