@@ -260,10 +260,19 @@ Template Name: landing-nueva-contraseña1
     }
 
     label.error { color: red;font-size: 12px; }
+    /** MODAL STYLING **/
+    .modal-content {
+        border-radius: 0px;
+        box-shadow: 0 0 20px 8px rgba(0, 0, 0, 0.7);
+    }
 
 </style>
 <?php
 $token = $_GET['email'];
+$paginate = $_GET['id'];
+$ulrPHPS= '/wp-content/';
+//$ulrPHPS= '/espiraBogota/wp-content/';
+
 ?>
 <main id="main" class="site-main" role="main">
     <div class="vc_row-full-width vc_clearfix"></div>
@@ -319,9 +328,15 @@ $token = $_GET['email'];
                                                 aria-invalid="false"></span></p>
                                 <!-- Chimpmail extension by Renzo Johnson -->
                                 <input type="hidden" name="token" value="<?php echo $token?>">
-                                <input type="hidden" name="paginateEmail" id="" value="espiraBogota.contrasena_nueva">
-                                <input type="hidden" name="asunto" id="" value="ENTORNO BOGOTÁ">
-                                <input type="hidden" name="emailSend" id="" value="entorno@tecnaliacolombia.org">
+                                <?php if($paginate == 1) {?>
+                                    <input type="hidden" name="paginateEmail" id="" value="espiraBogota.contrasena_restablecida">
+                                    <input type="hidden" name="asunto" id="" value="ENTORNO BOGOTÁ">
+                                    <input type="hidden" name="emailSend" id="" value="entorno@tecnaliacolombia.org">
+                                <?php } else {?>
+                                    <input type="hidden" name="paginateEmail" id="" value="espiraBogota.contrasena_nueva">
+                                    <input type="hidden" name="asunto" id="" value="ENTORNO BOGOTÁ">
+                                    <input type="hidden" name="emailSend" id="" value="entorno@tecnaliacolombia.org">
+                                <?php } ?>
                             </form>
                         </div>
                     </div>
@@ -333,24 +348,13 @@ $token = $_GET['email'];
     </div>
 
     <!-- Modal -->
-    <div class="modal fade" id="modalPassword" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Contraseña reestablecida</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    Se ha establecido tu contraseña. Por favor da clic e inicia sesión.
-                </div>
-                <div class="modal-footer" style="text-align:center;">
-                    <a href="http://entornobogota.com/iniciar-sesion/" class="btn btn-primary" data-dismiss="modal">Aceptar</a>
-                </div>
-            </div>
-        </div>
-    </div>
+    <?php
+    if($paginate == 1) {
+        include($_SERVER['DOCUMENT_ROOT'].$ulrPHPS."themes/tevent/nueva-contrasena/modal/recuperar.php");
+    } else {
+        include($_SERVER['DOCUMENT_ROOT'].$ulrPHPS."themes/tevent/nueva-contrasena/modal/asignar.php");
+    }
+    ?>
     <div class="modal fade" id="modalFailPassword" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -375,7 +379,8 @@ $token = $_GET['email'];
 
     <div class="vc_row wpb_row vc_row-fluid">
         <div class="container">
-            <div class="wpb_column vc_column_container col-xs-3 col-sm-3 col-md-3
+
+            <!-- <div class="wpb_column vc_column_container col-xs-3 col-sm-3 col-md-3
             col-lg-3">
                 <div class="vc_column-inner">
                     <div class="wpb_wrapper">
@@ -390,69 +395,63 @@ $token = $_GET['email'];
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="wpb_column vc_column_container col-xs-3 col-sm-3 col-md-3
-            col-lg-3">
+            </div> -->
+
+            <div class="wpb_column vc_column_container col-xs-4 col-sm-4 col-md-4 col-lg-4">
                 <div class="vc_column-inner">
                     <div class="wpb_wrapper">
                         <div class="wpb_single_image wpb_content_element vc_align_center">
                             <figure class="wpb_wrapper vc_figure">
                                 <div class="vc_single_image-wrapper vc_box_border_grey">
-                                    <img
-                                            src="../wp-content/uploads/2019/11/logo_tecnalia-1.png"
-                                            class="wpb_single_image img">
+                                    <img src="http://espirabogota.gevents.co/wp-content/uploads/2020/06/logo-bogota.png" class="wpb_single_image img">
                                 </div>
                             </figure>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="wpb_column vc_column_container col-xs-3 col-sm-3 col-md-3
-            col-lg-3">
+
+            <div class="wpb_column vc_column_container col-xs-4 col-sm-4 col-md-4 col-lg-4">
                 <div class="vc_column-inner">
                     <div class="wpb_wrapper">
                         <div class="wpb_single_image wpb_content_element vc_align_center">
                             <figure class="wpb_wrapper vc_figure">
                                 <div class="vc_single_image-wrapper vc_box_border_grey">
-                                    <img src="../wp-content/uploads/2019/11/logo_clarke.png"
-                                         class="wpb_single_image img">
+                                    <img src="http://espirabogota.gevents.co/wp-content/uploads/2020/06/L_TECNALIA_COLOMBIA_Transparente-Mediano.png" class="wpb_single_image img">
                                 </div>
                             </figure>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="wpb_column vc_column_container col-xs-3 col-sm-3 col-md-3
-            col-lg-3">
+
+            <div class="wpb_column vc_column_container col-xs-4 col-sm-4 col-md-4 col-lg-4">
                 <div class="vc_column-inner">
                     <div class="wpb_wrapper">
                         <div class="wpb_single_image wpb_content_element vc_align_center">
                             <figure class="wpb_wrapper vc_figure">
                                 <div class="vc_single_image-wrapper vc_box_border_grey">
-                                    <img src="../wp-content/uploads/2019/11/Logo_FITIC_.png"
-                                         class="wpb_single_image img">
+                                    <img src="http://espirabogota.gevents.co/wp-content/uploads/2020/06/logo_entorno_.png" class="wpb_single_image img">
                                 </div>
                             </figure>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 </main>
 <!-- #main -->
-    <?php
-   
-        include($_SERVER['DOCUMENT_ROOT']."/espiraBogota/wp-content/themes/tevent/registro/modal/modalPassword.php");
-    ?>
+
 
 <?php get_footer(); ?>
 <script type="text/javascript" src="../wp-content/themes/tevent/nueva-contrasena/js/jquery.validate.min.js"></script>
 
 <script>
-     // var urlApi = 'https://middlepp.gevents.co/public/api/';
+    var urlApi = 'https://middlepp.gevents.co/public/api/';
     //var urlApi = 'http://localhost/middleware/public/api/';
-    var urlApi = 'https://prod.gevents.co/public/api/';
+    //var urlApi = 'https://prod.gevents.co/public/api/';
 
     jQuery("#password").blur(function(){
         var password = jQuery("#password").val();
@@ -541,13 +540,14 @@ $token = $_GET['email'];
                     contentType: "application/x-www-form-urlencoded;charset=utf-8",
                     data:jQuery(this).serialize(),
                     success: function(response) {
-                        console.log(response.message)
 
-                        if(response.message == 'Success'){
-                            jQuery('#modalPassword').modal('show');
-                            jQuery('#formPassword').trigger("reset");
-                            jQuery('#savePassword').prop('disabled', false);
-                        }
+
+
+                        jQuery('#modalPassword').modal('show');
+                        jQuery('#formPassword').trigger("reset");
+                        jQuery('#savePassword').prop('disabled', false);
+
+
                     },
                     error: function(request, status, error) {
 

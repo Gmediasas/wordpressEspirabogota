@@ -1,8 +1,8 @@
 <?php
 
 //API URL
-$url = 'http://localhost/middleware/public/api/login_user';
-//$url = 'https://middlepp.gevents.co/public/api/login_user';
+//$url = 'http://localhost/middleware/public/api/login_user';
+$url = 'https://middlepp.gevents.co/public/api/login_user';
 
 //create a new cURL resource
 $ch = curl_init($url);

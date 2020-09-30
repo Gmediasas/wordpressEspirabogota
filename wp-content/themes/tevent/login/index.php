@@ -262,8 +262,16 @@ label.error { color: red;font-size: 12px; }
                 <div class="vc_column-inner">
                   <div class="wpb_wrapper">
                       <div class="Sc-hero-heading text-white">
-                        <h1 class="u-FontSize75 u-xs-FontSize40 u-Weight700 u-MarginTop0 u-MarginBottom0" style="color: #000;line-height: 1em;font-size: 70px;margin-bottom:10px;">Entorno Bogotá</h1>
-                        <h2 class="h3 text-uppercase u-Weight700 u-MarginTop0" style="color: #000;">27 DE NOVIEMBRE, 2020</h2>
+                          <div class="wpb_wrapper u-MarginTop0 u-MarginBottom0" style="color: #000;line-height: 1em;margin-bottom:10px;">
+                            <div class="wpb_single_image wpb_content_element vc_align_center">
+                              <figure class="wpb_wrapper vc_figure">
+                                <div align="center" class="vc_single_image-wrapper vc_box_border_grey">
+                                  <img src="http://entornopre.gevents.co/wp-content/uploads/2020/08/Imagen2-e1597440367302.png" class="wpb_single_image img" style="max-width: 80%;">
+                                </div>
+                              </figure>
+                            </div>
+                          </div>
+                        <h2 class="h3 text-uppercase u-Weight700 u-MarginTop0" style="color: #000;text-align: center;">27 DE NOVIEMBRE, 2020</h2>
                       </div>
                   </div>
                 </div>
@@ -363,27 +371,13 @@ label.error { color: red;font-size: 12px; }
       <div class="vc_row wpb_row vc_row-fluid">
         <div class="container">
 
-          <!-- <div class="wpb_column vc_column_container col-xs-3 col-sm-3 col-md-3 col-lg-3">
+        <div class="wpb_column vc_column_container col-xs-4 col-sm-4 col-md-4 col-lg-4">
               <div class="vc_column-inner">
                 <div class="wpb_wrapper">
                   <div class="wpb_single_image wpb_content_element vc_align_center">
                     <figure class="wpb_wrapper vc_figure">
                       <div class="vc_single_image-wrapper vc_box_border_grey">
-                        <img src="../wp-content/uploads/2019/11/logo_alcaldia_bog.png" class="wpb_single_image img">
-                      </div>
-                    </figure>
-                  </div>
-                </div>
-              </div>
-          </div> -->
-          
-          <div class="wpb_column vc_column_container col-xs-4 col-sm-4 col-md-4 col-lg-4">
-              <div class="vc_column-inner">
-                <div class="wpb_wrapper">
-                  <div class="wpb_single_image wpb_content_element vc_align_center">
-                    <figure class="wpb_wrapper vc_figure">
-                      <div class="vc_single_image-wrapper vc_box_border_grey">
-                        <img src="http://espirabogota.gevents.co/wp-content/uploads/2020/06/logo-bogota.png" class="wpb_single_image img">
+                        <img src="http://entornobogota.com/wp-content/uploads/2020/06/SDDE-01_cut-300x88.png" class="wpb_single_image img">
                       </div>
                     </figure>
                   </div>
@@ -397,7 +391,7 @@ label.error { color: red;font-size: 12px; }
                   <div class="wpb_single_image wpb_content_element vc_align_center">
                     <figure class="wpb_wrapper vc_figure">
                       <div class="vc_single_image-wrapper vc_box_border_grey">
-                        <img src="http://espirabogota.gevents.co/wp-content/uploads/2020/06/L_TECNALIA_COLOMBIA_Transparente-Mediano.png" class="wpb_single_image img">
+                        <!-- <img src="http://espirabogota.gevents.co/wp-content/uploads/2020/06/L_TECNALIA_COLOMBIA_Transparente-Mediano.png" class="wpb_single_image img"> -->
                       </div>
                     </figure>
                   </div>
@@ -418,6 +412,7 @@ label.error { color: red;font-size: 12px; }
                 </div>
               </div>
           </div>
+
         </div>
       </div>
 
