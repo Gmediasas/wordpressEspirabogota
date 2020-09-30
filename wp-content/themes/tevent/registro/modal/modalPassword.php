@@ -7,7 +7,7 @@
                La contraseña fue creada exitosamente.
             </div>
             <div class="modal-footer" style="text-align:center;">
-                <button href="iniciar-sesion/" type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                <button href="/iniciar-sesion/" type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>

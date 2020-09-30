@@ -433,8 +433,8 @@ Template Name: landing-registro
     //Gestión de errores
     $postHeaders = array('Content-Type: application/json');
 
-     // $apiUrl = 'https://prod.gevents.co/public/api/getFormCustomProgram/'.$idPrograma;
-  $apiUrl = 'https://middlepp.gevents.co/public/api/getFormCustomProgram/'.$idPrograma;
+     // $apiUrl = 'https://prod.gevents.co/public/api/getFormCustomProgram/'.$idPrograma.'/4';
+  $apiUrl = 'https://middlepp.gevents.co/public/api/getFormCustomProgram/'.$idPrograma.'/1';
     $curl = curl_init($apiUrl);
     curl_setopt($curl, CURLOPT_ENCODING, "");
     curl_setopt($curl, CURLOPT_HTTPHEADER, $postHeaders);
@@ -632,7 +632,8 @@ Template Name: landing-registro
                                             </div> 
                                             <div class="row">
                                                 <?php
-                                                foreach ($responseForm['customFormulario'] as $customCampos) {
+                                                $countFiale=0;
+                                                foreach ($responseForm['customFormulario'] as $keyFiles=>$customCampos) {
                                                     if($customCampos['required'] == 1){
                                                         $required = 'required';
                                                     }else{
@@ -650,7 +651,9 @@ Template Name: landing-registro
                                                             else
                                                                 include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/registro/forms/select.php");
                                                         else if($customCampos['campo_custom_id'] == 4)
+                                                          
                                                             include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/registro/forms/file.php");
+                                                            
                                                         else
                                                             include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/tevent/registro/forms/multiple.php");
                                                     }
@@ -682,10 +685,11 @@ Template Name: landing-registro
                                                        class="wpcf7-form-control wpcf7-submit btn btn-primary btn-block" style="width: 250px";>
                                             </div>
                                         </div>
+                                        <input type="hidden" name="totalArchivos" id="totalArchivos" value="<?php echo $countFiale ?>">
                                         <input type="hidden" name="programaId" value="<?php echo $idPrograma ?>">
                                         <input type="hidden" name="rol" value="15">
                                         <input type="hidden" name="ipUsuario" value="<?php echo $_SERVER["REMOTE_ADDR"]; ?>">
-                                        <input type="hidden" name="usuario_creacion" value="438">
+                                        <input type="hidden" name="usuario_creacion" value="12">
                                      <!--    <input type="hidden" name="usuario_creacion" value="438"> -->
                                         
                                      
@@ -785,22 +789,31 @@ Template Name: landing-registro
         }
     });
     jQuery(function(){
+       
         jQuery("#formulario_de_prueba").on("submit", function(e){
+            var filedevdata=0;
             jQuery("#loadMe").modal({
                 backdrop: "static", //remove ability to close modal with click
                 keyboard: false, //remove option to close with keyboard
                 show: true //Display loader!
             });
             jQuery('#saveRegister').attr("disabled", true);
-            var valuesForm =  jQuery("input[name='idFormularioF\\[\\]']").map(function() { return jQuery('#archivo_'+ jQuery(this).val()).prop('files')[0];}).get();
+            var valuesForm = jQuery("input[name='idFormularioF\\[\\]']").map(function() { 
+                                /* se realiza para saber cuantos documentos son los cargados */
+                                if(jQuery('#archivo_'+ jQuery(this).val()).val().length > 0){   filedevdata ++;  }
+                                jQuery('#totalArchivos').val( filedevdata); 
+                                return jQuery('#archivo_'+ jQuery(this).val()).prop('files')[0];
+                            }).get();
 
+               
             var ajaxData = new FormData(document.getElementById("formulario_de_prueba"));
+			ajaxData.append("servicio_metodo","save_ForCustom");
 
           
 
             jQuery.ajax({
                 type: 'POST',
-                url: urlApi+'save_ForCustom',
+                url: '/loadpost',
                 contentType: false,
                 processData: false,
                 data: ajaxData,
@@ -809,15 +822,28 @@ Template Name: landing-registro
                         jQuery("#loadMe").modal("hide");
                         jQuery('#formulario_de_prueba').trigger("reset");
                             jQuery('#saveRegister').attr("disabled", true);
+                          
                             window.location.href="gracias/";
                     }else if(response.response == 100){
                         jQuery("#loadMe").modal("hide");
                         jQuery('#modalErrorNit').modal('show');
                         jQuery('#saveRegister').attr("disabled", false);
+                        jQuery("#progressBar_" + id).val(0);
                     }else if(response.response == 400){
                         jQuery("#loadMe").modal("hide");
                         jQuery('#modalErrorEmail').modal('show');
                         jQuery('#saveRegister').attr("disabled", false);
+                        jQuery("#progressBar_" + id).val(0);
+                    }else if(response.response == 4031){
+                        jQuery("input[name='idFormularioF\\[\\]']").map(function() { 
+                                /* se realiza para saber cuantos documentos son los cargados */
+                            jQuery('#archivo_'+ jQuery(this).val()).val('');
+                                 
+                        }).get();
+                        jQuery("#loadMe").modal("hide");
+                        jQuery('#modalFail').modal('show');
+                        jQuery('#saveRegister').attr("disabled", false);
+                        jQuery("#progressBar_" + id).val(0);
                     }
 
                 },

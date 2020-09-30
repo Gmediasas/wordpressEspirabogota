@@ -8,7 +8,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                Ocurrio un error al regitrarse por favor valida los datos e intenta nuevamente.
+                Ocurrio un error al registrarse por favor valida los datos e intenta nuevamente.
             </div>
             <div class="modal-footer" style="text-align:center;">
                 <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>

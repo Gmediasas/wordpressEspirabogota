@@ -1,6 +1,7 @@
 function uploadFile(id) {
-    //var urlApi = 'http://localhost/middleware/public/api/';
-    var urlApi = 'https://middlepp.gevents.co/public/api/';
+
+    //var urlApi = 'https://middlepp.gevents.co/public/api/'; + 'documentupload'
+	var urlApi = '/uploadfile/';
     // var urlApi = 'https://prod.gevents.co/public/api/';
     var file = jQuery('#archivo_' + id).prop('files')[0];
 
@@ -59,14 +60,15 @@ function uploadFile(id) {
             },
 
             type: 'POST',
-            url: urlApi + 'documentupload',
+            url: urlApi,
             contentType: false,
             processData: false,
             data: formdata,
 
             success: function(response) {
-                obj = JSON.parse(response);
-                console.log(obj.codigoTemp);
+                //obj = JSON.parse(response);
+				obj = response;
+          //      console.log(obj.codigoTemp);
                 if (obj.response == 200) {
 
                     jQuery("#codigo").val(obj.codigoTemp);
@@ -84,7 +86,7 @@ function uploadFile(id) {
                     } else {
                         jQuery("#file6").val(obj.name);
                     }
-
+//console.log(obj.name);
                 }
             },
             error: function(request, status, error) {
