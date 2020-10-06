@@ -504,8 +504,8 @@
              e.preventDefault();
              return false;
          }
-            var filedevdata=0;
-            jQuery("#loadMe").modal({
+         var filedevdata=0;
+         jQuery("#loadMe").modal({
              backdrop: "static", //remove ability to close modal with click
              keyboard: false, //remove option to close with keyboard
              show: true //Display loader!
@@ -515,13 +515,13 @@
             //var urlApi = 'http://localhost/middleware/public/api/';
             var urlApi = 'https://middlepp.gevents.co/public/api/';
    
+            //var valuesForm =  jQuery("input[name='idFormularioF\\[\\]']").map(function() { return jQuery('#archivo_'+ jQuery(this).val()).prop('files')[0];}).get();
             var valuesForm =  jQuery("input[name='idFormularioF\\[\\]']").map(function() {
                  /* se realiza para saber cuantos documentos son los cargados */
                 if(jQuery('#archivo_'+ jQuery(this).val()).val().length > 0){   filedevdata ++;  }
                 jQuery('#totalArchivos').val( filedevdata); 
                 return jQuery('#archivo_'+ jQuery(this).val()).prop('files')[0];
             }).get();
-   
             var ajaxData = new FormData(document.getElementById("formulario_de_registro"));
             ajaxData.append("servicio_metodo","storeResponseCustom");
             
@@ -550,6 +550,17 @@
                         jQuery("#loadMe").modal("hide");
                         jQuery('#modalErrorEmail').modal('show');
                         jQuery('#saveRegister').attr("disabled", false);
+                    }else if(response.response == 4031){
+                        jQuery("input[name='idFormularioF\\[\\]']").map(function() { 
+                                /* se realiza para saber cuantos documentos son los cargados */
+                            jQuery('#archivo_'+ jQuery(this).val()).val('');
+                                 
+                        }).get();
+                        jQuery('#codigo').val('');
+                        jQuery("#loadMe").modal("hide");
+                        jQuery('#modalFail').modal('show');
+                        jQuery('#saveRegister').attr("disabled", false);
+                        jQuery(".progressBar").val(0);
                     }
    
                 },

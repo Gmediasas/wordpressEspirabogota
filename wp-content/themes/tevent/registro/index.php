@@ -757,6 +757,7 @@ Template Name: landing-registro
         // this.files[0].size recupera el tamaño del archivo
         // alert(this.files[0].size);
         //uploadFile(this.files[0]);
+      
         var fileName = this.files[0].name;
         var fileSize = this.files[0].size;
 
@@ -840,10 +841,11 @@ Template Name: landing-registro
                             jQuery('#archivo_'+ jQuery(this).val()).val('');
                                  
                         }).get();
+                        jQuery('#codigo').val('');
                         jQuery("#loadMe").modal("hide");
                         jQuery('#modalFail').modal('show');
                         jQuery('#saveRegister').attr("disabled", false);
-                        jQuery("#progressBar_" + id).val(0);
+                        jQuery(".progressBar").val(0);
                     }
 
                 },
